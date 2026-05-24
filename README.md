@@ -1,36 +1,130 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Wedding Online Invitation
 
-## Getting Started
+A beautiful, animated wedding invitation built with Next.js 16, React 19, and Tailwind CSS 4.
 
-First, run the development server:
+## 🎨 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Elegant Envelope Animation**: Interactive opening sequence
+- **Parallax Hero Section**: Smooth scrolling effects
+- **Particle System**: Floating petal animations
+- **Responsive Timeline**: Beautiful love story presentation
+- **Countdown Timer**: Real-time countdown to the big day
+- **RSVP Form**: Integrated guest response system
+- **Photo Gallery**: Pre-wedding photo showcase
+- **Optimized Performance**: Built with Next.js for speed
+
+## 🏗️ Architecture
+
+This project follows SOLID principles with a clean, maintainable structure:
+
+```
+src/
+├── app/                    # Next.js app directory
+│   ├── layout.tsx         # Root layout with fonts
+│   ├── page.tsx           # Home page
+│   └── globals.css        # Global styles
+├── components/
+│   ├── invitation/        # Wedding-specific components
+│   │   ├── WeddingInvitation.tsx    # Main orchestrator
+│   │   ├── EnvelopeAnimation.tsx    # Opening animation
+│   │   ├── HeroSection.tsx          # Hero with parallax
+│   │   ├── StoryTimeline.tsx        # Love story timeline
+│   │   ├── CelebrationDetails.tsx   # Event details
+│   │   ├── PhotoGallery.tsx         # Photo grid
+│   │   ├── Countdown.tsx            # Countdown timer
+│   │   ├── RSVPForm.tsx             # RSVP form
+│   │   └── Footer.tsx               # Footer section
+│   └── shared/            # Reusable components
+│       ├── MaterialIcon.tsx         # Icon wrapper
+│       ├── GlassCard.tsx            # Glass morphism card
+│       └── ParticleCanvas.tsx       # Particle animation
+├── hooks/                 # Custom React hooks
+│   ├── useCountdown.ts    # Countdown logic
+│   ├── useScrollReveal.ts # Scroll animations
+│   └── useParallax.ts     # Parallax effect
+├── config/                # Configuration files
+│   └── wedding.config.json # All wedding data & images
+└── types/                 # TypeScript definitions
+    └── wedding.types.ts   # Type definitions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 SOLID Principles Applied
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Single Responsibility**: Each component has one clear purpose
+2. **Open/Closed**: Components are extensible through props
+3. **Liskov Substitution**: Proper component composition and inheritance
+4. **Interface Segregation**: Minimal, specific props interfaces
+5. **Dependency Inversion**: Custom hooks abstract business logic
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Getting Started
 
-## Learn More
+```bash
+# Install dependencies
+npm install
 
-To learn more about Next.js, take a look at the following resources:
+# Run development server
+npm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Build for production
+npm run build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Start production server
+npm start
+```
 
-## Deploy on Vercel
+Open [http://localhost:3000](http://localhost:3000) to view the invitation.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ⚙️ Configuration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Edit `src/config/wedding.config.json` to customize:
+
+- Couple names
+- Wedding date and time
+- Story timeline events
+- Event locations
+- Gallery images
+- RSVP form fields
+
+## 🎨 Customization
+
+### Colors
+
+Colors are defined in `src/app/globals.css` using CSS variables. Modify the root variables to change the theme.
+
+### Typography
+
+Fonts are configured in `src/app/layout.tsx`:
+- **Display**: Playfair Display
+- **Body**: Manrope
+
+### Images
+
+Update image URLs in `src/config/wedding.config.json`. The app uses Next.js Image component for optimization.
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 16
+- **UI Library**: React 19
+- **Styling**: Tailwind CSS 4
+- **Language**: TypeScript
+- **Fonts**: Google Fonts (Playfair Display, Manrope)
+- **Icons**: Material Symbols
+
+## 📱 Responsive Design
+
+The invitation is fully responsive and optimized for:
+- Mobile devices (320px+)
+- Tablets (768px+)
+- Desktop (1024px+)
+
+## ♿ Accessibility
+
+- Semantic HTML structure
+- ARIA labels where needed
+- Keyboard navigation support
+- Reduced motion support for animations
+- Proper color contrast ratios
+
+## 📄 License
+
+This project is private and intended for personal use.

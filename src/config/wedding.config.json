@@ -1,0 +1,121 @@
+{
+  "theme": {
+    "flowerImage": "/images/flower.png",
+    "leavesImage": "/images/leave.png"
+  },
+  "typography": {
+    "baseFontSize": 20
+  },
+  "cover": {
+    "invitationLabel": "Thân Mời",
+    "openButtonText": "Mở thiệp"
+  },
+  "couple": {
+    "groom": "TRUNG HIẾU",
+    "bride": "KHÁNH LINH",
+    "relationshipLine": "Quý Nam – Thứ Nữ",
+    "weddingDate": "2026-10-11T09:00:00",
+    "hashtag": "THKL2026"
+  },
+  "families": {
+    "groom": {
+      "label": "Ông Bà",
+      "father": "NGUYỄN THÀNH TRUNG",
+      "mother": "HOÀNG THỊ DUNG",
+      "address": "44/2T Ấp Hậu Lân 1, X. Bà Điểm, TP. HCM"
+    },
+    "bride": {
+      "label": "Ông Bà",
+      "father": "TRẦN VĂN ANH DŨNG",
+      "mother": "LÊ THỊ NĂM",
+      "address": "71 Nguyễn Tư Giản, P. An Hội Tây, TP. HCM"
+    }
+  },
+  "announcement": {
+    "heading": "TRÂN TRỌNG BÁO TIN",
+    "subheading": "LỄ THÀNH HÔN CỦA CON CHÚNG TÔI"
+  },
+  "ceremony": {
+    "locationLine": "HÔN LỄ ĐƯỢC CỬ HÀNH TẠI TƯ GIA",
+    "timeDetail": "VÀO LÚC 09 GIỜ 00, CHỦ NHẬT",
+    "dateDisplay": "11 . 10 . 2026",
+    "lunarDate": "Nhằm ngày 02 tháng 09 năm Bính Ngọ",
+    "locationLabel": "",
+    "location": "",
+    "timeLabel": "",
+    "time": "09:00",
+    "dayOfWeek": "CHỦ NHẬT",
+    "day": "11",
+    "month": "THÁNG 10",
+    "year": "2026"
+  },
+  "reception": {
+    "title": "TRÂN TRỌNG KÍNH MỜI",
+    "subtitle": "ĐẾN DỰ BUỔI TIỆC CHUNG VUI CÙNG GIA ĐÌNH CHÚNG TÔI TẠI:",
+    "venueType": "TRUNG TÂM HỘI NGHỊ",
+    "venueName": "WHITE PALACE",
+    "venueHall": "SẢNH ALPAS 1",
+    "address": "194 Hoàng Văn Thụ, Phường Đức Nhuận, TP. HCM",
+    "timeDetail": "VÀO LÚC 18 GIỜ 00, CHỦ NHẬT",
+    "dateDisplay": "11 . 10 . 2026",
+    "lunarDate": "Nhằm ngày 02 tháng 09 năm Bính Ngọ",
+    "closingLine1": "Sự hiện diện của Quý Khách là niềm vinh hạnh cho gia đình chúng tôi",
+    "closingLine2": "Rất hân hạnh được đón tiếp!",
+    "scheduleNote": "Đón khách 18h00 · Khai tiệc 19h00",
+    "guestArrivalLabel": "ĐÓN KHÁCH",
+    "guestArrivalTime": "18:00",
+    "partyStartLabel": "KHAI TIỆC",
+    "partyStartTime": "19:00",
+    "calendarMonthLabel": "Tháng 10 / 2026",
+    "time": "18:00",
+    "dayOfWeek": "CHỦ NHẬT",
+    "day": "11",
+    "month": "THÁNG 10",
+    "year": "2026"
+  },
+  "images": {
+    "couplePortraits": {
+      "groom": "/images/groom.png",
+      "bride": "/images/bride.png"
+    },
+    "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuBDqzG4MGVZ0L7Hf_NwjgZeRJxvmKp50aZHrfET-2QfN_zVwRSothMO7a5HmA-vnneyMyTTWXeOUT4vvU7iGCZ00sPzb7BF76qsCExdWf-5sShdE0IDQJBLv-GtvejwgCSb3lpXzz036KaAS3FGQa6Uhzc5PoGN-LNoTW1FaVVujwxKTGjOGoWkJQfJC7ZHSpWa5EY9rR9hLqGsY2_VM-dG8IeNCvitBRli4_mJ0x8W7aOApWRRdlFLTRPnKefOkOkx4lSzAdDUBdU",
+    "galleryMoreCount": 4,
+    "gallery": [
+      {
+        "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCFwNetxcLVaR_wGcpyNKYMtgQe9O9ptlnnnOZom6rnbEYUjM6lcJCFjnGvwsT7W0BXZTpl8wk2Eceiyqke3oksFhlIyHWmF-bA_Z9V47OTYG6g-HVUOUpyX8L_g_btcryrq5Yr17UPThYFHwPJnRNaFBFwHldr_76neuhFJ0llob_cO2csxm2_eiq-MrKgKdQhjFSPOwv32ff3hjWgVvA-bPyGZgJ74pZGq5AQITyTdILgkYkVSVu_mpbRQLEbj2b6jhdA3wliaxc",
+        "alt": "Ảnh cưới 1"
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCLIoefYjPpMNfZ2Hma61mF8B2OTrIbAPtZ_HpAb3yorPg4qG0hkMYbRSLjnCPCGNVyYM50OG6uCmMZ3oiW6sqdefu5xiOoTRkebqrZy8pRNAHFG12rRSanrpIHPQRwZr0rVy699YOK13a2LsDkQrHFBGk7NgYT_1GWZBMwne5JWAVOkUy_2pguOboQ-NbFeNKTX10M5gebqb_prbJnAV0wbdNhCGFEo5k_sc1-hGZJBMWinZU93Nih6TnOLmkMIKEarz8jptoWN6o",
+        "alt": "Ảnh cưới 2"
+      }
+    ]
+  },
+  "rsvp": {
+    "deadline": "1 tháng 10",
+    "fields": [
+      {
+        "name": "fullName",
+        "label": "HỌ VÀ TÊN",
+        "type": "text",
+        "placeholder": "Nhập họ tên của bạn",
+        "required": true
+      },
+      {
+        "name": "phone",
+        "label": "SỐ ĐIỆN THOẠI",
+        "type": "tel",
+        "placeholder": "Số điện thoại liên hệ",
+        "required": true
+      },
+      {
+        "name": "wishes",
+        "label": "LỜI CHÚC",
+        "type": "textarea",
+        "placeholder": "Gửi lời chúc đến cô dâu chú rể...",
+        "rows": 3,
+        "required": false
+      }
+    ]
+  }
+}
