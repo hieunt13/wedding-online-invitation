@@ -12,7 +12,13 @@ export function resolveFontScale(typography?: TypographyConfig): number {
 }
 
 export function getTypographyStyleVars(typography?: TypographyConfig): CSSProperties {
+  const scale = resolveFontScale(typography);
   return {
-    "--hm-font-scale": String(resolveFontScale(typography)),
+    "--hm-font-scale": String(scale),
+    "--jmii-font-scale": String(scale),
   } as CSSProperties;
+}
+
+export function baseFontSizeStyle(typography?: TypographyConfig): CSSProperties {
+  return getTypographyStyleVars(typography);
 }

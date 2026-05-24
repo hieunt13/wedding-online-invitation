@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Cormorant_Infant, Great_Vibes } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  Cormorant_Infant,
+  Great_Vibes,
+  Imperial_Script,
+} from "next/font/google";
+import weddingConfig from "@/config/wedding.config.json";
 import "./globals.css";
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -21,9 +27,15 @@ const greatVibes = Great_Vibes({
   weight: "400",
 });
 
+const imperialScript = Imperial_Script({
+  variable: "--font-imperial",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 export const metadata: Metadata = {
-  title: "Trung Hiếu & Khánh Linh — Thiệp Cưới",
-  description: "Trân trọng kính mời đến dự lễ thành hôn và tiệc cưới Trung Hiếu & Khánh Linh",
+  title: weddingConfig.meta.title,
+  description: weddingConfig.meta.description,
 };
 
 export const viewport = {
@@ -39,9 +51,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className="h-full">
+    <html lang="vi">
       <body
-        className={`${cormorantGaramond.variable} ${cormorantInfant.variable} ${greatVibes.variable} min-h-full font-body antialiased`}
+        className={`${cormorantGaramond.variable} ${cormorantInfant.variable} ${greatVibes.variable} ${imperialScript.variable} min-h-dvh font-body antialiased`}
       >
         {children}
       </body>

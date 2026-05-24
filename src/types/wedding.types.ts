@@ -1,138 +1,172 @@
 export interface WeddingCouple {
-  bride: string;
   groom: string;
+  bride: string;
   weddingDate: string;
   hashtag?: string;
-  groomTitle?: string;
-  brideTitle?: string;
-  relationshipLine?: string;
 }
 
 export interface FamilySide {
   label: string;
+  fatherTitle: string;
   father: string;
+  motherTitle: string;
   mother: string;
-  address: string;
 }
 
 export interface ThemeAssets {
-  flowerImage: string;
-  leavesImage: string;
-}
-
-/** Adjust `baseFontSize` (px) to scale all invitation text. Default reference: 16px. */
-export interface TypographyConfig {
-  baseFontSize: number;
+  heroFlowersTop?: string;
+  heroFlowersBottom?: string;
+  heroEnvelope?: string;
+  heroWaxSeal?: string;
+  flowerImage?: string;
+  parentsFloral?: string;
+  calendarBg?: string;
+  timelineFlower?: string;
+  timelineChampagne?: string;
+  dresscodeMonet?: string;
+  footerThankYouBg?: string;
+  rsvpFloral?: string;
 }
 
 export interface CoverCopy {
   invitationLabel: string;
   openButtonText: string;
+  floral?: string;
+  backgroundImage?: string;
 }
 
-export interface AnnouncementCopy {
-  heading: string;
-  subheading: string;
+export interface TypographyConfig {
+  baseFontSize: number;
 }
 
-export interface ScheduleBlock {
-  locationLabel: string;
-  location: string;
-  timeLabel: string;
-  time: string;
-  dayOfWeek: string;
+export interface HeroConfig {
+  saveTheDate: string;
+  polaroidDate: string;
+  heroPhoto: string;
+  /** Ảnh polaroid phía sau (tuỳ chọn) */
+  heroPhotoSecondary?: string;
+}
+
+export interface EventConfig {
+  invitationLine: string;
+  venueName: string;
+  address: string;
+  mapsUrl: string;
+  mapsLabel: string;
+  hostedAtLabel: string;
+  timeLine: string;
   day: string;
   month: string;
   year: string;
-  lunarDate?: string;
-  locationLine?: string;
-  timeDetail?: string;
-  dateDisplay?: string;
+  lunarDate: string;
 }
 
-export interface ReceptionBlock {
+export interface LoveStoryConfig {
+  quoteOnPhoto?: string;
+  sectionTitle?: string;
+  paragraphs: string[];
+}
+
+export interface CouplePhotoConfig {
+  groomImage: string;
+  brideImage: string;
+  groomRoleLabel: string;
+  brideRoleLabel: string;
+}
+
+export interface TimelineItem {
+  time: string;
+  label: string;
+  icon?: string;
+}
+
+export interface DresscodeConfig {
   title: string;
   subtitle: string;
-  time: string;
-  dayOfWeek: string;
-  day: string;
-  month: string;
-  year: string;
-  lunarDate?: string;
-  guestArrivalLabel: string;
-  guestArrivalTime: string;
-  partyStartLabel: string;
-  partyStartTime: string;
-  calendarMonthLabel: string;
-  venueType?: string;
-  venueName?: string;
-  venueHall?: string;
-  address?: string;
-  timeDetail?: string;
-  dateDisplay?: string;
-  closingLine1?: string;
-  closingLine2?: string;
-  scheduleNote?: string;
+  colorLeft?: string;
+  colorRight?: string;
+  monetImage?: string;
 }
 
-export interface GalleryImage {
-  url: string;
-  alt: string;
-  className?: string;
+export interface CalendarConfig {
+  monthLabel: string;
+  highlightDay: number;
+  scatteredRows?: (number | string)[][];
 }
 
-export interface CouplePortraits {
-  groom: string;
-  bride: string;
+export interface GalleryConfig {
+  images: string[];
 }
 
-export interface StoryEvent {
-  season: string;
-  title: string;
-  description: string;
-}
-
-export interface CelebrationEvent {
-  type: string;
-  title: string;
-  time: string;
-  location: string;
-  icon: string;
-  mapAction: string;
-}
-
-export interface RSVPField {
-  name: string;
+export interface RsvpOption {
+  value: string;
   label: string;
-  type: string;
-  placeholder: string;
-  required: boolean;
-  rows?: number;
+}
+
+export interface RsvpConfig {
+  title: string;
+  submitLabel: string;
+  successTitle: string;
+  successMessage: string;
+  namePlaceholder: string;
+  messagePlaceholder: string;
+  attendanceLabel: string;
+  attendanceOptions: RsvpOption[];
+  guestSideLabel: string;
+  guestSideOptions: RsvpOption[];
+  guestCountPlaceholder: string;
+}
+
+export interface SocialLink {
+  platform: string;
+  url: string;
+  icon: string;
+}
+
+export interface GiftConfig {
+  title: string;
+  accountName: string;
+  bankName: string;
+  accountNumber: string;
 }
 
 export interface WeddingConfig {
+  meta: {
+    title: string;
+    description: string;
+  };
   theme: ThemeAssets;
-  typography?: TypographyConfig;
   cover: CoverCopy;
+  typography?: TypographyConfig;
+  music?: {
+    src: string;
+    enabled: boolean;
+  };
   couple: WeddingCouple;
+  hero: HeroConfig;
+  heroBannerPhoto?: string;
+  quoteBannerPhoto?: string;
   families: {
     groom: FamilySide;
     bride: FamilySide;
   };
-  announcement: AnnouncementCopy;
-  ceremony: ScheduleBlock;
-  reception: ReceptionBlock;
-  images: {
-    hero: string;
-    gallery: GalleryImage[];
-    galleryMoreCount?: number;
-    couplePortraits?: CouplePortraits;
+  event: EventConfig;
+  loveStory: LoveStoryConfig;
+  couplePhotos: CouplePhotoConfig;
+  calendar: CalendarConfig;
+  timeline: TimelineItem[];
+  dresscode: DresscodeConfig;
+  countdown: {
+    label: string;
   };
-  story?: StoryEvent[];
-  events?: CelebrationEvent[];
-  rsvp: {
-    deadline: string;
-    fields: RSVPField[];
+  gallery?: GalleryConfig;
+  rsvp: RsvpConfig;
+  gift?: GiftConfig;
+  footer: {
+    thankYouScript: string;
+    thankYouMessage: string;
+    brandLabel: string;
+    social?: SocialLink[];
   };
 }
 
@@ -140,10 +174,5 @@ export interface CountdownTime {
   days: number;
   hours: number;
   minutes: number;
-}
-
-export interface RSVPFormData {
-  fullName: string;
-  phone: string;
-  wishes?: string;
+  seconds: number;
 }

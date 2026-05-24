@@ -73,3 +73,40 @@ Vào tab **Actions** trên GitHub để xem log. Production URL nằm trong Verc
 npm run build
 vercel deploy --prebuilt --prod
 ```
+
+## Khắc phục: mở link bị bắt đăng nhập Vercel
+
+**Nguyên nhân:** Không phải lỗi code thiệp cưới. Vercel đang bật **Deployment Protection** (Vercel Authentication) — khách phải login tài khoản Vercel mới xem được.
+
+### Cách tắt (khuyến nghị cho thiệp cưới public)
+
+1. [vercel.com](https://vercel.com) → chọn project **wedding-online-invitation**
+2. **Settings** → **Deployment Protection**
+3. Ở mục **Production**:
+   - Tắt **Vercel Authentication**, hoặc
+   - Chọn **Only Preview Deployments** (chỉ bảo vệ preview, production mở công khai)
+4. **Save**
+
+### Link nên gửi khách
+
+Dùng **Production domain**, ví dụ:
+
+- `https://ten-project.vercel.app`
+- hoặc domain riêng đã gắn (nếu có)
+
+**Không** gửi link dạng deployment preview từ PR (thường bị bảo vệ):
+
+- `https://wedding-online-invitation-xxxxx-team.vercel.app` (preview)
+
+### Gửi thiệp có tên khách
+
+```
+https://ten-project.vercel.app/?guest=Nguyễn Văn An
+```
+
+### Vẫn bị login sau khi tắt?
+
+- Kiểm tra **Team Settings** → **Deployment Protection** (cài team có thể override project)
+- Thử tab ẩn danh / điện thoại chưa login Vercel
+- **Deployments** → deployment **Production** → **Visit** để lấy đúng URL production
+
