@@ -45,6 +45,8 @@ export interface HeroConfig {
   heroPhoto: string;
   /** Ảnh polaroid phía sau (tuỳ chọn) */
   heroPhotoSecondary?: string;
+  /** Ảnh hiển thị bên trong thiệp (phong bì). Mặc định: heroPhoto + heroPhotoSecondary */
+  cardPhotos?: string[];
 }
 
 export interface EventConfig {

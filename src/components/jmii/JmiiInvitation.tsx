@@ -36,7 +36,14 @@ export function JmiiInvitation({ config, guestName }: JmiiInvitationProps) {
       <PageFloralBackground />
       <MusicToggle src={music?.src} enabled={music?.enabled} />
 
-      <HeroSection hero={hero} theme={theme} bannerPhoto={config.heroBannerPhoto} />
+      <HeroSection
+        hero={hero}
+        theme={theme}
+        couple={couple}
+        invitationLabel={config.cover.invitationLabel}
+        guestName={guestName}
+        bannerPhoto={config.heroBannerPhoto}
+      />
 
       <ParentsInviteSection
         families={families}

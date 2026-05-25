@@ -40,7 +40,11 @@
     "saveTheDate": "Save our date",
     "polaroidDate": "11.10.2026",
     "heroPhoto": "/images/groom.png",
-    "heroPhotoSecondary": "/images/bride.png"
+    "heroPhotoSecondary": "/images/bride.png",
+    "cardPhotos": [
+      "/images/groom.png",
+      "/images/bride.png"
+    ]
   },
   "heroBannerPhoto": "/images/idle-bg.png",
   "quoteBannerPhoto": "/images/idle-bg.png",

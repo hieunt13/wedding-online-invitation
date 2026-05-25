@@ -77,7 +77,7 @@
 }
 
 .jmii-cover__bg-img {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center center;
   filter: blur(4px) brightness(0.92) saturate(0.9);
 }
@@ -100,6 +100,10 @@
   border: 1px solid rgb(var(--jmii-green-rgb) / 0.14);
   box-shadow: 0 8px 32px rgb(var(--jmii-green-rgb) / 0.12);
   overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .jmii-cover__flower {
@@ -110,7 +114,7 @@
 }
 
 .jmii-cover__flower--tl {
-  top: 0.35rem;
+  top: -2.35rem;
   left: -2.35rem;
   transform: rotate(24deg);
   transform-origin: 85% 5%;
@@ -167,16 +171,19 @@
 
 .jmii-cover__guest {
   margin: 0 0 1.25rem;
-  padding: 0.7rem 1rem;
-  border: 1px dashed rgb(var(--jmii-green-rgb) / 0.4);
-  font-family: var(--jmii-font-cover);
-  font-size: calc(1.45rem * var(--jmii-scale, 1));
+  border-bottom: 1px dashed rgb(var(--jmii-green-rgb) / 0.4);
+  font-family: var(--font-body), "Cormorant Infant", ui-serif, Georgia, serif;
+  font-size: calc(1rem * var(--jmii-scale, 1));
   font-weight: 400;
+  line-height: 1;
   color: var(--jmii-green);
   min-height: 2.75rem;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  padding-bottom: 0.125rem;
+  max-width: 70%;
+  width: 100%;
 }
 
 .jmii-cover__guest--placeholder {
@@ -417,7 +424,6 @@
   line-height: 1.05;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  font-weight: 600;
 }
 
 .reveal-on-scroll {
@@ -456,6 +462,7 @@
 .jmii-hero__topbar {
   height: 5px;
   background: var(--jmii-green);
+  display: none;
 }
 
 .jmii-hero__frame {
@@ -477,26 +484,250 @@
 
 .jmii-hero__collage {
   position: relative;
-  width: min(100%, 300px);
-  height: 340px;
+  width: min(100%, 320px);
+  height: 360px;
   margin: 0 auto;
   overflow: visible;
 }
 
+/* Phong bì + thiệp bên trong (CSS, không dùng ảnh envelope) */
 .jmii-hero__envelope {
   position: absolute;
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
   z-index: 2;
-  width: 280px;
+  width: min(280px, 92%);
+  height: 320px;
+  line-height: 0;
+  overflow: visible;
+}
+
+.jmii-hero__envelope-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 10px 22px rgb(30 61 47 / 0.22));
+}
+
+@keyframes jmii-envelope-polaroid-shake {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  12% {
+    transform: translate(-1px, 1px) rotate(-1.4deg);
+  }
+
+  24% {
+    transform: translate(2px, -1px) rotate(1.2deg);
+  }
+
+  36% {
+    transform: translate(-2px, 0) rotate(-0.9deg);
+  }
+
+  48% {
+    transform: translate(1px, 2px) rotate(1.1deg);
+  }
+
+  60% {
+    transform: translate(-1px, -2px) rotate(-1.2deg);
+  }
+
+  72% {
+    transform: translate(2px, 1px) rotate(0.8deg);
+  }
+
+  84% {
+    transform: translate(-2px, -1px) rotate(-1deg);
+  }
+}
+
+.jmii-hero__envelope-back {
+  position: absolute;
+  inset: 14% 5% 0;
+  border-radius: 2px 2px 10px 10px;
+  background: linear-gradient(165deg, #2a523f 0%, var(--jmii-green) 48%, #172f24 100%);
+  box-shadow: inset 0 2px 10px rgb(0 0 0 / 0.18);
+}
+
+.jmii-hero__envelope-flap {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  top: 0;
+  height: 44%;
+  z-index: 1;
+  background: linear-gradient(180deg, #315f49 0%, var(--jmii-green) 88%);
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
+}
+
+/* Polaroid lòi ra sau thiệp (góc phải) */
+.jmii-hero__envelope-polaroids {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  z-index: 2;
+  width: 76%;
+  height: 58%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.jmii-hero__envelope-polaroid {
+  position: absolute;
+  width: 46%;
+  max-width: 118px;
+  padding: 5px 5px 18px;
+  background: #fff;
+  box-shadow:
+    0 8px 20px rgb(30 61 47 / 0.22),
+    0 2px 6px rgb(30 61 47 / 0.12);
+}
+
+.jmii-hero__envelope-polaroid--lead {
+  right: -36%;
+  top: -14%;
+  z-index: 2;
+  transform: rotate(11deg);
+}
+
+.jmii-hero__envelope-polaroid--back {
+  right: -22%;
+  top: 2%;
+  z-index: 1;
+  transform: rotate(5deg) scale(0.94);
+  opacity: 0.92;
+}
+
+.jmii-hero__envelope-polaroid-shake {
+  animation: jmii-envelope-polaroid-shake 2.6s ease-in-out infinite;
+  transform-origin: 50% 55%;
+  will-change: transform;
+}
+
+.jmii-hero__envelope-polaroid-media {
+  position: relative;
+  aspect-ratio: 1 / 1.05;
+  overflow: hidden;
+  background: #ece8e2;
+}
+
+.jmii-hero__envelope-polaroid-img {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.jmii-hero__envelope-card {
+  position: absolute;
+  left: 50%;
+  top: -11%;
+  z-index: 4;
+  width: 76%;
+  height: 74%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.22);
+  background: linear-gradient(180deg, #fdfbf7 0%, #f5f0e8 100%);
+}
+
+.jmii-hero__envelope-card-copy {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.5rem 0.6rem;
+  text-align: center;
+  color: var(--jmii-green);
+}
+
+.jmii-hero__envelope-card-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0 0.2rem;
+  font-family: var(--jmii-font-serif);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.jmii-hero__envelope-card-label::before,
+.jmii-hero__envelope-card-label::after {
+  content: "";
+  width: 1.35rem;
+  height: 1px;
+  background: rgb(30 61 47 / 0.35);
+}
+
+.jmii-hero__envelope-card-names {
+  margin: 0 0 0.12rem;
+  font-size: clamp(1rem, 4.5vw, 1.25rem);
+  line-height: 1.1;
+}
+
+.jmii-hero__envelope-card-date {
+  margin: 0 0 0.15rem;
+  font-family: var(--jmii-font-serif);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+
+.jmii-hero__envelope-card-invite {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.2;
+  color: #8a7348;
+}
+
+.jmii-hero__envelope-front {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 0;
+  z-index: 5;
+  height: 54%;
+  background: linear-gradient(180deg, #2f5844 0%, var(--jmii-green) 32%, #172f24 100%);
+  clip-path: polygon(0 30%, 50% 0, 100% 30%, 100% 100%, 0 100%);
+  box-shadow: inset 0 4px 12px rgb(0 0 0 / 0.14);
+  border-radius: 0 0 10px 10px;
+}
+
+.jmii-hero__envelope-seal {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  z-index: 6;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
   line-height: 0;
 }
 
-.jmii-hero__envelope-img {
-  width: 100%;
-  height: auto;
+.jmii-hero__envelope-seal-img {
   display: block;
+  width: 48px;
+  height: auto;
+  filter: drop-shadow(0 3px 6px rgb(0 0 0 / 0.35));
+}
+
+.jmii-hero__envelope-seal-fallback {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, #d4b06a, #9a6b32 52%, #5c3d18 100%);
+  box-shadow:
+    inset 0 -2px 4px rgb(0 0 0 / 0.25),
+    0 3px 8px rgb(0 0 0 / 0.35);
 }
 
 .jmii-hero__polaroids {
@@ -571,8 +802,8 @@
 }
 
 .jmii-hero__flowers--right {
-  right: -42px;
-  top: 52px;
+  bottom: -67px;
+  right: 10px;
 }
 
 .jmii-hero__flowers--left {
@@ -586,21 +817,6 @@
   max-width: 200px;
   max-height: 260px;
   display: block;
-}
-
-.jmii-hero__seal {
-  position: absolute;
-  left: 50%;
-  bottom: 78px;
-  transform: translateX(-50%);
-  z-index: 7;
-  line-height: 0;
-}
-
-.jmii-hero__seal-img {
-  display: block;
-  width: 48px;
-  height: auto;
 }
 
 .jmii-hero__photo-full {
@@ -641,7 +857,6 @@
   font-family: var(--jmii-font-script);
   font-size: calc(42px * var(--jmii-scale));
   line-height: 1.05;
-  text-transform: lowercase;
 }
 
 .jmii-couple-names__amp {
@@ -1436,7 +1651,8 @@
   .jmii-cover,
   .jmii-cover__flower,
   .jmii-page__floral,
-  .jmii-experience--open {
+  .jmii-experience--open,
+  .jmii-hero__envelope-polaroid-shake {
     animation: none;
     transition: none;
   }
