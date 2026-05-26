@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import type { GalleryConfig } from "@/types/wedding.types";
+
+const AUTO_SCROLL_MS = 4000;
 
 interface GallerySectionProps {
   gallery: GalleryConfig;
@@ -12,41 +14,41 @@ export function GallerySection({ gallery }: GallerySectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const images = gallery.images;
 
+  useEffect(() => {
+    if (images.length <= 1) return;
+
+    const id = window.setInterval(() => {
+      setActiveIndex((i) => (i === images.length - 1 ? 0 : i + 1));
+    }, AUTO_SCROLL_MS);
+
+    return () => window.clearInterval(id);
+  }, [images.length]);
+
   if (!images.length) return null;
 
-  const goPrev = () => setActiveIndex((i) => (i === 0 ? images.length - 1 : i - 1));
-  const goNext = () => setActiveIndex((i) => (i === images.length - 1 ? 0 : i + 1));
-
   return (
-    <section className="jmii-section jmii-gallery reveal-on-scroll">
-      <div className="jmii-gallery__main">
-        <button type="button" className="jmii-gallery__nav jmii-gallery__nav--prev" onClick={goPrev} aria-label="Ảnh trước">
-          ‹
-        </button>
-        <div className="jmii-gallery__slide">
-          <Image
-            src={images[activeIndex]}
-            alt=""
-            fill
-            className="object-cover"
-            sizes="100vw"
-            priority={activeIndex === 0}
-          />
+    <section
+      className="jmii-section jmii-gallery reveal-on-scroll revealed"
+      aria-label="Album ảnh cưới"
+    >
+      <div className="jmii-gallery__viewport">
+        <div
+          className="jmii-gallery__track"
+          style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+        >
+          {images.map((src, index) => (
+            <div key={`${src}-${index}`} className="jmii-gallery__slide">
+              <Image
+                src={src}
+                alt={`Ảnh pre-wedding ${index + 1}`}
+                fill
+                className="object-cover"
+                sizes="100vw"
+                priority={index === 0}
+              />
+            </div>
+          ))}
         </div>
-      </div>
-
-      <div className="jmii-gallery__thumbs">
-        {images.map((src, index) => (
-          <button
-            key={`${src}-${index}`}
-            type="button"
-            className={`jmii-gallery__thumb${index === activeIndex ? " jmii-gallery__thumb--active" : ""}`}
-            onClick={() => setActiveIndex(index)}
-            aria-label={`Xem ảnh ${index + 1}`}
-          >
-            <Image src={src} alt="" fill className="object-cover" sizes="64px" />
-          </button>
-        ))}
       </div>
     </section>
   );

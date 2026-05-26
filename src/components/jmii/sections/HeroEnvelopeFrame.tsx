@@ -68,7 +68,7 @@ export function HeroEnvelopeFrame({
           <div className="jmii-hero__envelope-card-copy">
             <p className="jmii-hero__envelope-card-label">{invitationLabel}</p>
             <p className="jmii-hero__envelope-card-names jmii-script">
-              {groom} &amp; {bride}
+              {groom} &amp; <br /> {bride}
             </p>
             <p className="jmii-hero__envelope-card-date">
               {formatHeroDate(weddingDate)}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { JmiiCover } from "@/components/jmii/JmiiCover";
 import { JmiiInvitation } from "@/components/jmii/JmiiInvitation";
 import { baseFontSizeStyle } from "@/lib/typography";
@@ -13,8 +13,19 @@ interface WeddingExperienceProps {
 
 export function WeddingExperience({ config, guestName }: WeddingExperienceProps) {
   const [opened, setOpened] = useState(false);
+  const [revealing, setRevealing] = useState(false);
+
+  const handleOpenStart = useCallback(() => {
+    setRevealing(true);
+  }, []);
+
+  const handleOpenComplete = useCallback(() => {
+    setOpened(true);
+    setRevealing(false);
+  }, []);
 
   const scaleStyle = baseFontSizeStyle(config.typography);
+  const showInvitation = opened || revealing;
 
   return (
     <div style={scaleStyle}>
@@ -22,12 +33,14 @@ export function WeddingExperience({ config, guestName }: WeddingExperienceProps)
         couple={config.couple}
         cover={config.cover}
         guestName={guestName}
+        waxSealSrc={config.theme.heroWaxSeal}
         visible={!opened}
-        onOpen={() => setOpened(true)}
+        onOpenStart={handleOpenStart}
+        onOpenComplete={handleOpenComplete}
       />
 
-      <div className={opened ? "jmii-experience--open" : "jmii-experience--closed"}>
-        {opened ? <JmiiInvitation config={config} guestName={guestName} /> : null}
+      <div className={showInvitation ? "jmii-experience--open" : "jmii-experience--closed"}>
+        {showInvitation ? <JmiiInvitation config={config} guestName={guestName} /> : null}
       </div>
     </div>
   );

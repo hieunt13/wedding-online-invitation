@@ -16,13 +16,6 @@ export function GiftSection({ gift, weddingDate }: GiftSectionProps) {
         <span>{day}</span>
         <span>{month}</span>
       </div>
-      <h3 className="jmii-gift__title">{gift.title}</h3>
-      <p className="jmii-gift__name">{gift.accountName}</p>
-      <p className="jmii-gift__bank">
-        {gift.bankName}
-        <br />
-        {gift.accountNumber}
-      </p>
     </section>
   );
 }

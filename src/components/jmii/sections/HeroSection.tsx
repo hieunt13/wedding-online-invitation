@@ -71,7 +71,7 @@ export function HeroSection({
       </div>
 
       <div className="jmii-hero__photo-full">
-        <Image src={banner} alt="" fill className="object-cover object-top" sizes="100vw" priority />
+        <Image src={banner} alt="" fill className="object-cover object-bottom" sizes="100vw" priority />
       </div>
     </section>
   );

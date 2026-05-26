@@ -72,8 +72,6 @@ export function JmiiInvitation({ config, guestName }: JmiiInvitationProps) {
 
       <TimelineSection items={config.timeline} />
 
-      <DresscodeSection dresscode={config.dresscode} />
-
       <CountdownSection weddingDate={couple.weddingDate} label={config.countdown.label} />
 
       {config.gallery ? <GallerySection gallery={config.gallery} /> : null}

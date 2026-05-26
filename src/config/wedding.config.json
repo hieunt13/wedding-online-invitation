@@ -21,7 +21,7 @@
     "invitationLabel": "Thân Mời",
     "openButtonText": "Mở thiệp",
     "floral": "/images/flower.png",
-    "backgroundImage": "/images/idle-bg.png"
+    "backgroundImage": "/images/pre-wedding1.jpg"
   },
   "typography": {
     "baseFontSize": 16
@@ -39,15 +39,15 @@
   "hero": {
     "saveTheDate": "Save our date",
     "polaroidDate": "11.10.2026",
-    "heroPhoto": "/images/groom.png",
-    "heroPhotoSecondary": "/images/bride.png",
+    "heroPhoto": "/images/pre-wedding2.jpg",
+    "heroPhotoSecondary": "/images/pre-wedding3.jpg",
     "cardPhotos": [
-      "/images/groom.png",
-      "/images/bride.png"
+      "/images/pre-wedding2.jpg",
+      "/images/pre-wedding3.jpg"
     ]
   },
-  "heroBannerPhoto": "/images/idle-bg.png",
-  "quoteBannerPhoto": "/images/idle-bg.png",
+  "heroBannerPhoto": "/images/pre-wedding1.jpg",
+  "quoteBannerPhoto": "/images/pre-wedding5.jpg",
   "families": {
     "groom": {
       "label": "nhà trai",
@@ -79,20 +79,20 @@
   },
   "loveStory": {
     "quoteOnPhoto": "All of me loves all of you",
-    "sectionTitle": "Our story",
+    "sectionTitle": "Câu chuyện",
     "paragraphs": [
       "Tình yêu của anh và em là một hành trình kỳ diệu, vượt qua bao thử thách để cùng nhau bước đến ngày trọng đại – đám cưới của chúng mình.",
       "Đám cưới này là lời cam kết chân thành, là sự bắt đầu của một chương mới – nơi chúng ta cùng vun đắp tổ ấm, cùng sẻ chia mọi vui buồn và cùng nắm tay nhau đi đến cuối con đường mang tên hạnh phúc."
     ]
   },
   "couplePhotos": {
-    "groomImage": "/images/groom.png",
-    "brideImage": "/images/bride.png",
+    "groomImage": "/images/pre-wedding6.jpg",
+    "brideImage": "/images/pre-wedding7.jpg",
     "groomRoleLabel": "Chú rể",
     "brideRoleLabel": "Cô dâu"
   },
   "calendar": {
-    "monthLabel": "October",
+    "monthLabel": "Tháng 10",
     "highlightDay": 11,
     "scatteredRows": [
       [1, 3, 6, 7, 8, 10, 13, 14, 15],
@@ -122,14 +122,24 @@
     "monetImage": "/images/jmii/dresscode-monet.png"
   },
   "countdown": {
-    "label": "Countdown"
+    "label": "Đếm ngược"
   },
   "gallery": {
     "images": [
-      "/images/groom.png",
-      "/images/bride.png",
-      "/images/groom.png",
-      "/images/bride.png"
+      "/images/pre-wedding1.jpg",
+      "/images/pre-wedding2.jpg",
+      "/images/pre-wedding3.jpg",
+      "/images/pre-wedding4.jpg",
+      "/images/pre-wedding5.jpg",
+      "/images/pre-wedding6.jpg",
+      "/images/pre-wedding7.jpg",
+      "/images/pre-wedding8.jpg",
+      "/images/pre-wedding9.jpg",
+      "/images/pre-wedding10.jpg",
+      "/images/pre-wedding11.jpg",
+      "/images/pre-wedding12.jpg",
+      "/images/pre-wedding13.jpg",
+      "/images/pre-wedding14.jpg"
     ]
   },
   "rsvp": {
@@ -162,7 +172,7 @@
   "footer": {
     "thankYouScript": "Thank you",
     "thankYouMessage": "Cảm ơn bạn đã dành tình cảm cho chúng mình! Sự hiện diện của bạn chính là món quà ý nghĩa nhất, và chúng mình vô cùng trân quý khi được cùng bạn chia sẻ niềm hạnh phúc trong ngày trọng đại này.",
-    "brandLabel": "THKL WEDDING INVITATION",
+    "brandLabel": "Created by Trung Hiếu",
     "social": [
       {
         "platform": "facebook",
