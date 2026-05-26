@@ -1,29 +1,57 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface MusicToggleProps {
-  src?: string;
+  playbackSrc?: string;
   enabled?: boolean;
 }
 
-export function MusicToggle({ src, enabled }: MusicToggleProps) {
+export function MusicToggle({ playbackSrc, enabled }: MusicToggleProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
 
-  if (!enabled || !src) return null;
-
-  const toggle = async () => {
+  const ensureAudio = useCallback(() => {
+    if (!playbackSrc) return null;
     if (!audioRef.current) {
-      audioRef.current = new Audio(src);
+      audioRef.current = new Audio(playbackSrc);
       audioRef.current.loop = true;
     }
+    return audioRef.current;
+  }, [playbackSrc]);
+
+  useEffect(() => {
+    if (!enabled || !playbackSrc) return;
+
+    const audio = ensureAudio();
+    if (!audio) return;
+
+    audio.play()
+      .then(() => setPlaying(true))
+      .catch(() => setPlaying(false));
+
+    return () => {
+      audio.pause();
+      audioRef.current = null;
+    };
+  }, [enabled, playbackSrc, ensureAudio]);
+
+  if (!enabled || !playbackSrc) return null;
+
+  const toggle = async () => {
+    const audio = ensureAudio();
+    if (!audio) return;
+
     if (playing) {
-      audioRef.current.pause();
+      audio.pause();
       setPlaying(false);
     } else {
-      await audioRef.current.play();
-      setPlaying(true);
+      try {
+        await audio.play();
+        setPlaying(true);
+      } catch {
+        setPlaying(false);
+      }
     }
   };
 

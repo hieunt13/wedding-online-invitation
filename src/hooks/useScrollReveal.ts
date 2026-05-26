@@ -40,9 +40,19 @@ export function useScrollReveal(enabled: boolean) {
     const retry = window.setTimeout(observeAll, 150);
     const retryLate = window.setTimeout(observeAll, 500);
 
+    const page = document.querySelector(".jmii-page");
+    let mutationObserver: MutationObserver | undefined;
+    if (page) {
+      mutationObserver = new MutationObserver(() => {
+        observeAll();
+      });
+      mutationObserver.observe(page, { childList: true, subtree: true });
+    }
+
     return () => {
       window.clearTimeout(retry);
       window.clearTimeout(retryLate);
+      mutationObserver?.disconnect();
       observer.disconnect();
     };
   }, [enabled]);

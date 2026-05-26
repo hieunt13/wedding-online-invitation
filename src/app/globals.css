@@ -301,15 +301,16 @@
 }
 
 .jmii-cover-env__front-names {
-  position: relative;
   z-index: 3;
-  margin: 0;
   font-family: var(--jmii-font-cover);
-  font-size: calc(1.75rem * var(--jmii-scale, 1));
-  line-height: 1.2;
+  font-size: calc(1.25rem * var(--jmii-scale, 1));
   color: #f3ebe0;
-  text-shadow: 0 1px 3px rgb(0 0 0 / 0.45);
+  text-shadow: 0 1px 3px #00000073;
   pointer-events: none;
+  margin: 0;
+  line-height: 1.2;
+  position: relative;
+  letter-spacing: 4px;
 }
 
 .jmii-cover-env__flap-hinge {
@@ -581,6 +582,75 @@
   }
 }
 
+/* ─── Invitation (sau khi mở thiệp) ─── */
+.jmii-experience {
+  position: relative;
+}
+
+.jmii-experience--open {
+  min-height: 100dvh;
+}
+
+.jmii-invitation-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.jmii-invitation-bg__img {
+  object-fit: cover;
+  object-position: center center;
+  filter: blur(8px) brightness(0.9) saturate(0.92);
+  transform: scale(1.06);
+}
+
+.jmii-invitation-bg__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgb(255 255 255 / 0.28);
+}
+
+.jmii-experience--open .jmii-page {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Author credits ─── */
+.jmii-author {
+  margin: 0;
+  font-family: var(--jmii-font-body);
+  font-size: calc(10px * var(--jmii-scale, 1));
+  letter-spacing: 0.1em;
+  text-align: center;
+  pointer-events: none;
+}
+
+.jmii-author--cover,
+.jmii-author--outer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: max(0.65rem, env(safe-area-inset-bottom));
+  z-index: 2;
+  padding: 0 1rem;
+  color: rgb(255 255 255 / 0.94);
+  text-shadow: 0 1px 5px rgb(0 0 0 / 0.45);
+}
+
+.jmii-author--cover {
+  z-index: 210;
+}
+
+.jmii-author--inside {
+  padding: 0.85rem 1.25rem 1.35rem;
+  color: rgb(var(--jmii-green-rgb) / 0.5);
+  font-size: calc(9px * var(--jmii-scale, 1));
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: #fff;
+}
+
 /* ─── Page shell ─── */
 .jmii-page {
   --jmii-scale: var(--jmii-font-scale, 1);
@@ -589,7 +659,7 @@
   width: 100%;
   max-width: var(--jmii-page-width);
   margin: 0 auto;
-  background-color: var(--jmii-cream);
+  background-color: #fff;
   color: var(--jmii-green);
   font-family: var(--jmii-font-body);
   font-size: calc(12px * var(--jmii-scale));
@@ -751,10 +821,10 @@
 }
 
 .jmii-music-toggle {
-  position: fixed;
+  position: fixed !important;
   bottom: 1rem;
   right: 1rem;
-  z-index: 120;
+  z-index: 1000 !important;
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;
@@ -786,12 +856,14 @@
 }
 
 .jmii-hero__save {
-  margin: 0 0 0.5rem;
+  margin: 0 0 2.5rem;
   padding: 0 0.5rem;
-  font-family: var(--jmii-font-script);
-  font-size: clamp(2.25rem, 10vw, 2.75rem);
-  font-weight: 400;
-  line-height: 1.1;
+  font-family: var(--font-imperial), "Imperial Script", cursive;
+  font-size: clamp(2.75rem, 10vw, 3.25rem);
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.35;
+  letter-spacing: 0.16em;
   color: var(--jmii-green);
 }
 
@@ -1472,6 +1544,18 @@
   cursor: pointer;
 }
 
+.jmii-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.jmii-rsvp__error {
+  margin: 0;
+  font-size: calc(11px * var(--jmii-scale));
+  color: #9b3b32;
+  line-height: 1.5;
+}
+
 .jmii-rsvp__success-title {
   font-family: var(--jmii-font-script);
   font-size: calc(32px * var(--jmii-scale));
@@ -1483,6 +1567,116 @@
   line-height: 1.7;
   max-width: 18rem;
   margin: 0 auto;
+}
+
+/* ─── Wishes marquee (react-fast-marquee) ─── */
+.jmii-wishes {
+  --jmii-wishes-pattern: url("/images/wishes-pattern.png");
+  padding-block: 1.5rem 2rem;
+  overflow: hidden;
+}
+
+.jmii-wishes__title {
+  text-align: center;
+  font-size: calc(28px * var(--jmii-scale));
+  margin: 0 auto 1rem;
+  color: var(--jmii-green, #2d4a3e);
+}
+
+.jmii-wishes__marquee {
+  width: 100%;
+  padding: 10px;
+}
+
+.jmii-wishes__marquee-content {
+  padding: 10px 0;
+  overflow: hidden;
+}
+
+.jmii-wishes__card {
+  position: relative;
+  flex-shrink: 0;
+  width: min(18rem, 78vw);
+  margin-inline: 0.65rem;
+  padding: 1.35rem 1.25rem 1.5rem;
+  padding-top: 1.5rem;
+  text-align: left;
+  overflow: hidden;
+  border: none;
+  border-radius: 1.125rem;
+  background-color: #faf8f5;
+  background-image: var(--jmii-wishes-pattern);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow:
+    0 2px 8px rgb(var(--jmii-green-rgb) / 0.06),
+    0 8px 24px rgb(var(--jmii-green-rgb) / 0.08);
+}
+
+.jmii-wishes__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgb(255 255 255 / 0.42);
+  pointer-events: none;
+}
+
+.jmii-wishes__card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.jmii-wishes__floral {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  width: 2.75rem;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.9;
+  pointer-events: none;
+  user-select: none;
+}
+
+.jmii-wishes__card-head {
+  position: relative;
+  padding-right: 2.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.jmii-wishes__name {
+  margin: 0;
+  font-family: var(--jmii-font-serif);
+  font-size: calc(15px * var(--jmii-scale));
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--jmii-green);
+  letter-spacing: 0.01em;
+}
+
+.jmii-wishes__message {
+  margin: 0;
+  font-family: var(--jmii-font-body);
+  font-size: calc(11.5px * var(--jmii-scale));
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.65;
+  color: rgb(var(--jmii-green-rgb) / 0.72);
+}
+
+.jmii-wishes__static {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding-inline: 1.25rem;
+}
+
+.jmii-wishes__static .jmii-wishes__card {
+  margin-inline: 0;
+  width: min(20rem, 100%);
 }
 
 /* ─── Footer ─── */
@@ -1707,31 +1901,51 @@
   margin: 0;
 }
 
-/* ─── Gallery ─── */
+/* ─── Gallery (react-responsive-carousel) ─── */
 .jmii-gallery {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-.jmii-gallery__viewport {
-  position: relative;
+.jmii-gallery__carousel {
   margin: 0 -1.25rem;
-  overflow: hidden;
-  aspect-ratio: 3 / 4;
 }
 
-.jmii-gallery__track {
-  display: flex;
-  height: 100%;
-  transition: transform 0.6s ease;
-  will-change: transform;
+.jmii-gallery__carousel.carousel-root {
+  outline: none;
+}
+
+.jmii-gallery__carousel .carousel .slider-wrapper {
+  overflow: hidden;
+}
+
+.jmii-gallery__carousel .carousel .slide {
+  background: transparent;
+  text-align: center;
 }
 
 .jmii-gallery__slide {
   position: relative;
-  flex: 0 0 100%;
   width: 100%;
-  min-height: 100%;
+  aspect-ratio: 3 / 4;
+}
+
+.jmii-gallery__carousel .control-dots {
+  position: static;
+  margin: 0.65rem 0 0;
+}
+
+.jmii-gallery__carousel .control-dots .dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  margin: 0 0.2rem;
+  background: rgb(var(--jmii-green-rgb) / 0.35);
+  box-shadow: none;
+  opacity: 1;
+}
+
+.jmii-gallery__carousel .control-dots .dot.selected {
+  background: var(--jmii-green);
 }
 
 /* ─── Couple photos stack ─── */
@@ -1865,8 +2079,9 @@
 .jmii-footer__bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.25rem 1.5rem;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem 0.75rem;
   background: #fff;
 }
 
@@ -1897,11 +2112,11 @@
 
 @media (min-width: 421px) {
   body {
-    background: #e8e4de;
+    background: #e0ddd6;
   }
 
-  .jmii-page {
-    box-shadow: 0 0 28px rgb(0 0 0 / 0.08);
+  .jmii-experience--open .jmii-page {
+    box-shadow: 0 0 32px rgb(30 61 47 / 0.12);
   }
 }
 

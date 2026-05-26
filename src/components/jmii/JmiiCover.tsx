@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { AuthorCredits } from "@/components/jmii/AuthorCredits";
 import type { CoverCopy, WeddingCouple } from "@/types/wedding.types";
 
 type OpenPhase = "idle" | "flap" | "lift" | "exit";
@@ -20,6 +21,7 @@ interface JmiiCoverProps {
   onOpenStart?: () => void;
   onOpenComplete: () => void;
   visible: boolean;
+  authorLabel?: string;
 }
 
 function formatCoverDate(dateString: string) {
@@ -37,6 +39,7 @@ export function JmiiCover({
   onOpenStart,
   onOpenComplete,
   visible,
+  authorLabel,
 }: JmiiCoverProps) {
   const [phase, setPhase] = useState<OpenPhase>("idle");
   const completedRef = useRef(false);
@@ -176,6 +179,8 @@ export function JmiiCover({
 
         <p className="jmii-cover__hint">{cover.openButtonText}</p>
       </div>
+
+      {authorLabel ? <AuthorCredits label={authorLabel} zone="cover" /> : null}
     </div>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Image from "next/image";
+import { buildRsvpPayload } from "@/lib/rsvp";
 import type { RsvpConfig } from "@/types/wedding.types";
 
 interface RsvpSectionProps {
@@ -12,15 +13,49 @@ interface RsvpSectionProps {
 
 export function RsvpSection({ rsvp, defaultName, floralImage }: RsvpSectionProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [name, setName] = useState(defaultName ?? "");
   const [message, setMessage] = useState("");
   const [attendance, setAttendance] = useState("");
   const [guestSide, setGuestSide] = useState("");
   const [guestCount, setGuestCount] = useState("");
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setError(null);
+
+    const payload = buildRsvpPayload(
+      { name, message, attendance, guestSide, guestCount },
+      {
+        attendanceOptions: rsvp.attendanceOptions,
+        guestSideOptions: rsvp.guestSideOptions,
+      },
+    );
+
+    try {
+      const response = await fetch("/api/rsvp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = (await response.json().catch(() => ({}))) as {
+        error?: string;
+      };
+
+      if (!response.ok) {
+        setError(data.error ?? "Không gửi được. Vui lòng thử lại.");
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setError("Không gửi được. Kiểm tra mạng và thử lại.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -35,7 +70,7 @@ export function RsvpSection({ rsvp, defaultName, floralImage }: RsvpSectionProps
   return (
     <section className="jmii-section jmii-rsvp reveal-on-scroll">
       <p className="jmii-rsvp__intro">{rsvp.title}</p>
-
+      <p className="jmii-rsvp__intro">{rsvp.title2}</p>
       <form className="jmii-rsvp__form" onSubmit={handleSubmit}>
         <label className="jmii-rsvp__field">
           <span className="sr-only">Tên</span>
@@ -46,6 +81,7 @@ export function RsvpSection({ rsvp, defaultName, floralImage }: RsvpSectionProps
             onChange={(e) => setName(e.target.value)}
             placeholder={rsvp.namePlaceholder}
             className="jmii-input"
+            disabled={submitting}
           />
         </label>
 
@@ -57,6 +93,7 @@ export function RsvpSection({ rsvp, defaultName, floralImage }: RsvpSectionProps
             placeholder={rsvp.messagePlaceholder}
             rows={3}
             className="jmii-textarea"
+            disabled={submitting}
           />
         </label>
 
@@ -67,6 +104,7 @@ export function RsvpSection({ rsvp, defaultName, floralImage }: RsvpSectionProps
             value={attendance}
             onChange={(e) => setAttendance(e.target.value)}
             className="jmii-select"
+            disabled={submitting}
           >
             {rsvp.attendanceOptions.map((opt) => (
               <option key={opt.value || "default"} value={opt.value} disabled={!opt.value}>
@@ -86,6 +124,7 @@ export function RsvpSection({ rsvp, defaultName, floralImage }: RsvpSectionProps
             onChange={(e) => setGuestCount(e.target.value)}
             placeholder={rsvp.guestCountPlaceholder}
             className="jmii-input"
+            disabled={submitting}
           />
         </label>
 
@@ -96,6 +135,7 @@ export function RsvpSection({ rsvp, defaultName, floralImage }: RsvpSectionProps
             value={guestSide}
             onChange={(e) => setGuestSide(e.target.value)}
             className="jmii-select"
+            disabled={submitting}
           >
             {rsvp.guestSideOptions.map((opt) => (
               <option key={opt.value || "default"} value={opt.value} disabled={!opt.value}>
@@ -105,8 +145,10 @@ export function RsvpSection({ rsvp, defaultName, floralImage }: RsvpSectionProps
           </select>
         </label>
 
-        <button type="submit" className="jmii-btn">
-          {rsvp.submitLabel}
+        {error ? <p className="jmii-rsvp__error">{error}</p> : null}
+
+        <button type="submit" className="jmii-btn" disabled={submitting}>
+          {submitting ? "Đang gửi…" : rsvp.submitLabel}
         </button>
       </form>
 

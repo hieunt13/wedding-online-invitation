@@ -1,5 +1,6 @@
 "use client";
 
+import { AuthorCredits } from "@/components/jmii/AuthorCredits";
 import { MusicToggle } from "@/components/jmii/MusicToggle";
 import { PageFloralBackground } from "@/components/jmii/PageFloralBackground";
 import { CalendarSection } from "@/components/jmii/sections/CalendarSection";
@@ -14,18 +15,28 @@ import { LoveStorySection } from "@/components/jmii/sections/LoveStorySection";
 import { ParentsInviteSection } from "@/components/jmii/sections/ParentsInviteSection";
 import { QuoteBannerSection } from "@/components/jmii/sections/QuoteBannerSection";
 import { RsvpSection } from "@/components/jmii/sections/RsvpSection";
+import { WishesMarqueeSection } from "@/components/jmii/sections/WishesMarqueeSection";
 import { TimelineSection } from "@/components/jmii/sections/TimelineSection";
 import { VenueDateSection } from "@/components/jmii/sections/VenueDateSection";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import type { WishItem } from "@/lib/wishes";
+import { resolveMusicPlaybackSrc } from "@/lib/music-playback";
 import { baseFontSizeStyle } from "@/lib/typography";
 import type { WeddingConfig } from "@/types/wedding.types";
 
 interface JmiiInvitationProps {
   config: WeddingConfig;
   guestName?: string;
+  authorLabel?: string;
+  wishes?: WishItem[];
 }
 
-export function JmiiInvitation({ config, guestName }: JmiiInvitationProps) {
+export function JmiiInvitation({
+  config,
+  guestName,
+  authorLabel,
+  wishes = [],
+}: JmiiInvitationProps) {
   useScrollReveal(true);
 
   const { couple, theme, music, hero, families, event, loveStory, couplePhotos } = config;
@@ -34,7 +45,10 @@ export function JmiiInvitation({ config, guestName }: JmiiInvitationProps) {
   return (
     <div className="jmii-page" style={typographyStyle}>
       <PageFloralBackground />
-      <MusicToggle src={music?.src} enabled={music?.enabled} />
+      <MusicToggle
+        playbackSrc={resolveMusicPlaybackSrc(music)}
+        enabled={music?.enabled}
+      />
 
       <HeroSection
         hero={hero}
@@ -80,7 +94,13 @@ export function JmiiInvitation({ config, guestName }: JmiiInvitationProps) {
 
       {config.gift ? <GiftSection gift={config.gift} weddingDate={couple.weddingDate} /> : null}
 
+      {config.wishes?.enabled ? (
+        <WishesMarqueeSection config={config.wishes} wishes={wishes} />
+      ) : null}
+
       <FooterSection footer={config.footer} backgroundImage={theme.footerThankYouBg} />
+
+      {authorLabel ? <AuthorCredits label={authorLabel} zone="inside" /> : null}
     </div>
   );
 }

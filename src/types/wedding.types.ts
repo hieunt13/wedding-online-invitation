@@ -14,6 +14,8 @@ export interface FamilySide {
 }
 
 export interface ThemeAssets {
+  /** Ảnh nền mờ phía sau khung thiệp (mặc định: cover.backgroundImage) */
+  invitationBackgroundImage?: string;
   heroFlowersTop?: string;
   heroFlowersBottom?: string;
   heroEnvelope?: string;
@@ -107,6 +109,7 @@ export interface RsvpOption {
 
 export interface RsvpConfig {
   title: string;
+  title2: string;
   submitLabel: string;
   successTitle: string;
   successMessage: string;
@@ -117,6 +120,13 @@ export interface RsvpConfig {
   guestSideLabel: string;
   guestSideOptions: RsvpOption[];
   guestCountPlaceholder: string;
+}
+
+export interface WishesConfig {
+  enabled: boolean;
+  title?: string;
+  /** Ẩn section khi chưa có lời chúc (mặc định true) */
+  emptyHide?: boolean;
 }
 
 export interface SocialLink {
@@ -141,7 +151,10 @@ export interface WeddingConfig {
   cover: CoverCopy;
   typography?: TypographyConfig;
   music?: {
+    /** YouTube / URL nguồn — dùng cho `npm run download-music` */
     src: string;
+    /** File phát trên web (mặc định /audio/wedding-music.mp3) */
+    file?: string;
     enabled: boolean;
   };
   couple: WeddingCouple;
@@ -163,7 +176,11 @@ export interface WeddingConfig {
   };
   gallery?: GalleryConfig;
   rsvp: RsvpConfig;
+  wishes?: WishesConfig;
   gift?: GiftConfig;
+  author?: {
+    label: string;
+  };
   footer: {
     thankYouScript: string;
     thankYouMessage: string;

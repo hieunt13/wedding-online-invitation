@@ -28,7 +28,7 @@ export function HeroSection({
       <div className="jmii-hero__topbar" aria-hidden />
 
       <div className="jmii-hero__frame">
-        <h1 className="jmii-hero__save jmii-script">{hero.saveTheDate}</h1>
+        <h1 className="jmii-hero__save">{hero.saveTheDate}</h1>
 
         <div className="jmii-hero__collage">
           <HeroEnvelopeFrame

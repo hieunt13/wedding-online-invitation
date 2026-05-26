@@ -19,7 +19,6 @@ export function FooterSection({ footer, backgroundImage }: FooterSectionProps) {
       </div>
 
       <div className="jmii-footer__bar">
-        <p className="jmii-footer__brand">{footer.brandLabel}</p>
         {footer.social?.length ? (
           <div className="jmii-footer__social">
             {footer.social.map((link) => (

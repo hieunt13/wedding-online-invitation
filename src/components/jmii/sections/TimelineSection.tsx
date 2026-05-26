@@ -8,7 +8,7 @@ interface TimelineSectionProps {
 export function TimelineSection({ items }: TimelineSectionProps) {
   return (
     <section className="jmii-section jmii-timeline reveal-on-scroll">
-      <h3 className="jmii-timeline__title jmii-script">Timeline</h3>
+      <h3 className="jmii-timeline__title jmii-script">Mốc thời gian</h3>
       <div className="jmii-timeline__row">
         {items.map((item, index) => (
           <div key={`${item.time}-${item.label}`} className="jmii-timeline__item">
