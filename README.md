@@ -128,5 +128,3 @@ The invitation is fully responsive and optimized for:
 ## 📄 License
 
 This project is private and intended for personal use.
-
-
