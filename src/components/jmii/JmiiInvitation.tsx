@@ -101,6 +101,7 @@ export function JmiiInvitation({
       <FooterSection footer={config.footer} backgroundImage={theme.footerThankYouBg} />
 
       {authorLabel ? <AuthorCredits label={authorLabel} zone="inside" /> : null}
+      <></>
     </div>
   );
 }
