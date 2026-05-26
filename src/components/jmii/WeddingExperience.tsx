@@ -46,7 +46,13 @@ export function WeddingExperience({ config, guestName, wishes = [] }: WeddingExp
         onOpenComplete={handleOpenComplete}
       />
 
-      <div className={showInvitation ? "jmii-experience jmii-experience--open" : "jmii-experience jmii-experience--closed"}>
+      <div
+        className={
+          showInvitation
+            ? `jmii-experience jmii-experience--open${revealing ? " jmii-experience--revealing" : ""}`
+            : "jmii-experience jmii-experience--closed"
+        }
+      >
         {showInvitation ? (
           <>
             {(config.theme.invitationBackgroundImage ?? config.cover.backgroundImage) ? (

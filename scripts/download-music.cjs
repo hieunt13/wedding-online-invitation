@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync, readdirSync } = require("fs");
 const { join } = require("path");
-const youtubedl = require("yt-dlp-exec");
+const { spawn } = require("child_process");
 
 const root = join(__dirname, "..");
 const configPath = join(root, "src", "config", "wedding.config.json");
@@ -58,13 +58,44 @@ for (const file of readdirSync(outDir)) {
 
 const outputTemplate = join(outDir, `${outputName}.%(ext)s`);
 
-async function download(flags) {
-  return youtubedl(url, {
-    output: outputTemplate,
-    noPlaylist: true,
-    noWarnings: true,
-    preferFreeFormats: true,
-    ...flags,
+function runYtDlp(extraArgs) {
+  const args = [
+    url,
+    "-o",
+    outputTemplate,
+    "--no-playlist",
+    "--no-warnings",
+    "--prefer-free-formats",
+    ...extraArgs,
+  ];
+
+  return new Promise((resolve, reject) => {
+    const proc = spawn("yt-dlp", args, { stdio: ["ignore", "pipe", "pipe"] });
+    let stderr = "";
+
+    proc.stderr.on("data", (chunk) => {
+      stderr += chunk.toString();
+      process.stderr.write(chunk);
+    });
+
+    proc.stdout.on("data", (chunk) => process.stdout.write(chunk));
+
+    proc.on("error", (error) => {
+      if (error.code === "ENOENT") {
+        reject(
+          new Error(
+            "yt-dlp not found. Install it first, e.g. `brew install yt-dlp`, then run `npm run download-music` again."
+          )
+        );
+        return;
+      }
+      reject(error);
+    });
+
+    proc.on("close", (code) => {
+      if (code === 0) resolve();
+      else reject(new Error(stderr.trim() || `yt-dlp exited with code ${code}`));
+    });
   });
 }
 
@@ -82,21 +113,15 @@ async function main() {
   console.log(`Downloading audio from:\n  ${url}`);
 
   try {
-    await download({
-      extractAudio: true,
-      audioFormat: "mp3",
-      audioQuality: 0,
-    });
+    await runYtDlp(["-x", "--audio-format", "mp3", "--audio-quality", "0"]);
   } catch (error) {
-    const message = String(error?.stderr || error?.message || error);
+    const message = String(error?.message || error);
     if (!/ffmpeg|ffprobe/i.test(message)) {
       throw error;
     }
 
     console.log("ffmpeg not found — downloading best audio without conversion…");
-    await download({
-      format: "bestaudio[ext=m4a]/bestaudio/best",
-    });
+    await runYtDlp(["-f", "bestaudio[ext=m4a]/bestaudio/best"]);
   }
 
   const downloaded = findDownloadedFile();
@@ -113,6 +138,6 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error("Download failed:", error?.stderr || error?.message || error);
+  console.error("Download failed:", error?.message || error);
   process.exit(1);
 });

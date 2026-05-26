@@ -91,7 +91,7 @@
 }
 
 .jmii-cover--opening {
-  animation: jmii-cover-out 0.65s ease 1.45s forwards;
+  animation: jmii-cover-out var(--jmii-cover-out-duration, 1.4s) ease var(--jmii-cover-out-delay, 10.4s) forwards;
   pointer-events: none;
 }
 
@@ -99,6 +99,7 @@
 .jmii-cover--opening .jmii-cover__hint {
   animation-play-state: paused;
   opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
 .jmii-cover__stage {
@@ -137,7 +138,9 @@
   width: min(21rem, 92vw);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition:
+    opacity var(--jmii-cover-phase-exit, 1.4s) ease,
+    transform var(--jmii-cover-phase-exit, 1.4s) ease;
 }
 
 .jmii-cover-env:focus-visible {
@@ -205,25 +208,34 @@
   opacity: 0;
   transform: translateX(-50%) translateY(18%) translateZ(0);
   transition:
-    opacity 0.45s ease 0.15s,
-    transform 0.95s cubic-bezier(0.33, 1, 0.52, 1),
-    box-shadow 0.95s ease;
+    opacity 0.65s ease 0.2s,
+    transform var(--jmii-cover-phase-lift, 5.8s) cubic-bezier(0.33, 1, 0.52, 1),
+    box-shadow var(--jmii-cover-phase-lift, 5.8s) ease;
   transform-style: preserve-3d;
   pointer-events: none;
 }
 
-.jmii-cover-env--flap .jmii-cover-env__card,
-.jmii-cover-env--lift .jmii-cover-env__card,
-.jmii-cover-env--exit .jmii-cover-env__card {
+/* Ruột thiệp: chỉ lộ sau khi nắp mở, giữ yên trong phong bì (phase peek) */
+.jmii-cover-env--peek .jmii-cover-env__card {
   opacity: 1;
   transform: translateX(-50%) translateY(0) translateZ(0);
+  z-index: 5;
+  transition:
+    opacity 0.55s ease,
+    transform 0.45s ease,
+    box-shadow 0.45s ease;
 }
 
 .jmii-cover-env--lift .jmii-cover-env__card,
 .jmii-cover-env--exit .jmii-cover-env__card {
+  opacity: 1;
   transform: translateX(-50%) translateY(-108%) translateZ(72px) scale(1.08);
   filter: drop-shadow(0 20px 40px rgb(30 61 47 / 0.35));
   z-index: 12;
+  transition:
+    transform var(--jmii-cover-phase-lift, 4.8s) cubic-bezier(0.33, 1, 0.52, 1),
+    box-shadow var(--jmii-cover-phase-lift, 4.8s) ease,
+    filter 0.5s ease;
 }
 
 .jmii-cover-env__card-inner {
@@ -262,10 +274,21 @@
     inset 0 1px 0 var(--jmii-env-edge-soft),
     inset 0 4px 14px rgb(0 0 0 / 0.14);
   filter:
-    drop-shadow(0 1px 0 var(--jmii-env-edge))
-    drop-shadow(0 5px 12px rgb(0 0 0 / 0.22));
-  transition: opacity 0.45s ease, filter 0.45s ease;
+    drop-shadow(0 1px 0 var(--jmii-env-edge)) drop-shadow(0 5px 12px rgb(0 0 0 / 0.22));
+  transition:
+    opacity var(--jmii-cover-phase-flap, 5.2s) ease,
+    filter var(--jmii-cover-phase-flap, 5.2s) ease;
   overflow: visible;
+}
+
+/* Viền trắng hai cạnh chéo (2 mũi nhọn) — khớp clip-path */
+.jmii-cover-env__front::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolyline points='0,30 50,0 100,30' fill='none' stroke='%23ffffff' stroke-width='1.4' vector-effect='non-scaling-stroke' stroke-linejoin='miter' stroke-linecap='butt'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
 }
 
 .jmii-cover-env--lift .jmii-cover-env__front,
@@ -320,16 +343,21 @@
   top: 51%;
   height: 44%;
   z-index: 7;
+  transform: rotateX(0deg);
   transform-style: preserve-3d;
-  transform-origin: 50% 100%;
+  transform-origin: top center;
   filter: drop-shadow(0 3px 8px rgb(0 0 0 / 0.24));
+  /* Chỉ xoay nắp trước; hạ z-index sau khi nắp mở xong */
+  transition:
+    transform var(--jmii-cover-phase-flap, 4.2s) cubic-bezier(0.4, 0, 0.2, 1),
+    z-index 0s linear var(--jmii-cover-phase-flap, 4.2s);
 }
 
 .jmii-cover-env--flap .jmii-cover-env__flap-hinge,
+.jmii-cover-env--peek .jmii-cover-env__flap-hinge,
 .jmii-cover-env--lift .jmii-cover-env__flap-hinge,
 .jmii-cover-env--exit .jmii-cover-env__flap-hinge {
-  top: -169px;
-  transform: rotate(180deg);
+  transform: rotateX(180deg);
   z-index: -1;
 }
 
@@ -355,10 +383,13 @@
   height: 3.25rem;
   transform: translate(-50%, -50%);
   line-height: 0;
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transition:
+    opacity var(--jmii-cover-phase-flap, 5.2s) ease,
+    transform var(--jmii-cover-phase-flap, 5.2s) ease;
 }
 
 .jmii-cover-env--flap .jmii-cover-env__seal,
+.jmii-cover-env--peek .jmii-cover-env__seal,
 .jmii-cover-env--lift .jmii-cover-env__seal,
 .jmii-cover-env--exit .jmii-cover-env__seal {
   opacity: 0;
@@ -387,6 +418,9 @@
   opacity: 0;
   transform: scale(0.94) translateY(-8px);
   pointer-events: none;
+  transition:
+    opacity var(--jmii-cover-phase-exit, 1.4s) ease,
+    transform var(--jmii-cover-phase-exit, 1.4s) ease;
 }
 
 .jmii-cover-env--exit .jmii-cover-env__card {
@@ -567,7 +601,11 @@
 }
 
 .jmii-experience--open {
-  animation: jmii-page-in 0.55s ease;
+  animation: jmii-page-in 1.15s cubic-bezier(0.33, 1, 0.52, 1);
+}
+
+.jmii-experience--open.jmii-experience--revealing {
+  animation: jmii-page-in 1.35s cubic-bezier(0.33, 1, 0.52, 1) 0.35s both;
 }
 
 @keyframes jmii-page-in {
@@ -856,7 +894,7 @@
 }
 
 .jmii-hero__save {
-  margin: 0 0 2.5rem;
+  margin: 0 0 0.5rem;
   padding: 0 0.5rem;
   font-family: var(--font-imperial), "Imperial Script", cursive;
   font-size: clamp(2.75rem, 10vw, 3.25rem);
@@ -897,6 +935,7 @@
 }
 
 @keyframes jmii-envelope-polaroid-shake {
+
   0%,
   100% {
     transform: translate(0, 0) rotate(0deg);
@@ -1008,17 +1047,17 @@
 }
 
 .jmii-hero__envelope-card {
-  position: absolute;
-  left: 50%;
-  top: -14%;
   z-index: 4;
+  background: linear-gradient(#fdfbf7 0%, #f5f0e8 100%);
+  border-radius: 4px 4px 0 0;
   width: 76%;
   height: 74%;
-  transform: translateX(-50%);
+  position: absolute;
+  top: -3%;
+  left: 50%;
   overflow: hidden;
-  border-radius: 4px 4px 0 0;
-  box-shadow: 0 6px 18px rgb(0 0 0 / 0.22);
-  background: linear-gradient(180deg, #fdfbf7 0%, #f5f0e8 100%);
+  transform: translateX(-50%);
+  box-shadow: 0 6px 18px #00000038;
 }
 
 .jmii-hero__envelope-card-copy {
@@ -1076,22 +1115,22 @@
 }
 
 .jmii-hero__envelope-front {
-  position: absolute;
-  left: 5%;
-  right: 5%;
-  bottom: 0;
   z-index: 5;
-  height: 54%;
   background: linear-gradient(180deg, #2f5844 0%, var(--jmii-green) 32%, #172f24 100%);
   clip-path: polygon(0 30%, 50% 0, 100% 30%, 100% 100%, 0 100%);
-  box-shadow: inset 0 4px 12px rgb(0 0 0 / 0.14);
   border-radius: 0 0 10px 10px;
+  height: 45%;
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+  right: 5%;
+  box-shadow: inset 0 4px 12px #00000024;
 }
 
 .jmii-hero__envelope-seal {
   position: absolute;
   left: 50%;
-  top: 47%;
+  top: 57%;
   z-index: 6;
   width: 48px;
   height: 48px;
@@ -1623,7 +1662,7 @@
   pointer-events: none;
 }
 
-.jmii-wishes__card > * {
+.jmii-wishes__card>* {
   position: relative;
   z-index: 1;
 }
@@ -1760,6 +1799,182 @@
   line-height: 1.25;
   color: #fff;
   text-align: center;
+}
+
+/* ─── Pre-wedding quotes (image + text side by side) ─── */
+.jmii-pre-wedding-quotes {
+  display: flex;
+  flex-direction: column;
+}
+
+.jmii-pre-wedding-quote {
+  padding: 0;
+}
+
+.jmii-pre-wedding-quote__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 13.5rem;
+  margin: 0 -1.25rem;
+}
+
+.jmii-pre-wedding-quote__photo {
+  position: relative;
+  min-height: 13.5rem;
+}
+
+.jmii-pre-wedding-quote__text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1rem;
+  background: var(--jmii-paper);
+}
+
+.jmii-pre-wedding-quote__quote {
+  margin: 0;
+  font-size: calc(20px * var(--jmii-scale));
+  line-height: 1.35;
+  text-align: center;
+  color: var(--jmii-green);
+  max-width: 12rem;
+}
+
+.jmii-pre-wedding-quote--reverse .jmii-pre-wedding-quote__photo {
+  order: 2;
+}
+
+.jmii-pre-wedding-quote--reverse .jmii-pre-wedding-quote__text {
+  order: 1;
+  background: #4b5332;
+}
+
+.jmii-pre-wedding-quote--reverse .jmii-pre-wedding-quote__quote {
+  color: #fff;
+}
+
+.jmii-pre-wedding-quote--caption {
+  padding: 0 0 2.5rem;
+  background: var(--jmii-cream);
+}
+
+.jmii-pre-wedding-quote__caption-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.jmii-pre-wedding-quote__caption-text {
+  margin: 2rem auto 0;
+  padding: 0 1.5rem;
+  max-width: 21rem;
+  font-family: var(--jmii-font-serif);
+  font-weight: 300;
+  font-size: calc(14px * var(--jmii-scale));
+  line-height: 1.75;
+  letter-spacing: 0.03em;
+  text-align: center;
+  color: var(--jmii-green);
+  white-space: pre-line;
+}
+
+.jmii-pre-wedding-quote--stack {
+  padding: 0 0 2.25rem;
+  background: var(--jmii-cream);
+}
+
+.jmii-pre-wedding-quote__stack-photos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.jmii-pre-wedding-quote__stack-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.jmii-pre-wedding-quote__stack-text {
+  margin: 1.5rem 0 0;
+  padding: 0 1.25rem;
+  font-family: var(--jmii-font-serif);
+  font-weight: 300;
+  font-size: calc(14px * var(--jmii-scale));
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+  text-align: left;
+  color: var(--jmii-green);
+  white-space: pre-line;
+}
+
+.jmii-pre-wedding-quote--duo {
+  padding: 1.75rem 1.25rem 2.25rem;
+  background: var(--jmii-cream);
+}
+
+.jmii-pre-wedding-quote__duo-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+  margin-bottom: 1.75rem;
+}
+
+.jmii-pre-wedding-quote__duo-photo {
+  position: relative;
+  aspect-ratio: 3 / 4;
+}
+
+.jmii-pre-wedding-quote__duo-text {
+  margin: 0 auto;
+  max-width: 20rem;
+  font-family: var(--jmii-font-serif);
+  font-weight: 300;
+  font-size: calc(14px * var(--jmii-scale));
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+  text-align: center;
+  color: var(--jmii-green);
+  white-space: pre-line;
+}
+
+.jmii-pre-wedding-quote--stagger {
+  padding: 1.75rem 1.25rem 2.5rem;
+  background: var(--jmii-cream);
+}
+
+.jmii-pre-wedding-quote__stagger {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.jmii-pre-wedding-quote__stagger-photo {
+  position: relative;
+  width: 78%;
+  aspect-ratio: 4 / 3;
+}
+
+.jmii-pre-wedding-quote__stagger-photo--left {
+  align-self: flex-start;
+}
+
+.jmii-pre-wedding-quote__stagger-photo--right {
+  align-self: flex-end;
+}
+
+.jmii-pre-wedding-quote__stagger-text {
+  align-self: flex-end;
+  margin: 0;
+  max-width: 16.5rem;
+  font-family: var(--jmii-font-serif);
+  font-weight: 300;
+  font-size: calc(14px * var(--jmii-scale));
+  line-height: 1.65;
+  letter-spacing: 0.03em;
+  text-align: right;
+  color: var(--jmii-green);
+  white-space: pre-line;
 }
 
 /* ─── Calendar (dark green) ─── */
@@ -2128,7 +2343,7 @@
 
   .jmii-page .jmii-hero,
   .jmii-page .jmii-hero__frame,
-  .jmii-page .jmii-section:not(.jmii-calendar):not(.jmii-footer):not(.jmii-quote-banner) {
+  .jmii-page .jmii-section:not(.jmii-calendar):not(.jmii-footer):not(.jmii-quote-banner):not(.jmii-pre-wedding-quote):not(.jmii-pre-wedding-quote--caption):not(.jmii-pre-wedding-quote--stack):not(.jmii-pre-wedding-quote--duo):not(.jmii-pre-wedding-quote--stagger) {
     background-color: transparent;
   }
 
@@ -2160,9 +2375,11 @@
   }
 
   .jmii-cover-env--flap .jmii-cover-env__flap-hinge,
+  .jmii-cover-env--peek .jmii-cover-env__flap-hinge,
   .jmii-cover-env--lift .jmii-cover-env__flap-hinge,
   .jmii-cover-env--exit .jmii-cover-env__flap-hinge {
-    transform: rotateX(-120deg);
+    transform: rotateX(180deg);
+    z-index: -1;
   }
 
   .jmii-cover-env__card {
@@ -2175,7 +2392,7 @@
   }
 
   .jmii-cover--opening {
-    animation: jmii-cover-out 0.35s ease 0.5s forwards;
+    animation: jmii-cover-out var(--jmii-cover-out-duration, 1.4s) ease var(--jmii-cover-out-delay, 10.4s) forwards;
   }
 
   .jmii-cover__hint {

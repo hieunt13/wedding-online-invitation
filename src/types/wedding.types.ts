@@ -102,6 +102,22 @@ export interface GalleryConfig {
   images: string[];
 }
 
+export interface PreWeddingQuoteItem {
+  /** Một ảnh — dùng với `banner`, `caption` hoặc `split`. */
+  photo?: string;
+  /** Hai ảnh — dùng với `stack`, `duo` hoặc `stagger`. */
+  photos?: [string, string];
+  quote: string;
+  /** `banner` | `caption` | `split` | `stack` | `duo` | `stagger` */
+  layout?: "banner" | "caption" | "split" | "stack" | "duo" | "stagger";
+  /** Đảo vị trí ảnh/chữ (chỉ `split`). Mặc định xen kẽ theo thứ tự. */
+  reverse?: boolean;
+}
+
+export interface PreWeddingQuotesConfig {
+  items: PreWeddingQuoteItem[];
+}
+
 export interface RsvpOption {
   value: string;
   label: string;
@@ -169,6 +185,7 @@ export interface WeddingConfig {
   };
   event: EventConfig;
   loveStory: LoveStoryConfig;
+  preWeddingQuotes?: PreWeddingQuotesConfig;
   couplePhotos: CouplePhotoConfig;
   calendar: CalendarConfig;
   timeline: TimelineItem[];

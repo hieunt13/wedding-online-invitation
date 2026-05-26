@@ -1,17 +1,21 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import { AuthorCredits } from "@/components/jmii/AuthorCredits";
 import type { CoverCopy, WeddingCouple } from "@/types/wedding.types";
 
-type OpenPhase = "idle" | "flap" | "lift" | "exit";
+type OpenPhase = "idle" | "flap" | "peek" | "lift" | "exit";
 
+/** Thời gian mỗi phase — đồng bộ với CSS var `--jmii-cover-phase-*` */
 const PHASE_MS: Record<Exclude<OpenPhase, "idle">, number> = {
-  flap: 4000,
-  lift: 4000,
-  exit: 800,
+  flap: 4200,
+  peek: 2400,
+  lift: 4800,
+  exit: 300,
 };
+
+const COVER_OUT_DELAY_MS = PHASE_MS.flap + PHASE_MS.peek + PHASE_MS.lift - 600;
 
 interface JmiiCoverProps {
   couple: WeddingCouple;
@@ -58,7 +62,8 @@ export function JmiiCover({
     if (phase === "idle") return;
 
     const nextPhase: Partial<Record<OpenPhase, OpenPhase>> = {
-      flap: "lift",
+      flap: "peek",
+      peek: "lift",
       lift: "exit",
     };
 
@@ -81,9 +86,19 @@ export function JmiiCover({
 
   if (!visible && !isAnimating) return null;
 
+  const coverMotionStyle = {
+    "--jmii-cover-phase-flap": `${PHASE_MS.flap}ms`,
+    "--jmii-cover-phase-peek": `${PHASE_MS.peek}ms`,
+    "--jmii-cover-phase-lift": `${PHASE_MS.lift}ms`,
+    "--jmii-cover-phase-exit": `${PHASE_MS.exit}ms`,
+    "--jmii-cover-out-delay": `${COVER_OUT_DELAY_MS}ms`,
+    "--jmii-cover-out-duration": `${PHASE_MS.exit}ms`,
+  } as CSSProperties;
+
   return (
     <div
       className={`jmii-cover${isAnimating ? " jmii-cover--opening" : ""}`}
+      style={coverMotionStyle}
       aria-hidden={!visible && isAnimating}
     >
       <div className="jmii-cover__bg" aria-hidden>

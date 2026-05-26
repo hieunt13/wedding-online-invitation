@@ -12,6 +12,7 @@ import { GallerySection } from "@/components/jmii/sections/GallerySection";
 import { GiftSection } from "@/components/jmii/sections/GiftSection";
 import { HeroSection } from "@/components/jmii/sections/HeroSection";
 import { LoveStorySection } from "@/components/jmii/sections/LoveStorySection";
+import { PreWeddingQuotesSection } from "@/components/jmii/sections/PreWeddingQuotesSection";
 import { ParentsInviteSection } from "@/components/jmii/sections/ParentsInviteSection";
 import { QuoteBannerSection } from "@/components/jmii/sections/QuoteBannerSection";
 import { RsvpSection } from "@/components/jmii/sections/RsvpSection";
@@ -82,6 +83,10 @@ export function JmiiInvitation({
 
       <LoveStorySection loveStory={loveStory} />
 
+      {config.preWeddingQuotes ? (
+        <PreWeddingQuotesSection preWeddingQuotes={config.preWeddingQuotes} />
+      ) : null}
+
       <CalendarSection calendar={config.calendar} backgroundImage={theme.calendarBg} />
 
       <TimelineSection items={config.timeline} />
@@ -101,7 +106,6 @@ export function JmiiInvitation({
       <FooterSection footer={config.footer} backgroundImage={theme.footerThankYouBg} />
 
       {authorLabel ? <AuthorCredits label={authorLabel} zone="inside" /> : null}
-      <></>
     </div>
   );
 }
