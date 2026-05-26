@@ -146,6 +146,8 @@ export interface WeddingConfig {
   meta: {
     title: string;
     description: string;
+    /** Ảnh preview khi chia sẻ link (đường dẫn trong public/, vd. /images/pre-wedding1.jpg) */
+    ogImage?: string;
   };
   theme: ThemeAssets;
   cover: CoverCopy;

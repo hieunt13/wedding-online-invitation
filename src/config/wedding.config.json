@@ -1,7 +1,8 @@
 {
   "meta": {
     "title": "Trung Hiếu & Khánh Linh — Thiệp Cưới",
-    "description": "Kính mời tham dự tiệc chung vui cùng gia đình chúng tôi"
+    "description": "Kính mời tham dự tiệc chung vui cùng gia đình chúng tôi",
+    "ogImage": "/images/pre-wedding6.jpg"
   },
   "theme": {
     "heroFlowersTop": "/images/jmii/hero-flowers-top.png",
@@ -169,10 +170,10 @@
   },
   "gallery": {
     "images": [
+      "/images/pre-wedding6.jpg",
       "/images/pre-wedding3.jpg",
       "/images/pre-wedding4.jpg",
       "/images/pre-wedding5.jpg",
-      "/images/pre-wedding6.jpg",
       "/images/pre-wedding7.jpg",
       "/images/pre-wedding8.jpg",
       "/images/pre-wedding9.jpg",

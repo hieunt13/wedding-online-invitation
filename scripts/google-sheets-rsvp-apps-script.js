@@ -37,7 +37,15 @@ function doPost(e) {
     ]);
 
     return ContentService.createTextOutput(
-      JSON.stringify({ ok: true }),
+      JSON.stringify({ ok: true, data: [
+      data.timestamp || new Date().toISOString(),
+      data.name || "",
+      data.message || "",
+      data.attendanceLabel || data.attendance || "",
+      data.guestCount || "",
+      data.guestSideLabel || data.guestSide || "",
+      false,
+    ] }),
     ).setMimeType(ContentService.MimeType.JSON);
   } catch (err) {
     return ContentService.createTextOutput(

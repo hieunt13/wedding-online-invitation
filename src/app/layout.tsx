@@ -5,7 +5,7 @@ import {
   Great_Vibes,
   Imperial_Script,
 } from "next/font/google";
-import weddingConfig from "@/config/wedding.config.json";
+import { buildWeddingMetadata } from "@/lib/wedding-metadata";
 import "./globals.css";
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -33,10 +33,7 @@ const imperialScript = Imperial_Script({
   weight: "400",
 });
 
-export const metadata: Metadata = {
-  title: weddingConfig.meta.title,
-  description: weddingConfig.meta.description,
-};
+export const metadata: Metadata = buildWeddingMetadata();
 
 export const viewport = {
   width: "device-width",

@@ -40,6 +40,8 @@ npm run dev
 
 Gửi form RSVP trên thiệp — dòng mới sẽ xuất hiện trong Sheet.
 
+Nếu API RSVP trả lỗi **405 Method Not Allowed**: kiểm tra Web app đã deploy với `doPost`, và URL trong `.env` kết thúc bằng `/exec` (không phải `/dev`).
+
 ## 5. Lời chúc trên thiệp (marquee)
 
 - Chỉ các hàng có **Lời nhắn** (cột C) không rỗng **và** **Hiển thị UI** (cột G) = `TRUE` mới hiển thị.

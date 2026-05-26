@@ -54,6 +54,7 @@ export async function POST(request: Request) {
     });
 
     const text = await upstream.text();
+    console.log(text);
     let result: { ok?: boolean; error?: string } = {};
     try {
       result = text ? JSON.parse(text) : {};
