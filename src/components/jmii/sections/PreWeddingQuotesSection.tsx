@@ -22,8 +22,6 @@ export function PreWeddingQuotesSection({ preWeddingQuotes }: PreWeddingQuotesSe
   const items = preWeddingQuotes.items.filter(isValidItem);
   if (!items.length) return null;
 
-  let splitIndex = 0;
-
   return (
     <div className="jmii-pre-wedding-quotes">
       {items.map((item, index) => {
@@ -68,8 +66,8 @@ export function PreWeddingQuotesSection({ preWeddingQuotes }: PreWeddingQuotesSe
         }
 
         if (item.layout === "split" && item.photo) {
-          const reverse = item.reverse ?? splitIndex % 2 === 1;
-          splitIndex += 1;
+          const splitOrdinal = items.slice(0, index).filter((i) => i.layout === "split").length;
+          const reverse = item.reverse ?? splitOrdinal % 2 === 1;
           return (
             <PreWeddingQuoteSplitSection
               key={`${item.photo}-${index}`}
