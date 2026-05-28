@@ -15,14 +15,22 @@ export function CouplePhotosSection({
   return (
     <section className="jmii-section jmii-couple-photos reveal-on-scroll">
       <div className="jmii-couple-photos__stack">
-        <article className="jmii-couple-photos__card jmii-couple-photos__card--groom">
+        <article className="jmii-couple-photos__card jmii-couple-photos__card--groom couple-card-left">
           <div className="jmii-polaroid jmii-polaroid--tilt-left">
-            <div className="jmii-polaroid__photo">
+            <div
+              className="jmii-polaroid__photo"
+              style={{
+                position: "relative",
+                width: "100%",
+                aspectRatio: "3 / 4",
+                overflow: "hidden",
+              }}
+            >
               <Image
                 src={couplePhotos.groomImage}
                 alt={groomName}
                 fill
-                className="object-cover object-top"
+                className="object-cover object-bottom"
                 sizes="70vw"
               />
             </div>
@@ -31,9 +39,17 @@ export function CouplePhotosSection({
           <p className="jmii-couple-photos__name">{groomName}</p>
         </article>
 
-        <article className="jmii-couple-photos__card jmii-couple-photos__card--bride">
+        <article className="jmii-couple-photos__card jmii-couple-photos__card--bride couple-card-right">
           <div className="jmii-polaroid jmii-polaroid--tilt-right">
-            <div className="jmii-polaroid__photo">
+            <div
+              className="jmii-polaroid__photo"
+              style={{
+                position: "relative",
+                width: "100%",
+                aspectRatio: "3 / 4",
+                overflow: "hidden",
+              }}
+            >
               <Image
                 src={couplePhotos.brideImage}
                 alt={brideName}

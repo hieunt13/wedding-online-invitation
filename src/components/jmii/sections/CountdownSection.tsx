@@ -15,7 +15,7 @@ export function CountdownSection({ weddingDate, label }: CountdownSectionProps) 
   const { days, hours, minutes, seconds } = useCountdown(weddingDate);
 
   return (
-    <section className="jmii-section jmii-countdown reveal-on-scroll">
+    <section className="jmii-section jmii-countdown reveal-fade-up pulse-glow">
       <h3 className="jmii-countdown__title">{label}</h3>
       <div className="jmii-countdown__grid">
         <div className="jmii-countdown__cell">

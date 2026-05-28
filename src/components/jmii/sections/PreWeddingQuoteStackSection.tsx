@@ -10,7 +10,10 @@ export function PreWeddingQuoteStackSection({ photos, quote }: PreWeddingQuoteSt
     <section className="jmii-pre-wedding-quote jmii-pre-wedding-quote--stack reveal-on-scroll">
       <div className="jmii-pre-wedding-quote__stack-photos">
         {photos.map((src, index) => (
-          <div key={`${src}-${index}`} className="jmii-pre-wedding-quote__stack-photo">
+          <div 
+            key={`${src}-${index}`} 
+            className={`jmii-pre-wedding-quote__stack-photo photo-reveal-${index + 1}`}
+          >
             <Image
               src={src}
               alt=""
@@ -21,7 +24,7 @@ export function PreWeddingQuoteStackSection({ photos, quote }: PreWeddingQuoteSt
           </div>
         ))}
       </div>
-      <p className="jmii-pre-wedding-quote__stack-text">{quote}</p>
+      <p className="jmii-pre-wedding-quote__stack-text quote-text-reveal">{quote}</p>
     </section>
   );
 }

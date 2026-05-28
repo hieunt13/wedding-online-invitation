@@ -28,10 +28,27 @@ export function useScrollReveal(enabled: boolean) {
     }, observerOptions);
 
     const observeAll = () => {
-      const elements = document.querySelectorAll(".reveal-on-scroll:not(.revealed)");
-      elements.forEach((el) => {
-        revealIfInView(el);
-        observer.observe(el);
+      const selectors = [
+        ".reveal-on-scroll:not(.revealed)",
+        ".reveal-fade-up:not(.revealed)",
+        ".reveal-slide-left:not(.revealed)",
+        ".reveal-slide-right:not(.revealed)",
+        ".reveal-scale-in:not(.revealed)",
+        ".photo-reveal-1:not(.revealed)",
+        ".photo-reveal-2:not(.revealed)",
+        ".photo-reveal-left:not(.revealed)",
+        ".photo-reveal-right:not(.revealed)",
+        ".quote-text-reveal:not(.revealed)",
+        ".couple-card-left:not(.revealed)",
+        ".couple-card-right:not(.revealed)"
+      ];
+      
+      selectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach((el) => {
+          revealIfInView(el);
+          observer.observe(el);
+        });
       });
     };
 

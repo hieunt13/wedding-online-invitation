@@ -12,7 +12,7 @@ export function PreWeddingQuoteStaggerSection({
   return (
     <section className="jmii-pre-wedding-quote jmii-pre-wedding-quote--stagger reveal-on-scroll">
       <div className="jmii-pre-wedding-quote__stagger">
-        <div className="jmii-pre-wedding-quote__stagger-photo jmii-pre-wedding-quote__stagger-photo--left">
+        <div className="jmii-pre-wedding-quote__stagger-photo jmii-pre-wedding-quote__stagger-photo--left photo-reveal-left">
           <Image
             src={photos[0]}
             alt=""
@@ -21,7 +21,7 @@ export function PreWeddingQuoteStaggerSection({
             sizes="78vw"
           />
         </div>
-        <div className="jmii-pre-wedding-quote__stagger-photo jmii-pre-wedding-quote__stagger-photo--right">
+        <div className="jmii-pre-wedding-quote__stagger-photo jmii-pre-wedding-quote__stagger-photo--right photo-reveal-right">
           <Image
             src={photos[1]}
             alt=""
@@ -30,7 +30,7 @@ export function PreWeddingQuoteStaggerSection({
             sizes="78vw"
           />
         </div>
-        <p className="jmii-pre-wedding-quote__stagger-text">{quote}</p>
+        <p className="jmii-pre-wedding-quote__stagger-text quote-text-reveal">{quote}</p>
       </div>
     </section>
   );

@@ -2,7 +2,7 @@
   "meta": {
     "title": "Trung Hiếu & Khánh Linh — Thiệp Cưới",
     "description": "Kính mời tham dự tiệc chung vui cùng gia đình chúng tôi",
-    "ogImage": "/images/pre-wedding6.jpg"
+    "ogImage": "/images/pre-wedding1.jpg"
   },
   "theme": {
     "heroFlowersTop": "/images/jmii/hero-flowers-top.png",
@@ -43,10 +43,12 @@
     "polaroidDate": "11.10.2026",
     "heroPhoto": "/images/pre-wedding2.jpg",
     "heroPhotoSecondary": "/images/pre-wedding3.jpg",
-    "cardPhotos": ["/images/pre-wedding2.jpg", "/images/pre-wedding3.jpg"]
+    "cardPhotos": ["/images/pre-wedding2.jpg", "/images/pre-wedding3.jpg"],
+    "bannerOverlayTitle": "Our Love Begins",
+    "bannerOverlayDate": "11.10.2026"
   },
-  "heroBannerPhoto": "/images/pre-wedding1.jpg",
-  "quoteBannerPhoto": "/images/pre-wedding2.jpg",
+  "heroBannerPhoto": "/images/pre-wedding19.jpg",
+  "quoteBannerPhoto": "/images/pre-wedding1.jpg",
   "families": {
     "groom": {
       "label": "nhà trai",
@@ -88,16 +90,16 @@
     "items": [
       {
         "layout": "stack",
-        "photos": ["/images/pre-wedding2.jpg", "/images/pre-wedding3.jpg"],
+        "photos": ["/images/pre-wedding3.jpg", "/images/pre-wedding4.jpg"],
         "quote": "Mình muốn cùng người mình yêu làm thật nhiều điều ý nghĩa:\nCùng ăn lẩu nửa đêm, cùng nhau hát dạo phố, hát hò, và cùng nhau đi đến cuối con đường mang tên hạnh phúc."
       },
       {
         "layout": "caption",
-        "photo": "/images/pre-wedding6.jpg",
+        "photo": "/images/pre-wedding5.jpg",
         "quote": "Người ta thường nói, tình yêu không chỉ là phút giây say đắm,\nmà là sự đồng hành dài lâu.\nTình yêu đích thực được cất giấu trong những điều bình dị hằng ngày,\nvà trong những khoảnh khắc vô tình, nó lại tỏa sáng lấp lánh"
       },
       {
-        "photo": "/images/pre-wedding5.jpg",
+        "photo": "/images/pre-wedding16.jpg",
         "quote": "Mãi mãi bên nhau — từ hôm nay đến mai sau."
       },
       {
@@ -113,8 +115,8 @@
     ]
   },
   "couplePhotos": {
-    "groomImage": "/images/pre-wedding6.jpg",
-    "brideImage": "/images/pre-wedding7.jpg",
+    "groomImage": "/images/groom2.jpg",
+    "brideImage": "/images/bride2.jpg",
     "groomRoleLabel": "Chú rể",
     "brideRoleLabel": "Cô dâu"
   },
@@ -153,11 +155,16 @@
   },
   "gallery": {
     "images": [
-      "/images/pre-wedding9.jpg",
-      "/images/pre-wedding10.jpg",
-      "/images/pre-wedding11.jpg",
-      "/images/pre-wedding13.jpg",
-      "/images/pre-wedding14.jpg"
+      { "src": "/images/pre-wedding17.jpg", "colSpan": 12, "rowSpan": 30},
+      { "src": "/images/pre-wedding9.jpg", "colSpan": 6, "rowSpan": 22 },
+      { "src": "/images/pre-wedding10.jpg", "colSpan": 3, "rowSpan": 10 },
+      { "src": "/images/pre-wedding20.jpg", "colSpan": 3, "rowSpan": 10 },
+      { "src": "/images/pre-wedding11.jpg", "colSpan": 6, "rowSpan": 14 },
+      { "src": "/images/pre-wedding13.jpg", "colSpan": 4, "rowSpan": 12 },
+      { "src": "/images/pre-wedding14.jpg", "colSpan": 4, "rowSpan": 12 },
+      { "src": "/images/pre-wedding15.jpg", "colSpan": 4, "rowSpan": 12 },
+      { "src": "/images/pre-wedding6.jpg", "colSpan": 7, "rowSpan": 18},
+      { "src": "/images/pre-wedding18.jpg", "colSpan": 5, "rowSpan": 18 }
     ]
   },
   "rsvp": {

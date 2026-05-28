@@ -10,7 +10,10 @@ export function PreWeddingQuoteDuoSection({ photos, quote }: PreWeddingQuoteDuoS
     <section className="jmii-pre-wedding-quote jmii-pre-wedding-quote--duo reveal-on-scroll">
       <div className="jmii-pre-wedding-quote__duo-photos">
         {photos.map((src, index) => (
-          <div key={`${src}-${index}`} className="jmii-pre-wedding-quote__duo-photo">
+          <div 
+            key={`${src}-${index}`} 
+            className={`jmii-pre-wedding-quote__duo-photo photo-reveal-${index + 1}`}
+          >
             <Image
               src={src}
               alt=""
@@ -21,7 +24,7 @@ export function PreWeddingQuoteDuoSection({ photos, quote }: PreWeddingQuoteDuoS
           </div>
         ))}
       </div>
-      <p className="jmii-pre-wedding-quote__duo-text">{quote}</p>
+      <p className="jmii-pre-wedding-quote__duo-text quote-text-reveal">{quote}</p>
     </section>
   );
 }

@@ -26,7 +26,7 @@ export function HeroSection({
   return (
     <section className="jmii-hero">
       <div className="jmii-hero__topbar" aria-hidden />
-
+{/* 
       <div className="jmii-hero__frame">
         <h1 className="jmii-hero__save">{hero.saveTheDate}</h1>
 
@@ -68,10 +68,30 @@ export function HeroSection({
           ) : null}
 
         </div>
-      </div>
+      </div> */}
 
       <div className="jmii-hero__photo-full">
-        <Image src={banner} alt="" fill className="object-cover object-bottom" sizes="100vw" priority />
+        <div className="jmii-hero__photo-bg">
+          <Image src={banner} alt="" fill className="object-cover object-bottom" sizes="100vw" priority />
+        </div>
+        
+        {hero.bannerOverlayTitle && (
+          <div className="jmii-hero__banner-overlay">
+            <h2 className="jmii-hero__banner-title">
+              {hero.bannerOverlayTitle.split(' ').map((word, idx) => (
+                <span key={idx} className="jmii-hero__banner-title-word">
+                  {word}
+                </span>
+              ))}
+            </h2>
+            {hero.bannerOverlayDate && (
+              <p className="jmii-hero__banner-date">
+                <span className="jmii-hero__banner-heart">♥</span>
+                {hero.bannerOverlayDate}
+              </p>
+            )}
+          </div>
+        )}
       </div>
     </section>
   );

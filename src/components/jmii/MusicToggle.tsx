@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
+const MUSIC_PREF_KEY = "jmii:music:on";
+
 interface MusicToggleProps {
   playbackSrc?: string;
   enabled?: boolean;
@@ -10,6 +12,17 @@ interface MusicToggleProps {
 export function MusicToggle({ playbackSrc, enabled }: MusicToggleProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
+  const [musicOn, setMusicOn] = useState(() => {
+    try {
+      if (typeof window === "undefined") return true;
+      const stored = window.localStorage.getItem(MUSIC_PREF_KEY);
+      if (stored === "0") return false;
+      if (stored === "1") return true;
+    } catch {
+      // ignore storage errors (private mode, blocked, etc.)
+    }
+    return true;
+  });
 
   const ensureAudio = useCallback(() => {
     if (!playbackSrc) return null;
@@ -23,6 +36,14 @@ export function MusicToggle({ playbackSrc, enabled }: MusicToggleProps) {
   useEffect(() => {
     if (!enabled || !playbackSrc) return;
 
+    if (!musicOn) {
+      const existing = audioRef.current;
+      if (existing) {
+        existing.pause();
+      }
+      return;
+    }
+
     const audio = ensureAudio();
     if (!audio) return;
 
@@ -34,7 +55,7 @@ export function MusicToggle({ playbackSrc, enabled }: MusicToggleProps) {
       audio.pause();
       audioRef.current = null;
     };
-  }, [enabled, playbackSrc, ensureAudio]);
+  }, [enabled, playbackSrc, ensureAudio, musicOn]);
 
   if (!enabled || !playbackSrc) return null;
 
@@ -42,10 +63,21 @@ export function MusicToggle({ playbackSrc, enabled }: MusicToggleProps) {
     const audio = ensureAudio();
     if (!audio) return;
 
-    if (playing) {
+    const nextOn = !musicOn;
+    setMusicOn(nextOn);
+    try {
+      window.localStorage.setItem(MUSIC_PREF_KEY, nextOn ? "1" : "0");
+    } catch {
+      // ignore storage errors
+    }
+
+    if (!nextOn) {
       audio.pause();
       setPlaying(false);
-    } else {
+      return;
+    }
+
+    if (!playing) {
       try {
         await audio.play();
         setPlaying(true);

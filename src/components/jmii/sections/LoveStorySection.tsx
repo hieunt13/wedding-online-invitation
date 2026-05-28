@@ -6,7 +6,7 @@ interface LoveStorySectionProps {
 
 export function LoveStorySection({ loveStory }: LoveStorySectionProps) {
   return (
-    <section className="jmii-section jmii-story reveal-on-scroll">
+    <section className="jmii-section jmii-story reveal-fade-up">
       {loveStory.sectionTitle ? (
         <h2 className="jmii-story__heading jmii-script">{loveStory.sectionTitle}</h2>
       ) : null}

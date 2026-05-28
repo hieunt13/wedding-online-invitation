@@ -1,54 +1,60 @@
 "use client";
 
 import Image from "next/image";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import type { GalleryConfig } from "@/types/wedding.types";
-
-const AUTO_PLAY_MS = 4000;
 
 interface GallerySectionProps {
   gallery: GalleryConfig;
 }
 
 export function GallerySection({ gallery }: GallerySectionProps) {
-  const images = gallery.images;
-  const hasMany = images.length > 1;
+  const items = gallery.images
+    .map((img) => (typeof img === "string" ? { src: img } : img))
+    .filter((img) => Boolean(img.src));
 
-  if (!images.length) return null;
+  if (!items.length) return null;
 
   return (
-    <section
-      className="jmii-section jmii-gallery reveal-on-scroll revealed"
-      aria-label="Album ảnh cưới"
-    >
-      <Carousel
-        className="jmii-gallery__carousel"
-        infiniteLoop={hasMany}
-        autoPlay={hasMany}
-        interval={AUTO_PLAY_MS}
-        stopOnHover
-        swipeable
-        emulateTouch
-        showArrows={false}
-        showStatus={false}
-        showThumbs={false}
-        showIndicators={hasMany}
-      >
-        {images.map((src, index) => (
-          <div key={`${src}-${index}`} className="jmii-gallery__slide">
-            <Image
-              src={src}
-              alt={`Ảnh pre-wedding ${index + 1}`}
-              fill
-              className="object-cover"
-              sizes="100vw"
-              priority={index === 0}
-              draggable={false}
-            />
-          </div>
-        ))}
-      </Carousel>
+    <section className="jmii-section jmii-gallery" aria-label="Album ảnh cưới">
+      <div className="jmii-gallery-mosaic" aria-label="Triển lãm ảnh">
+        {items.map((item, index) => {
+          const captionId = `jmii-gallery-caption-${index}`;
+          const colSpan = Math.max(1, Math.min(12, item.colSpan ?? 4));
+          const rowSpan = Math.max(1, Math.min(40, item.rowSpan ?? 14));
+
+          return (
+            <figure
+              key={`${item.src}-${index}`}
+              className="jmii-gallery-mosaic__tile reveal-fade-up"
+              style={{
+                transitionDelay: `${Math.min(index, 16) * 70}ms`,
+                gridColumn: `span ${colSpan}`,
+                gridRow: `span ${rowSpan}`,
+              }}
+              aria-describedby={item.caption ? captionId : undefined}
+            >
+              <div className="jmii-gallery-mosaic__mat">
+                <div className="jmii-gallery-mosaic__photo">
+                  <Image
+                    src={item.src}
+                    alt={item.caption ? item.caption : `Ảnh pre-wedding ${index + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 900px) 25vw, 50vw"
+                    priority={index < 2}
+                    draggable={false}
+                  />
+                </div>
+              </div>
+              {item.caption ? (
+                <figcaption className="jmii-gallery-mosaic__caption" id={captionId}>
+                  {item.caption}
+                </figcaption>
+              ) : null}
+            </figure>
+          );
+        })}
+      </div>
     </section>
   );
 }

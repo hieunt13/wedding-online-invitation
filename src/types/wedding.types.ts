@@ -49,6 +49,10 @@ export interface HeroConfig {
   heroPhotoSecondary?: string;
   /** Ảnh hiển thị bên trong thiệp (phong bì). Mặc định: heroPhoto + heroPhotoSecondary */
   cardPhotos?: string[];
+  /** Text overlay trên banner photo */
+  bannerOverlayTitle?: string;
+  /** Ngày overlay trên banner photo */
+  bannerOverlayDate?: string;
 }
 
 export interface EventConfig {
@@ -99,7 +103,17 @@ export interface CalendarConfig {
 }
 
 export interface GalleryConfig {
-  images: string[];
+  images: (
+    | string
+    | {
+        src: string;
+        caption?: string;
+        /** Number of columns to span in the mosaic grid */
+        colSpan?: number;
+        /** Number of rows to span in the mosaic grid */
+        rowSpan?: number;
+      }
+  )[];
 }
 
 export interface PreWeddingQuoteItem {

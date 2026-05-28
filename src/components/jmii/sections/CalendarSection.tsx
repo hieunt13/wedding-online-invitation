@@ -22,7 +22,7 @@ export function CalendarSection({ calendar, backgroundImage }: CalendarSectionPr
 
   return (
     <section
-      className="jmii-section jmii-calendar reveal-on-scroll"
+      className="jmii-section jmii-calendar reveal-scale-in float-animation"
       style={
         backgroundImage
           ? { backgroundImage: `url(${backgroundImage})` }

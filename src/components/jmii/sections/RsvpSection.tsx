@@ -60,7 +60,7 @@ export function RsvpSection({ rsvp, defaultName, floralImage }: RsvpSectionProps
 
   if (submitted) {
     return (
-      <section className="jmii-section jmii-rsvp jmii-rsvp--success reveal-on-scroll revealed">
+      <section className="jmii-section jmii-rsvp jmii-rsvp--success reveal-slide-left revealed">
         <h3 className="jmii-rsvp__success-title jmii-script">{rsvp.successTitle}</h3>
         <p className="jmii-rsvp__success-msg">{rsvp.successMessage}</p>
       </section>
@@ -68,7 +68,7 @@ export function RsvpSection({ rsvp, defaultName, floralImage }: RsvpSectionProps
   }
 
   return (
-    <section className="jmii-section jmii-rsvp reveal-on-scroll">
+    <section className="jmii-section jmii-rsvp reveal-slide-left">
       <p className="jmii-rsvp__intro">{rsvp.title}</p>
       <p className="jmii-rsvp__intro">{rsvp.title2}</p>
       <form className="jmii-rsvp__form" onSubmit={handleSubmit}>
