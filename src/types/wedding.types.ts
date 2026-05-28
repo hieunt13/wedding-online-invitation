@@ -33,6 +33,8 @@ export interface ThemeAssets {
 export interface CoverCopy {
   invitationLabel: string;
   openButtonText: string;
+  /** Dòng chỉ dẫn dưới phong bì (vd. Chạm vào thiệp để mở) */
+  tapHint?: string;
   floral?: string;
   backgroundImage?: string;
 }

@@ -39,7 +39,7 @@ export function GallerySection({ gallery }: GallerySectionProps) {
                     src={item.src}
                     alt={item.caption ? item.caption : `Ảnh pre-wedding ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                     sizes="(min-width: 900px) 25vw, 50vw"
                     priority={index < 2}
                     draggable={false}

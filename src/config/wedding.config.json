@@ -21,11 +21,12 @@
   "cover": {
     "invitationLabel": "Thân Mời",
     "openButtonText": "Mở thiệp",
+    "tapHint": "Chạm bất kỳ đâu để mở thiệp",
     "floral": "/images/flower.png",
     "backgroundImage": "/images/pre-wedding1.jpg"
   },
   "typography": {
-    "baseFontSize": 16
+    "baseFontSize": 18
   },
   "music": {
     "src": "https://music.youtube.com/watch?v=uV_5eEvamoQ&list=PPSV",
@@ -91,7 +92,7 @@
       {
         "layout": "stack",
         "photos": ["/images/pre-wedding3.jpg", "/images/pre-wedding4.jpg"],
-        "quote": "Mình muốn cùng người mình yêu làm thật nhiều điều ý nghĩa:\nCùng ăn lẩu nửa đêm, cùng nhau hát dạo phố, hát hò, và cùng nhau đi đến cuối con đường mang tên hạnh phúc."
+        "quote": "Mình muốn cùng người mình yêu làm thật nhiều điều ý nghĩa:\nCùng ăn lẩu nửa đêm, cùng nhau dạo phố, hát hò, và cùng nhau đi đến cuối con đường mang tên hạnh phúc."
       },
       {
         "layout": "caption",
@@ -155,15 +156,15 @@
   },
   "gallery": {
     "images": [
-      { "src": "/images/pre-wedding17.jpg", "colSpan": 12, "rowSpan": 30},
-      { "src": "/images/pre-wedding9.jpg", "colSpan": 6, "rowSpan": 22 },
-      { "src": "/images/pre-wedding10.jpg", "colSpan": 3, "rowSpan": 10 },
-      { "src": "/images/pre-wedding20.jpg", "colSpan": 3, "rowSpan": 10 },
+      { "src": "/images/pre-wedding17.jpg", "colSpan": 12, "rowSpan": 20 },
+      { "src": "/images/pre-wedding9.jpg", "colSpan": 6, "rowSpan": 12 },
+      { "src": "/images/pre-wedding10.jpg", "colSpan": 6, "rowSpan": 10 },
+      { "src": "/images/pre-wedding20.jpg", "colSpan": 12, "rowSpan": 20 },
       { "src": "/images/pre-wedding11.jpg", "colSpan": 6, "rowSpan": 14 },
-      { "src": "/images/pre-wedding13.jpg", "colSpan": 4, "rowSpan": 12 },
-      { "src": "/images/pre-wedding14.jpg", "colSpan": 4, "rowSpan": 12 },
-      { "src": "/images/pre-wedding15.jpg", "colSpan": 4, "rowSpan": 12 },
-      { "src": "/images/pre-wedding6.jpg", "colSpan": 7, "rowSpan": 18},
+      { "src": "/images/pre-wedding13.jpg", "colSpan": 5, "rowSpan": 10 },
+      { "src": "/images/pre-wedding14.jpg", "colSpan": 6, "rowSpan": 12 },
+      { "src": "/images/pre-wedding15.jpg", "colSpan": 5, "rowSpan": 10 },
+      { "src": "/images/pre-wedding6.jpg", "colSpan": 7, "rowSpan": 18 },
       { "src": "/images/pre-wedding18.jpg", "colSpan": 5, "rowSpan": 18 }
     ]
   },

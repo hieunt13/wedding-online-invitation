@@ -9,9 +9,9 @@ type OpenPhase = "idle" | "flap" | "peek" | "lift" | "exit";
 
 /** Thời gian mỗi phase — đồng bộ với CSS var `--jmii-cover-phase-*` */
 const PHASE_MS: Record<Exclude<OpenPhase, "idle">, number> = {
-  flap: 4200,
+  flap: 2200,
   peek: 2400,
-  lift: 4800,
+  lift: 1800,
   exit: 300,
 };
 
@@ -95,11 +95,27 @@ export function JmiiCover({
     "--jmii-cover-out-duration": `${PHASE_MS.exit}ms`,
   } as CSSProperties;
 
+  const canOpen = phase === "idle";
+
   return (
     <div
-      className={`jmii-cover${isAnimating ? " jmii-cover--opening" : ""}`}
+      className={`jmii-cover${canOpen ? " jmii-cover--idle" : ""}${isAnimating ? " jmii-cover--opening" : ""}`}
       style={coverMotionStyle}
       aria-hidden={!visible && isAnimating}
+      role={canOpen ? "button" : undefined}
+      tabIndex={canOpen ? 0 : -1}
+      aria-label={canOpen ? cover.openButtonText : undefined}
+      onClick={canOpen ? handleOpen : undefined}
+      onKeyDown={
+        canOpen
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                handleOpen();
+              }
+            }
+          : undefined
+      }
     >
       <div className="jmii-cover__bg" aria-hidden>
         <Image
@@ -114,19 +130,7 @@ export function JmiiCover({
       <div className="jmii-cover__backdrop" aria-hidden />
 
       <div className="jmii-cover__stage">
-        <div
-          className={`jmii-cover-env jmii-cover-env--${phase}`}
-          role="button"
-          tabIndex={phase === "idle" ? 0 : -1}
-          aria-label={cover.openButtonText}
-          onClick={handleOpen}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              handleOpen();
-            }
-          }}
-        >
+        <div className={`jmii-cover-env jmii-cover-env--${phase}`}>
           <div className="jmii-cover-env__scene">
             <div className="jmii-cover-env__back" aria-hidden />
             <div className="jmii-cover-env__inner" aria-hidden />
@@ -192,7 +196,9 @@ export function JmiiCover({
           </div>
         </div>
 
-        <p className="jmii-cover__hint">{cover.openButtonText}</p>
+        {phase === "idle" ? (
+          <p className="jmii-cover__hint">{cover.tapHint ?? "Chạm bất kỳ đâu để mở thiệp"}</p>
+        ) : null}
       </div>
 
       {authorLabel ? <AuthorCredits label={authorLabel} zone="cover" /> : null}

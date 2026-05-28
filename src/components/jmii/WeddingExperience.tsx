@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useSyncExternalStore, useState } from "react";
+import { useCallback, useEffect, useSyncExternalStore, useState, useRef } from "react";
 import { InvitationBackdrop } from "@/components/jmii/InvitationBackdrop";
 import { JmiiCover } from "@/components/jmii/JmiiCover";
 import { JmiiInvitation } from "@/components/jmii/JmiiInvitation";
@@ -42,6 +42,7 @@ function getGuestNameSnapshot() {
 export function WeddingExperience({ config, guestName, wishes = [] }: WeddingExperienceProps) {
   const [opened, setOpened] = useState(false);
   const [revealing, setRevealing] = useState(false);
+  const revealingRef = useRef<NodeJS.Timeout | null>(null);
   const storedGuestName = useSyncExternalStore(
     subscribeGuestNameStore,
     getGuestNameSnapshot,
@@ -50,7 +51,10 @@ export function WeddingExperience({ config, guestName, wishes = [] }: WeddingExp
   const effectiveGuestName = guestName ?? (storedGuestName || undefined);
 
   const handleOpenStart = useCallback(() => {
-    setRevealing(true);
+    if (revealingRef.current) clearTimeout(revealingRef.current);
+    revealingRef.current =setTimeout(() => {
+      setRevealing(true);
+    }, 4000);
   }, []);
 
   const handleOpenComplete = useCallback(() => {
