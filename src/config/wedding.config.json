@@ -119,7 +119,9 @@
     "groomImage": "/images/groom2.jpg",
     "brideImage": "/images/bride2.jpg",
     "groomRoleLabel": "Chú rể",
-    "brideRoleLabel": "Cô dâu"
+    "brideRoleLabel": "Cô dâu",
+    "groomAccentImage": "/images/jmii/parents-floral.png",
+    "brideAccentImage": "/images/jmii/hero-wax-seal.png"
   },
   "calendar": {
     "monthLabel": "Tháng 10",

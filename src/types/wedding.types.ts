@@ -82,6 +82,10 @@ export interface CouplePhotoConfig {
   brideImage: string;
   groomRoleLabel: string;
   brideRoleLabel: string;
+  /** Trang trí khoảng trống cạnh ảnh chú rể (hoa) */
+  groomAccentImage?: string;
+  /** Trang trí khoảng trống cạnh ảnh cô dâu (tem / wax seal) */
+  brideAccentImage?: string;
 }
 
 export interface TimelineItem {

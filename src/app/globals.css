@@ -2112,15 +2112,17 @@
 }
 
 .jmii-quote-banner__text {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 18%;
-  padding: 0 1.5rem;
-  font-size: calc(28px * var(--jmii-scale));
-  line-height: 1.25;
-  color: #fff;
+  font-size: calc(30px * var(--jmii-scale));
+  color: rgb(255 255 255);
   text-align: center;
+  padding: 0px 1.5rem;
+  font-weight: bold;
+  line-height: 1.25;
+  position: absolute;
+  bottom: 5%;
+  left: 0px;
+  right: 0px;
+  text-wrap: auto;
 }
 
 /* ─── Pre-wedding quotes (image + text side by side) ─── */
@@ -2834,17 +2836,74 @@
   padding-right: 0.5rem;
 }
 
-.jmii-polaroid--tilt-left {
-  transform: rotate(-4deg);
-  width: min(68%, 220px);
+.jmii-couple-photos__row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
   margin-bottom: 0.75rem;
 }
 
+.jmii-couple-photos__row--bride {
+  justify-content: flex-end;
+}
+
+.jmii-couple-photos__accent {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 5.5rem;
+  pointer-events: none;
+}
+
+.jmii-couple-photos__accent--groom {
+  justify-content: flex-center;
+  padding-left: 0.15rem;
+}
+
+.jmii-couple-photos__accent--bride {
+  justify-content: flex-end;
+  padding-right: 0.15rem;
+}
+
+.jmii-couple-photos__accent-img {
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.jmii-couple-photos__accent-img--floral {
+  width: min(5.75rem, 32vw);
+  max-height: 7.5rem;
+  opacity: 0.92;
+  transform: rotate(14deg) scaleX(-1);
+  filter: drop-shadow(0 6px 14px rgb(30 61 47 / 0.12));
+}
+
+.jmii-couple-photos__accent-img--stamp {
+  width: min(3.75rem, 20vw);
+  opacity: 0.95;
+  transform: rotate(-10deg);
+  filter: drop-shadow(0 4px 10px rgb(30 61 47 / 0.2));
+}
+
+.jmii-polaroid__photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.jmii-polaroid--tilt-left {
+  flex: 0 0 min(68%, 220px);
+  transform: rotate(-4deg);
+}
+
 .jmii-polaroid--tilt-right {
+  flex: 0 0 min(68%, 220px);
   transform: rotate(4deg);
-  width: min(68%, 220px);
-  margin-left: auto;
-  margin-bottom: 0.75rem;
 }
 
 .jmii-couple-photos__role {
@@ -2912,7 +2971,8 @@
   min-height: 16rem;
   padding: 3rem 1.5rem;
   background-size: cover;
-  background-position: center;
+  background-repeat: no-repeat;
+  background-position: center 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
