@@ -9,7 +9,7 @@
   --jmii-font-script: var(--font-script), "Great Vibes", cursive;
   --jmii-font-serif: var(--font-display), "Cormorant Garamond", ui-serif, Georgia, serif;
   --jmii-font-body: var(--font-body), "Cormorant Infant", ui-serif, Georgia, serif;
-  --jmii-page-width: min(45rem, max(20rem, 92vw));
+  --jmii-page-width: min(45rem, max(20rem, 100vw));
 }
 
 @layer base {
@@ -706,7 +706,7 @@
   --jmii-scale: var(--jmii-font-scale, 1);
   position: relative;
   isolation: isolate;
-  width: 100%;
+  width: var(--jmii-page-width);
   margin: 0 auto;
   background-color: #fff;
   color: var(--jmii-green);
@@ -2097,6 +2097,7 @@
 /* ─── Quote banner ─── */
 .jmii-quote-banner {
   padding: 0;
+  margin-bottom: 6rem;
 }
 
 .jmii-quote-banner__photo {
@@ -2112,17 +2113,24 @@
 }
 
 .jmii-quote-banner__text {
-  font-size: calc(30px * var(--jmii-scale));
-  color: rgb(255 255 255);
-  text-align: center;
-  padding: 0px 1.5rem;
-  font-weight: bold;
-  line-height: 1.25;
+  margin: 0;
+  font-family: var(--jmii-font-serif);
+  font-size: calc(26px * var(--jmii-scale));
+  letter-spacing: .03em;
+  text-align: left;
+  color: var(--jmii-green);
+  white-space: pre-line;
+  text-wrap: balance;
+  margin-inline: auto;
+  padding: 0 1.5rem;
+  line-height: 1.3;
   position: absolute;
-  bottom: 5%;
-  left: 0px;
-  right: 0px;
-  text-wrap: auto;
+  top: 101%;
+  left: 0;
+  right: 0;
+  width: fit-content;
+  word-wrap: break-word;
+  word-break: auto-phrase;
 }
 
 /* ─── Pre-wedding quotes (image + text side by side) ─── */
