@@ -36,7 +36,6 @@ export function VenueDateSection({ event }: VenueDateSectionProps) {
         className="jmii-maps-link"
       >
         <span className="jmii-maps-link__pin" aria-hidden>
-          📍
         </span>
         {event.mapsLabel}
       </a>

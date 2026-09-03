@@ -5,6 +5,8 @@ import {
   Great_Vibes,
   Imperial_Script,
 } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import { buildWeddingMetadata } from "@/lib/wedding-metadata";
 import "./globals.css";
 
@@ -50,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <body
-        className={`${cormorantGaramond.variable} ${cormorantInfant.variable} ${greatVibes.variable} ${imperialScript.variable} min-h-dvh font-body antialiased`}
+        className={`${GeistSans.variable} ${GeistMono.variable} ${cormorantGaramond.variable} ${cormorantInfant.variable} ${greatVibes.variable} ${imperialScript.variable} min-h-dvh font-body antialiased`}
       >
         {children}
       </body>

@@ -1,15 +1,28 @@
 @import "tailwindcss";
 
-/* ─── JMII Wedding (jmiiwedding.com) ─── */
+/* ─── JMII Wedding - Melius-inspired clean light theme ─── */
 :root {
+  --jmii-dark: #0a0f0c;
+  --jmii-dark-elevated: #111916;
+  --jmii-dark-surface: #161e1a;
   --jmii-green: #1e3d2f;
   --jmii-green-rgb: 30 61 47;
-  --jmii-cream: #f9f7f4;
+  --jmii-green-dim: #3a6b52;
+  --jmii-green-accent: #2d5a44;
+  --jmii-cream: #faf8f5;
   --jmii-paper: #f5f3ef;
+  --jmii-cream-dim: rgb(30 61 47 / 0.55);
+  --jmii-text: #1e3d2f;
+  --jmii-text-dim: rgba(30, 61, 47, 0.689);
+  --jmii-border: rgb(30 61 47 / 0.1);
+  --jmii-font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  --jmii-font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --jmii-font-script: var(--font-script), "Great Vibes", cursive;
   --jmii-font-serif: var(--font-display), "Cormorant Garamond", ui-serif, Georgia, serif;
   --jmii-font-body: var(--font-body), "Cormorant Infant", ui-serif, Georgia, serif;
-  --jmii-page-width: min(45rem, max(20rem, 100vw));
+  --jmii-page-width: min(1080px, max(20rem, 100vw));
+  --jmii-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --jmii-radius: 12px;
 }
 
 @layer base {
@@ -22,12 +35,14 @@
   }
 
   body {
-    background-color: var(--jmii-cream);
-    color: var(--jmii-green);
-    font-family: var(--jmii-font-body);
-    font-size: 12px;
-    line-height: 1.55;
+    background-color: #0a0f0c;
+    color: var(--jmii-text);
+    font-family: var(--jmii-font-sans);
+    font-size: 16px;
+    line-height: 1.6;
     overflow-y: visible;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .sr-only {
@@ -65,7 +80,7 @@
   align-items: center;
   justify-content: center;
   padding: 1.25rem;
-  background-color: var(--jmii-paper);
+  background-color: #0a0f0c;
   overflow: hidden;
   animation: jmii-cover-in 0.5s ease;
 }
@@ -79,14 +94,14 @@
 .jmii-cover__bg-img {
   object-fit: cover;
   object-position: center center;
-  filter: blur(4px) brightness(0.92) saturate(0.9);
+  filter: blur(4px) brightness(0.5) saturate(0.8);
 }
 
 .jmii-cover__backdrop {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: rgb(249 247 244 / 0.62);
+  background: rgb(10 15 12 / 0.25);
   pointer-events: none;
 }
 
@@ -128,14 +143,14 @@
   max-width: 18rem;
   padding: 0 0.5rem;
   pointer-events: none;
-  font-family: var(--jmii-font-body);
-  font-size: calc(14px * var(--jmii-scale, 1));
-  font-weight: 600;
+  font-family: var(--jmii-font-sans);
+  font-size: calc(12px * var(--jmii-scale, 1));
+  font-weight: 500;
   line-height: 1.45;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   text-align: center;
-  color: rgb(var(--jmii-green-rgb) / 0.82);
+  color: rgb(255 255 255 / 0.55);
   animation: jmii-cover-hint-pulse 2.2s ease-in-out infinite;
 }
 
@@ -143,7 +158,7 @@
 
   0%,
   100% {
-    opacity: 0.72;
+    opacity: 0.6;
     transform: translateY(0);
   }
 
@@ -163,22 +178,22 @@
 
 .jmii-cover-env__scene {
   --jmii-env-pattern: url("/images/envelop-pattern.png");
-  --jmii-env-edge: rgb(18 42 32 / 0.65);
-  --jmii-env-edge-soft: rgb(255 255 255 / 0.14);
+  --jmii-env-edge: rgb(30 61 47 / 0.25);
+  --jmii-env-edge-soft: rgb(255 255 255 / 0.08);
   position: relative;
   width: 100%;
   height: 28.5rem;
   perspective: 1100px;
   perspective-origin: 50% 38%;
   transform-style: preserve-3d;
-  filter: drop-shadow(0 16px 32px rgb(30 61 47 / 0.3));
+  filter: drop-shadow(0 16px 48px rgb(0 0 0 / 0.5));
 }
 
 .jmii-cover-env__back,
 .jmii-cover-env__inner,
 .jmii-cover-env__front,
 .jmii-cover-env__flap {
-  background-color: var(--jmii-green);
+  background-color: #1a2e24;
   background-image: var(--jmii-env-pattern);
   background-size: cover;
   background-position: center;
@@ -189,25 +204,25 @@
   position: absolute;
   inset: 51% 5% 0;
   z-index: 0;
-  border: 1.5px solid var(--jmii-env-edge);
+  border: 1px solid var(--jmii-env-edge);
   border-radius: 2px 2px 10px 10px;
   box-shadow:
     inset 0 1px 0 var(--jmii-env-edge-soft),
-    inset 0 -4px 10px rgb(0 0 0 / 0.16),
-    0 5px 14px rgb(0 0 0 / 0.2);
+    inset 0 -4px 10px rgb(0 0 0 / 0.3),
+    0 5px 14px rgb(0 0 0 / 0.3);
 }
 
 .jmii-cover-env__inner {
   z-index: 2;
-  border: 1px solid rgb(18 42 32 / 0.45);
+  border: 1px solid rgb(30 61 47 / 0.15);
   border-radius: 2px 2px 8px 8px;
   position: absolute;
   inset: 51% 5% 6%;
   height: 47%;
   box-shadow:
-    inset 0 2px 8px rgb(0 0 0 / 0.12),
+    inset 0 2px 8px rgb(0 0 0 / 0.2),
     inset 0 -1px 0 var(--jmii-env-edge-soft),
-    0 3px 10px rgb(0 0 0 / 0.14);
+    0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 .jmii-cover-env__card {
@@ -227,7 +242,6 @@
   pointer-events: none;
 }
 
-/* Ruột thiệp: chỉ lộ sau khi nắp mở, giữ yên trong phong bì (phase peek) */
 .jmii-cover-env--peek .jmii-cover-env__card {
   opacity: 1;
   transform: translateX(-50%) translateY(0) translateZ(0);
@@ -242,7 +256,7 @@
 .jmii-cover-env--exit .jmii-cover-env__card {
   opacity: 1;
   transform: translateX(-50%) translateY(-108%) translateZ(72px) scale(1.08);
-  filter: drop-shadow(0 20px 40px rgb(30 61 47 / 0.35));
+  filter: drop-shadow(0 20px 40px rgb(0 0 0 / 0.5));
   z-index: 12;
   transition:
     transform var(--jmii-cover-phase-lift, 4.8s) cubic-bezier(0.33, 1, 0.52, 1),
@@ -258,14 +272,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(180deg, #fff 0%, #faf7f2 100%);
-  border: 1.5px solid rgb(var(--jmii-green-rgb) / 0.28);
+  background: linear-gradient(180deg, #f8f6f2 0%, #f0ece4 100%);
+  border: 1px solid rgb(30 61 47 / 0.15);
   border-radius: 4px 4px 2px 2px;
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.95),
-    inset 0 -2px 6px rgb(var(--jmii-green-rgb) / 0.06),
-    0 4px 10px rgb(30 61 47 / 0.14),
-    0 10px 28px rgb(30 61 47 / 0.22);
+    inset 0 1px 0 rgb(255 255 255 / 0.9),
+    inset 0 -2px 6px rgb(30 61 47 / 0.06),
+    0 4px 10px rgb(0 0 0 / 0.15),
+    0 10px 28px rgb(0 0 0 / 0.25);
+  color: #1e3d2f;
   overflow: hidden;
 }
 
@@ -284,23 +299,22 @@
   border-radius: 0 0 10px 10px;
   box-shadow:
     inset 0 1px 0 var(--jmii-env-edge-soft),
-    inset 0 4px 14px rgb(0 0 0 / 0.14);
+    inset 0 4px 14px rgb(0 0 0 / 0.2);
   filter:
-    drop-shadow(0 1px 0 var(--jmii-env-edge)) drop-shadow(0 5px 12px rgb(0 0 0 / 0.22));
+    drop-shadow(0 1px 0 var(--jmii-env-edge)) drop-shadow(0 5px 12px rgb(0 0 0 / 0.3));
   transition:
     opacity var(--jmii-cover-phase-flap, 5.2s) ease,
     filter var(--jmii-cover-phase-flap, 5.2s) ease;
   overflow: visible;
 }
 
-/* Viền trắng hai cạnh chéo (2 mũi nhọn) — khớp clip-path */
 .jmii-cover-env__front::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolyline points='0,30 50,0 100,30' fill='none' stroke='%23ffffff' stroke-width='1.4' vector-effect='non-scaling-stroke' stroke-linejoin='miter' stroke-linecap='butt'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolyline points='0,30 50,0 100,30' fill='none' stroke='%237ccca0' stroke-width='0.6' vector-effect='non-scaling-stroke' stroke-linejoin='miter' stroke-linecap='butt' opacity='0.3'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
 }
 
 .jmii-cover-env--lift .jmii-cover-env__front,
@@ -313,7 +327,7 @@
   z-index: 2;
   pointer-events: none;
   line-height: 0;
-  opacity: 0.95;
+  opacity: 0.85;
 }
 
 .jmii-cover-env__front-flower--tl {
@@ -332,15 +346,15 @@
   width: 5.5rem;
   height: auto;
   display: block;
-  filter: drop-shadow(0 4px 10px rgb(0 0 0 / 0.22));
+  filter: drop-shadow(0 4px 10px rgb(0 0 0 / 0.3));
 }
 
 .jmii-cover-env__front-names {
   z-index: 3;
   font-family: var(--jmii-font-cover);
   font-size: calc(1.25rem * var(--jmii-scale, 1));
-  color: #f3ebe0;
-  text-shadow: 0 1px 3px #00000073;
+  color: #d4c5a0;
+  text-shadow: 0 1px 3px rgb(0 0 0 / 0.5);
   pointer-events: none;
   margin: 0;
   line-height: 1.2;
@@ -358,8 +372,7 @@
   transform: rotateX(0deg);
   transform-style: preserve-3d;
   transform-origin: top center;
-  filter: drop-shadow(0 3px 8px rgb(0 0 0 / 0.24));
-  /* Chỉ xoay nắp trước; hạ z-index sau khi nắp mở xong */
+  filter: drop-shadow(0 3px 8px rgb(0 0 0 / 0.3));
   transition:
     transform var(--jmii-cover-phase-flap, 4.2s) cubic-bezier(0.4, 0, 0.2, 1),
     z-index 0s linear var(--jmii-cover-phase-flap, 4.2s);
@@ -380,7 +393,7 @@
   backface-visibility: hidden;
   box-shadow:
     inset 0 1px 0 var(--jmii-env-edge-soft),
-    inset 0 -3px 10px rgb(0 0 0 / 0.16);
+    inset 0 -3px 10px rgb(0 0 0 / 0.25);
   filter: drop-shadow(0 2px 0 var(--jmii-env-edge));
   transform: rotate(180deg);
   height: 70%;
@@ -412,7 +425,7 @@
   display: block;
   width: 3.25rem;
   height: auto;
-  filter: drop-shadow(0 2px 0 rgb(0 0 0 / 0.2)) drop-shadow(0 5px 12px rgb(0 0 0 / 0.4));
+  filter: drop-shadow(0 2px 0 rgb(0 0 0 / 0.3)) drop-shadow(0 5px 12px rgb(0 0 0 / 0.5));
 }
 
 .jmii-cover-env__seal-fallback {
@@ -420,10 +433,10 @@
   width: 3.25rem;
   height: 3.25rem;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 28%, #d4b06a, #9a6b32 52%, #5c3d18 100%);
+  background: radial-gradient(circle at 32% 28%, #7ccca0, #4a8a6a 52%, #2a5a42 100%);
   box-shadow:
-    inset 0 -2px 4px rgb(0 0 0 / 0.25),
-    0 4px 10px rgb(0 0 0 / 0.38);
+    inset 0 -2px 4px rgb(0 0 0 / 0.35),
+    0 4px 10px rgb(0 0 0 / 0.45);
 }
 
 .jmii-cover-env--exit {
@@ -502,7 +515,7 @@
   width: 8.5rem;
   height: auto;
   display: block;
-  filter: drop-shadow(0 5px 12px rgb(var(--jmii-green-rgb) / 0.14));
+  filter: drop-shadow(0 5px 12px rgb(0 0 0 / 0.2));
 }
 
 @keyframes jmii-cover-float-tl {
@@ -534,17 +547,17 @@
   font-size: calc(1.85rem * var(--jmii-scale, 1));
   letter-spacing: 0.04em;
   margin-bottom: 1.25rem;
-  color: var(--jmii-green);
+  color: #1e3d2f;
 }
 
 .jmii-cover__guest {
   margin: 0 0 1.25rem;
-  border-bottom: 1px dashed rgb(var(--jmii-green-rgb) / 0.4);
-  font-family: var(--font-body), "Cormorant Infant", ui-serif, Georgia, serif;
-  font-size: calc(1rem * var(--jmii-scale, 1));
-  font-weight: 400;
+  border-bottom: 1px dashed rgb(30 61 47 / 0.3);
+  font-family: var(--jmii-font-sans);
+  font-size: calc(0.9rem * var(--jmii-scale, 1));
+  font-weight: 500;
   line-height: 1;
-  color: var(--jmii-green);
+  color: #1e3d2f;
   min-height: 2.75rem;
   display: flex;
   align-items: flex-end;
@@ -567,23 +580,26 @@
   font-family: var(--jmii-font-cover);
   font-size: calc(2.65rem * var(--jmii-scale, 1));
   line-height: 1.1;
-  color: var(--jmii-green);
+  color: #1e3d2f;
 }
 
 .jmii-cover__amp {
   display: block;
   font-family: var(--jmii-font-cover);
   font-size: calc(1.65rem * var(--jmii-scale, 1));
-  opacity: 0.75;
+  opacity: 0.6;
   margin: 0.15rem 0;
+  color: #1e3d2f;
 }
 
 .jmii-cover__date {
-  font-family: var(--jmii-font-cover);
-  font-size: calc(1.25rem * var(--jmii-scale, 1));
-  letter-spacing: 0.04em;
+  font-family: var(--jmii-font-sans);
+  font-size: calc(0.85rem * var(--jmii-scale, 1));
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   margin-bottom: 1.5rem;
-  color: rgb(var(--jmii-green-rgb) / 0.9);
+  color: rgb(30 61 47 / 0.7);
 }
 
 @keyframes jmii-cover-in {
@@ -613,11 +629,11 @@
 }
 
 .jmii-experience--open {
-  animation: jmii-page-in 1.15s cubic-bezier(0.33, 1, 0.52, 1);
+  animation: jmii-page-in 1.15s var(--jmii-ease);
 }
 
 .jmii-experience--open.jmii-experience--revealing {
-  animation: jmii-page-in 1.35s cubic-bezier(0.33, 1, 0.52, 1) 0.35s both;
+  animation: jmii-page-in 1.35s var(--jmii-ease) 0.35s both;
 }
 
 @keyframes jmii-page-in {
@@ -632,7 +648,7 @@
   }
 }
 
-/* ─── Invitation (sau khi mở thiệp) ─── */
+/* ─── Invitation (after opening) ─── */
 .jmii-experience {
   position: relative;
 }
@@ -651,14 +667,14 @@
 .jmii-invitation-bg__img {
   object-fit: cover;
   object-position: center center;
-  filter: blur(8px) brightness(0.9) saturate(0.92);
+  filter: blur(5px) brightness(0.88) saturate(0.55);
   transform: scale(1.06);
 }
 
 .jmii-invitation-bg__overlay {
   position: absolute;
   inset: 0;
-  background: rgb(255 255 255 / 0.28);
+  background: rgb(10 15 12 / 0.72);
 }
 
 .jmii-experience--open .jmii-page {
@@ -669,10 +685,11 @@
 /* ─── Author credits ─── */
 .jmii-author {
   margin: 0;
-  font-family: var(--jmii-font-body);
+  font-family: var(--jmii-font-sans);
   font-size: calc(10px * var(--jmii-scale, 1));
-  letter-spacing: 0.1em;
+  letter-spacing: 0.2em;
   text-align: center;
+  text-transform: uppercase;
   pointer-events: none;
 }
 
@@ -684,8 +701,7 @@
   bottom: max(0.65rem, env(safe-area-inset-bottom));
   z-index: 2;
   padding: 0 1rem;
-  color: rgb(255 255 255 / 0.94);
-  text-shadow: 0 1px 5px rgb(0 0 0 / 0.45);
+  color: rgb(255 255 255 / 0.4);
 }
 
 .jmii-author--cover {
@@ -694,9 +710,9 @@
 
 .jmii-author--inside {
   padding: 0.85rem 1.25rem 1.35rem;
-  color: rgb(var(--jmii-green-rgb) / 0.5);
+  color: var(--jmii-text-dim);
   font-size: calc(9px * var(--jmii-scale, 1));
-  letter-spacing: 0.14em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   background: #fff;
 }
@@ -709,10 +725,10 @@
   width: var(--jmii-page-width);
   margin: 0 auto;
   background-color: #fff;
-  color: var(--jmii-green);
-  font-family: var(--jmii-font-body);
-  font-size: calc(12px * var(--jmii-scale));
-  line-height: 1.55;
+  color: var(--jmii-text);
+  font-family: var(--jmii-font-sans);
+  font-size: calc(14px * var(--jmii-scale));
+  line-height: 1.6;
   overflow: visible;
 }
 
@@ -795,8 +811,8 @@
   width: clamp(8rem, 12vw, 13rem);
   height: auto;
   display: block;
-  opacity: 0.52;
-  filter: blur(2px) saturate(0.9);
+  opacity: 0.45;
+  filter: blur(2px) saturate(0.85);
 }
 
 .jmii-page__floral--tr .jmii-page__floral-img,
@@ -807,7 +823,7 @@
 .jmii-page__floral-scrim {
   position: absolute;
   inset: 0;
-  background: rgb(249 247 244 / 0.52);
+  background: rgb(250 248 245 / 0.55);
   pointer-events: none;
 }
 
@@ -823,45 +839,50 @@
   }
 }
 
+/* ─── Sections base ─── */
 .jmii-section {
-  padding: 1.75rem 1.25rem;
+  padding: 3rem 1.5rem;
   text-align: center;
 }
 
 .jmii-script {
   font-family: var(--jmii-font-script);
-  font-weight: 400;
+  font-weight: 500;
   color: var(--jmii-green);
 }
 
 .jmii-label-sm {
-  font-family: var(--jmii-font-body);
-  font-size: calc(11px * var(--jmii-scale));
-  letter-spacing: 0.18em;
+  font-family: var(--jmii-font-sans);
+  font-size: calc(10px * var(--jmii-scale));
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
-  font-weight: 600;
+  font-weight: 500;
+  color: var(--jmii-text-dim);
 }
 
 .jmii-invite-line {
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.12em;
   font-size: calc(11px * var(--jmii-scale));
+  font-family: var(--jmii-font-sans);
+  font-weight: 500;
+  color: var(--jmii-text-dim);
 }
 
 .jmii-couple-names__groom,
 .jmii-couple-names__bride {
-  font-family: var(--jmii-font-serif);
-  font-size: calc(28px * var(--jmii-scale));
-  line-height: 1.05;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  font-family: var(--jmii-font-script);
+  font-size: calc(42px * var(--jmii-scale));
+  line-height: 1.1;
+  color: var(--jmii-green);
 }
 
+/* ─── Scroll Reveals - smooth Melius-style ─── */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transform: translateY(24px);
+  transition: opacity 0.8s var(--jmii-ease), transform 0.8s var(--jmii-ease);
 }
 
 .reveal-on-scroll.revealed {
@@ -869,11 +890,10 @@
   transform: translateY(0);
 }
 
-/* Enhanced reveal animations */
 .reveal-fade-up {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translateY(40px);
+  transition: opacity 1s var(--jmii-ease), transform 1s var(--jmii-ease);
 }
 
 .reveal-fade-up.revealed {
@@ -884,7 +904,7 @@
 .reveal-slide-left {
   opacity: 0;
   transform: translateX(-40px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transition: opacity 0.8s var(--jmii-ease), transform 0.8s var(--jmii-ease);
 }
 
 .reveal-slide-left.revealed {
@@ -895,7 +915,7 @@
 .reveal-slide-right {
   opacity: 0;
   transform: translateX(40px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transition: opacity 0.8s var(--jmii-ease), transform 0.8s var(--jmii-ease);
 }
 
 .reveal-slide-right.revealed {
@@ -905,8 +925,8 @@
 
 .reveal-scale-in {
   opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: scale(0.96);
+  transition: opacity 0.8s var(--jmii-ease), transform 0.8s var(--jmii-ease);
 }
 
 .reveal-scale-in.revealed {
@@ -934,7 +954,6 @@
   transition-delay: 0.5s;
 }
 
-/* Floating animation for special elements */
 @keyframes float-gentle {
 
   0%,
@@ -943,15 +962,14 @@
   }
 
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
   }
 }
 
 .float-animation.revealed {
-  animation: float-gentle 3s ease-in-out infinite 0.8s;
+  animation: float-gentle 3.5s ease-in-out infinite 0.8s;
 }
 
-/* Pulse animation for attention */
 @keyframes pulse-glow {
 
   0%,
@@ -960,19 +978,19 @@
   }
 
   50% {
-    opacity: 0.85;
+    opacity: 0.88;
   }
 }
 
 .pulse-glow.revealed {
-  animation: pulse-glow 2.5s ease-in-out infinite 1s;
+  animation: pulse-glow 3s ease-in-out infinite 1s;
 }
 
-/* Individual photo animations for PreWedding sections */
+/* Photo reveal animations */
 .photo-reveal-1 {
   opacity: 0;
-  transform: translateY(30px) scale(0.95);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transform: translateY(30px) scale(0.97);
+  transition: opacity 0.8s var(--jmii-ease), transform 0.8s var(--jmii-ease);
   transition-delay: 0.2s;
 }
 
@@ -983,8 +1001,8 @@
 
 .photo-reveal-2 {
   opacity: 0;
-  transform: translateY(30px) scale(0.95);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transform: translateY(30px) scale(0.97);
+  transition: opacity 0.8s var(--jmii-ease), transform 0.8s var(--jmii-ease);
   transition-delay: 0.4s;
 }
 
@@ -995,8 +1013,8 @@
 
 .photo-reveal-left {
   opacity: 0;
-  transform: translateX(-50px) rotate(-3deg);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translateX(-40px) rotate(-2deg);
+  transition: opacity 0.9s var(--jmii-ease), transform 0.9s var(--jmii-ease);
   transition-delay: 0.2s;
 }
 
@@ -1007,8 +1025,8 @@
 
 .photo-reveal-right {
   opacity: 0;
-  transform: translateX(50px) rotate(3deg);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translateX(40px) rotate(2deg);
+  transition: opacity 0.9s var(--jmii-ease), transform 0.9s var(--jmii-ease);
   transition-delay: 0.5s;
 }
 
@@ -1020,7 +1038,7 @@
 .quote-text-reveal {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition: opacity 0.7s var(--jmii-ease), transform 0.7s var(--jmii-ease);
   transition-delay: 0.7s;
 }
 
@@ -1029,11 +1047,11 @@
   transform: translateY(0);
 }
 
-/* Couple photos dual animation - từ 2 bên vào */
+/* Couple cards animation */
 .couple-card-left {
   opacity: 0;
-  transform: translateX(-80px) rotate(-8deg);
-  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+  transform: translateX(-60px) rotate(-4deg);
+  transition: opacity 1s var(--jmii-ease), transform 1s var(--jmii-ease);
 }
 
 .couple-card-left.revealed {
@@ -1043,8 +1061,8 @@
 
 .couple-card-right {
   opacity: 0;
-  transform: translateX(80px) rotate(8deg);
-  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+  transform: translateX(60px) rotate(4deg);
+  transition: opacity 1s var(--jmii-ease), transform 1s var(--jmii-ease);
   transition-delay: 0.15s;
 }
 
@@ -1053,31 +1071,38 @@
   transform: translateX(0) rotate(0deg);
 }
 
+/* ─── Music toggle ─── */
 .jmii-music-toggle {
   position: fixed !important;
   bottom: 1rem;
   right: 1rem;
   z-index: 1000 !important;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   border: none;
-  background: rgb(255 255 255 / 0.92);
+  background: rgb(255 255 255 / 0.9);
+  backdrop-filter: blur(12px);
   color: var(--jmii-green);
   font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgb(0 0 0 / 0.12);
+  box-shadow: 0 2px 12px rgb(0 0 0 / 0.1);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* ─── Hero (Save our date — envelope collage) ─── */
+.jmii-music-toggle:hover {
+  background: #fff;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.15);
+}
+
+/* ─── Hero ─── */
 .jmii-hero {
   padding: 0;
   background: var(--jmii-cream);
 }
 
 .jmii-hero__topbar {
-  height: 5px;
-  background: var(--jmii-green);
+  height: 0;
   display: none;
 }
 
@@ -1108,7 +1133,6 @@
   overflow: visible;
 }
 
-/* Phong bì + thiệp bên trong (CSS, không dùng ảnh envelope) */
 .jmii-hero__envelope {
   position: absolute;
   left: 50%;
@@ -1126,7 +1150,7 @@
   width: 100%;
   height: 100%;
   overflow: visible;
-  filter: drop-shadow(0 10px 22px rgb(30 61 47 / 0.22));
+  filter: drop-shadow(0 10px 32px rgb(0 0 0 / 0.4));
 }
 
 @keyframes jmii-envelope-polaroid-shake {
@@ -1169,8 +1193,8 @@
   position: absolute;
   inset: 14% 5% 0;
   border-radius: 2px 2px 10px 10px;
-  background: linear-gradient(165deg, #2a523f 0%, var(--jmii-green) 48%, #172f24 100%);
-  box-shadow: inset 0 2px 10px rgb(0 0 0 / 0.18);
+  background: linear-gradient(165deg, #1a2e24 0%, var(--jmii-dark-elevated) 48%, #0d1610 100%);
+  box-shadow: inset 0 2px 10px rgb(0 0 0 / 0.3);
 }
 
 .jmii-hero__envelope-flap {
@@ -1180,11 +1204,10 @@
   top: 0;
   height: 44%;
   z-index: 1;
-  background: linear-gradient(180deg, #315f49 0%, var(--jmii-green) 88%);
+  background: linear-gradient(180deg, #1e3428 0%, var(--jmii-dark-elevated) 88%);
   clip-path: polygon(50% 0, 0 100%, 100% 100%);
 }
 
-/* Polaroid lòi ra sau thiệp (góc phải) */
 .jmii-hero__envelope-polaroids {
   position: absolute;
   left: 50%;
@@ -1201,10 +1224,11 @@
   width: 46%;
   max-width: 118px;
   padding: 5px 5px 18px;
-  background: #fff;
+  background: var(--jmii-dark-surface);
+  border: 1px solid rgb(30 61 47 / 0.1);
   box-shadow:
-    0 8px 20px rgb(30 61 47 / 0.22),
-    0 2px 6px rgb(30 61 47 / 0.12);
+    0 8px 24px rgb(0 0 0 / 0.3),
+    0 2px 6px rgb(0 0 0 / 0.2);
 }
 
 .jmii-hero__envelope-polaroid--lead {
@@ -1212,28 +1236,23 @@
   top: 35%;
   right: -34%;
   transform: rotate(38deg);
-  animation: 2.6s ease-in-out infinite jmii-envelope-polaroid-shake
+  animation: 2.6s ease-in-out infinite jmii-envelope-polaroid-shake;
 }
 
 .jmii-hero__envelope-polaroid--back {
   z-index: 1;
-  opacity: .92;
+  opacity: .85;
   top: -7%;
   right: -39%;
   transform: rotate(15deg) scale(.94);
-  animation: 2.6s ease-in-out infinite jmii-envelope-polaroid-shake
-}
-
-.jmii-hero__envelope-polaroid-shake {
-  transform-origin: 50% 55%;
-  will-change: transform;
+  animation: 2.6s ease-in-out infinite jmii-envelope-polaroid-shake;
 }
 
 .jmii-hero__envelope-polaroid-media {
   position: relative;
   aspect-ratio: 1 / 1.05;
   overflow: hidden;
-  background: #ece8e2;
+  background: var(--jmii-dark);
 }
 
 .jmii-hero__envelope-polaroid-img {
@@ -1243,7 +1262,8 @@
 
 .jmii-hero__envelope-card {
   z-index: 4;
-  background: linear-gradient(#fdfbf7 0%, #f5f0e8 100%);
+  background: linear-gradient(var(--jmii-dark-surface) 0%, var(--jmii-dark) 100%);
+  border: 1px solid rgb(30 61 47 / 0.1);
   border-radius: 4px 4px 0 0;
   width: 76%;
   height: 74%;
@@ -1252,7 +1272,7 @@
   left: 50%;
   overflow: hidden;
   transform: translateX(-50%);
-  box-shadow: 0 6px 18px #00000038;
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.4);
 }
 
 .jmii-hero__envelope-card-copy {
@@ -1263,7 +1283,7 @@
   justify-content: center;
   padding: 0 0.55rem 0.5rem 0.6rem;
   text-align: center;
-  color: var(--jmii-green);
+  color: var(--jmii-text);
   gap: 0.5rem;
 }
 
@@ -1272,12 +1292,13 @@
   align-items: center;
   gap: 0.35rem;
   margin: 0 0 0.2rem;
-  font-family: var(--jmii-font-serif);
-  font-size: 0.58rem;
+  font-family: var(--jmii-font-sans);
+  font-size: 0.55rem;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   line-height: 1.2;
+  color: var(--jmii-text-dim);
 }
 
 .jmii-hero__envelope-card-label::before,
@@ -1285,33 +1306,35 @@
   content: "";
   width: 1.35rem;
   height: 1px;
-  background: rgb(30 61 47 / 0.35);
+  background: rgb(30 61 47 / 0.25);
 }
 
 .jmii-hero__envelope-card-names {
   margin: 0 0 0.12rem;
   font-size: clamp(1rem, 4.5vw, 1.25rem);
   line-height: 1.1;
+  color: var(--jmii-green);
 }
 
 .jmii-hero__envelope-card-date {
   margin: 0 0 0.15rem;
-  font-family: var(--jmii-font-serif);
-  font-size: 0.68rem;
+  font-family: var(--jmii-font-sans);
+  font-size: 0.6rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
+  color: var(--jmii-text-dim);
 }
 
 .jmii-hero__envelope-card-invite {
   margin: 0;
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   line-height: 1.2;
-  color: #8a7348;
+  color: var(--jmii-green-dim);
 }
 
 .jmii-hero__envelope-front {
   z-index: 5;
-  background: linear-gradient(180deg, #2f5844 0%, var(--jmii-green) 32%, #172f24 100%);
+  background: linear-gradient(180deg, #1a2e24 0%, var(--jmii-dark-elevated) 32%, #0d1610 100%);
   clip-path: polygon(0 30%, 50% 0, 100% 30%, 100% 100%, 0 100%);
   border-radius: 0 0 10px 10px;
   height: 45%;
@@ -1319,7 +1342,7 @@
   bottom: 0;
   left: 5%;
   right: 5%;
-  box-shadow: inset 0 4px 12px #00000024;
+  box-shadow: inset 0 4px 12px rgb(0 0 0 / 0.3);
 }
 
 .jmii-hero__envelope-seal {
@@ -1337,7 +1360,7 @@
   display: block;
   width: 48px;
   height: auto;
-  filter: drop-shadow(0 3px 6px rgb(0 0 0 / 0.35));
+  filter: drop-shadow(0 3px 6px rgb(0 0 0 / 0.45));
 }
 
 .jmii-hero__envelope-seal-fallback {
@@ -1345,10 +1368,10 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 28%, #d4b06a, #9a6b32 52%, #5c3d18 100%);
+  background: radial-gradient(circle at 32% 28%, #7ccca0, #4a8a6a 52%, #2a5a42 100%);
   box-shadow:
-    inset 0 -2px 4px rgb(0 0 0 / 0.25),
-    0 3px 8px rgb(0 0 0 / 0.35);
+    inset 0 -2px 4px rgb(0 0 0 / 0.35),
+    0 3px 8px rgb(0 0 0 / 0.45);
 }
 
 .jmii-hero__polaroids {
@@ -1363,10 +1386,11 @@
 
 .jmii-hero__polaroid {
   position: absolute;
-  background: #fff;
+  background: var(--jmii-dark-surface);
+  border: 1px solid rgb(30 61 47 / 0.08);
   box-shadow:
-    0 6px 20px rgb(30 61 47 / 0.18),
-    0 1px 4px rgb(30 61 47 / 0.1);
+    0 6px 24px rgb(0 0 0 / 0.3),
+    0 1px 4px rgb(0 0 0 / 0.15);
 }
 
 .jmii-hero__polaroid--back {
@@ -1389,7 +1413,7 @@
 
 .jmii-hero__polaroid-photo {
   overflow: hidden;
-  background: #ece8e2;
+  background: var(--jmii-dark);
   line-height: 0;
 }
 
@@ -1408,11 +1432,11 @@
   right: 0;
   margin: 0;
   text-align: center;
-  font-family: var(--jmii-font-serif);
-  font-size: 0.8rem;
+  font-family: var(--jmii-font-sans);
+  font-size: 0.7rem;
   font-weight: 500;
-  letter-spacing: 0.05em;
-  color: var(--jmii-green);
+  letter-spacing: 0.1em;
+  color: var(--jmii-text-dim);
 }
 
 .jmii-hero__flowers {
@@ -1440,6 +1464,7 @@
   display: block;
 }
 
+/* Full-bleed hero banner photo */
 .jmii-hero__photo-full {
   position: relative;
   width: 100%;
@@ -1460,14 +1485,12 @@
 .jmii-hero__photo-bg::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: linear-gradient(to bottom,
-      rgba(0, 0, 0, 0.1) 0%,
-      rgba(0, 0, 0, 0.2) 50%,
-      rgba(0, 0, 0, 0.1) 100%);
+      rgb(0 0 0 / 0.08) 0%,
+      rgb(0 0 0 / 0.02) 40%,
+      rgb(0 0 0 / 0.25) 80%,
+      rgb(0 0 0 / 0.5) 100%);
   z-index: 1;
 }
 
@@ -1480,73 +1503,69 @@
   bottom: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-start;
-  padding: 2rem;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 2.5rem;
   z-index: 10;
   pointer-events: none;
 }
 
 .jmii-hero__banner-title {
-  font-family: var(--jmii-font-serif);
-  font-size: clamp(2.5rem, 10vw, 5rem);
-  font-weight: 700;
+  font-family: var(--jmii-font-script);
+  font-size: clamp(3rem, 12vw, 5.5rem);
+  font-weight: 500;
   line-height: 0.9;
-  text-align: right;
+  text-align: left;
   color: #ffffff;
-  text-shadow:
-    2px 2px 4px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(212, 197, 160, 0.4);
+  text-shadow: 0 2px 20px rgb(0 0 0 / 0.35);
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.1rem;
 }
 
 .jmii-hero__banner-title-word {
   display: block;
-  animation: fade-in-up 1s ease-out backwards;
+  animation: fade-in-up 1.2s var(--jmii-ease) backwards;
 }
 
 .jmii-hero__banner-title-word:nth-child(1) {
-  animation-delay: 0.2s;
+  animation-delay: 0.3s;
 }
 
 .jmii-hero__banner-title-word:nth-child(2) {
-  animation-delay: 0.4s;
+  animation-delay: 0.5s;
   color: #d4c5a0;
-  font-size: 1.2em;
-  font-style: italic;
+  font-size: 1.1em;
 }
 
 .jmii-hero__banner-title-word:nth-child(3) {
-  animation-delay: 0.6s;
+  animation-delay: 0.7s;
 }
 
 .jmii-hero__banner-date {
-  font-family: var(--jmii-font-serif);
-  font-size: clamp(1rem, 3.5vw, 1.5rem);
+  font-family: var(--jmii-font-sans);
+  font-size: clamp(0.75rem, 2.5vw, 1rem);
+  font-weight: 500;
   color: #d4c5a0;
-  opacity: 1;
-  transform: translateY(0);
-  text-shadow:
-    1px 1px 2px rgba(0, 0, 0, 0.3),
-    0 0 10px rgba(75, 83, 50, 0.3);
-  margin-top: 1.5rem;
-  letter-spacing: 0.15em;
-  text-align: right;
+  opacity: 0.9;
+  text-shadow: none;
+  margin-top: 1.25rem;
+  letter-spacing: 0.3em;
+  text-align: left;
+  text-transform: uppercase;
 }
 
 .jmii-hero__banner-heart {
   display: inline-block;
   margin-right: 0.5rem;
   color: #d4c5a0;
-  animation: pulse-heart 2s ease-in-out infinite;
+  animation: pulse-heart 2.5s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .jmii-hero__banner-date {
-    animation: fade-in-up 1s ease-out 0.8s both;
+    animation: fade-in-up 1s var(--jmii-ease) 0.9s both;
   }
 }
 
@@ -1570,175 +1589,333 @@
   }
 
   50% {
-    transform: scale(1.15);
+    transform: scale(1.12);
   }
 }
 
 /* ─── Parents ─── */
+.jmii-parents {
+  padding-top: 4rem;
+  padding-bottom: 3rem;
+}
+
 .jmii-parents__cols {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  font-size: calc(13.5px * var(--jmii-scale));
-  line-height: 1.65;
-  margin-bottom: 1.25rem;
+  gap: 1rem;
+  font-family: var(--jmii-font-body);
+  font-size: calc(13px * var(--jmii-scale));
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  color: var(--jmii-text);
 }
 
 .jmii-invite-line {
-  font-size: calc(13px * var(--jmii-scale));
-  line-height: 1.75;
-  max-width: 19rem;
-  margin: 0 auto 1.25rem;
+  font-size: calc(11px * var(--jmii-scale));
+  line-height: 1.8;
+  max-width: 20rem;
+  margin: 0 auto 1.5rem;
 }
 
 .jmii-parents__floral {
-  width: min(100%, 220px);
-  height: 100px;
-  margin: 0 auto 1rem;
+  width: min(100%, 200px);
+  height: 90px;
+  margin: 0 auto 1.25rem;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  opacity: 0.85;
 }
 
 .jmii-couple-names__groom,
 .jmii-couple-names__bride {
   font-family: var(--jmii-font-script);
   font-size: calc(42px * var(--jmii-scale));
-  line-height: 1.05;
+  line-height: 1.1;
+  color: var(--jmii-green);
 }
 
 .jmii-couple-names__amp {
   font-family: var(--jmii-font-script);
   font-size: calc(24px * var(--jmii-scale));
-  opacity: 0.75;
+  opacity: 0.4;
   display: block;
-  margin: 0.1rem 0;
+  margin: 0.15rem 0;
+  color: var(--jmii-text-dim);
 }
 
 /* ─── Venue ─── */
+.jmii-venue {
+  padding: 3.5rem 1.5rem;
+  border-top: 1px solid var(--jmii-border);
+}
+
 .jmii-venue__hosted {
-  font-size: calc(12.75px * var(--jmii-scale));
-  margin-bottom: 0.35rem;
+  font-family: var(--jmii-font-sans);
+  font-size: calc(10px * var(--jmii-scale));
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  color: var(--jmii-text-dim);
 }
 
 .jmii-venue__name {
   font-family: var(--jmii-font-serif);
-  font-size: calc(22.5px * var(--jmii-scale));
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.35rem;
+  font-size: calc(24px * var(--jmii-scale));
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.5rem;
+  color: var(--jmii-green);
 }
 
 .jmii-venue__address {
+  font-family: var(--jmii-font-sans);
   font-size: calc(12px * var(--jmii-scale));
-  line-height: 1.65;
+  font-weight: 500;
+  line-height: 1.7;
   max-width: 18rem;
-  margin: 0 auto 0.75rem;
+  margin: 0 auto 1rem;
+  color: var(--jmii-text-dim);
 }
 
 .jmii-maps-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
-  font-size: calc(12px * var(--jmii-scale));
-  color: var(--jmii-green);
-  text-decoration: underline;
+  gap: 0.35rem;
+  font-family: var(--jmii-font-sans);
+  font-size: calc(11px * var(--jmii-scale));
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--jmii-text-dim);
+  text-decoration: none;
+  border: 1px solid var(--jmii-border);
+  border-radius: 999px;
+  padding: 0.5rem 1.25rem;
   margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  text-decoration: underline;
+  font-style: italic;
+}
+
+.jmii-maps-link:hover {
+  background: rgb(30 61 47 / 0.06);
+  border-color: var(--jmii-green);
 }
 
 .jmii-venue__time {
-  font-size: calc(14.25px * var(--jmii-scale));
-  margin-bottom: 1rem;
+  font-family: var(--jmii-font-sans);
+  font-size: calc(12px * var(--jmii-scale));
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  color: var(--jmii-text-dim);
 }
 
 .jmii-date-block {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .jmii-date-block__side {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-  font-size: calc(12px * var(--jmii-scale));
-  min-width: 4rem;
+  gap: 0.35rem;
+  font-family: var(--jmii-font-sans);
+  font-size: calc(11px * var(--jmii-scale));
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  min-width: 4.5rem;
+  color: var(--jmii-text-dim);
 }
 
 .jmii-date-block__line {
   display: block;
   width: 100%;
   height: 1px;
-  background: rgb(var(--jmii-green-rgb) / 0.35);
+  background: var(--jmii-border);
 }
 
 .jmii-date-block__day {
   font-family: var(--jmii-font-serif);
-  font-size: calc(67.5px * var(--jmii-scale));
-  font-weight: 400;
+  font-size: calc(72px * var(--jmii-scale));
+  font-weight: 500;
   line-height: 1;
+  color: var(--jmii-green);
 }
 
 .jmii-venue__lunar {
-  font-size: calc(12.3px * var(--jmii-scale));
+  font-family: var(--jmii-font-body);
+  font-size: calc(12px * var(--jmii-scale));
   font-style: italic;
-  opacity: 0.8;
+  color: var(--jmii-text-dim);
 }
 
 /* ─── Story ─── */
-.jmii-story__title {
+.jmii-story {
+  padding: 3.5rem 1.5rem;
+}
+
+.jmii-story__heading {
   font-family: var(--jmii-font-script);
-  font-size: calc(30px * var(--jmii-scale));
-  line-height: 1.25;
-  margin-bottom: 1rem;
-  max-width: 16rem;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: calc(34px * var(--jmii-scale));
+  margin-bottom: 1.25rem;
+  color: var(--jmii-green);
 }
 
 .jmii-story__text {
-  font-size: calc(12px * var(--jmii-scale));
-  line-height: 1.8;
-  max-width: 20rem;
-  margin: 0 auto 0.85rem;
+  font-family: var(--jmii-font-body);
+  font-size: calc(13px * var(--jmii-scale));
+  line-height: 1.85;
+  max-width: 22rem;
+  margin: 0 auto 1rem;
   text-align: center;
+  color: var(--jmii-text-dim);
 }
 
 /* ─── Couple photos ─── */
-.jmii-couple-photos__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.25rem;
-  align-items: end;
+.jmii-couple-photos {
+  padding: 2rem 1.5rem 3rem;
 }
 
-.jmii-couple-photos__frame {
+.jmii-couple-photos__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.jmii-couple-photos__card {
+  text-align: left;
+  padding-left: 0.5rem;
+}
+
+.jmii-couple-photos__card--bride {
+  text-align: right;
+  padding-left: 0;
+  padding-right: 0.5rem;
+}
+
+.jmii-couple-photos__row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.jmii-couple-photos__row--bride {
+  justify-content: flex-end;
+}
+
+.jmii-couple-photos__accent {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 5.5rem;
+  pointer-events: none;
+}
+
+.jmii-couple-photos__accent--groom {
+  justify-content: center;
+  padding-left: 0.15rem;
+}
+
+.jmii-couple-photos__accent--bride {
+  justify-content: flex-end;
+  padding-right: 0.15rem;
+}
+
+.jmii-couple-photos__accent-img {
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.jmii-couple-photos__accent-img--floral {
+  width: min(5.5rem, 28vw);
+  max-height: 7rem;
+  opacity: 0.85;
+  transform: rotate(14deg) scaleX(-1);
+  filter: drop-shadow(0 6px 14px rgb(30 61 47 / 0.1));
+}
+
+.jmii-couple-photos__accent-img--stamp {
+  width: min(3.5rem, 18vw);
+  opacity: 0.9;
+  transform: rotate(-10deg);
+  filter: drop-shadow(0 4px 10px rgb(30 61 47 / 0.15));
+}
+
+.jmii-polaroid__photo {
   position: relative;
-  aspect-ratio: 3 / 4.2;
-  margin-bottom: 0.5rem;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.jmii-polaroid--tilt-left {
+  flex: 0 0 min(68%, 220px);
+  transform: rotate(-3deg);
+  background: #fff;
+  border: 1px solid rgb(30 61 47 / 0.08);
+  padding: 6px 6px 24px;
+  box-shadow: 0 8px 28px rgb(30 61 47 / 0.1), 0 2px 6px rgb(0 0 0 / 0.05);
+}
+
+.jmii-polaroid--tilt-right {
+  flex: 0 0 min(68%, 220px);
+  transform: rotate(3deg);
+  background: #fff;
+  border: 1px solid rgb(30 61 47 / 0.08);
+  padding: 6px 6px 24px;
+  box-shadow: 0 8px 28px rgb(30 61 47 / 0.1), 0 2px 6px rgb(0 0 0 / 0.05);
+}
+
+.jmii-couple-photos__role {
+  font-family: var(--jmii-font-sans);
+  font-size: calc(10px * var(--jmii-scale));
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+  color: var(--jmii-text-dim);
 }
 
 .jmii-couple-photos__name {
   font-family: var(--jmii-font-script);
-  font-size: calc(24px * var(--jmii-scale));
-  text-transform: lowercase;
-  line-height: 1.1;
+  font-size: calc(22px * var(--jmii-scale));
+  color: var(--jmii-green);
 }
 
-.jmii-couple-photos__role {
-  font-size: calc(11.7px * var(--jmii-scale));
-  opacity: 0.75;
+/* ─── Calendar (dark elevated) ─── */
+.jmii-calendar {
+  padding: 0;
+  background-color: #3a5a48;
+  background-size: cover;
+  background-position: center;
 }
 
-/* ─── Calendar (JMII scattered) ─── */
+.jmii-calendar__inner {
+  padding: 3rem 1.5rem;
+  background: rgb(30 61 47 / 0.55);
+}
+
 .jmii-calendar__month {
   font-family: var(--jmii-font-serif);
-  font-size: calc(21px * var(--jmii-scale));
+  font-size: calc(28px * var(--jmii-scale));
   font-weight: 500;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+  color: #fff;
 }
 
 .jmii-calendar__scattered {
@@ -1753,19 +1930,22 @@
 }
 
 .jmii-calendar__cell {
-  font-family: var(--jmii-font-body);
+  font-family: var(--jmii-font-sans);
   font-size: calc(11px * var(--jmii-scale));
+  font-weight: 500;
   line-height: 1.4;
   min-height: 1.35rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #fff;
 }
 
 .jmii-calendar__cell--weekday {
   text-transform: lowercase;
-  opacity: 0.65;
+  opacity: 0.5;
   font-size: calc(10px * var(--jmii-scale));
+  letter-spacing: 0.1em;
 }
 
 .jmii-calendar__cell--empty {
@@ -1773,8 +1953,8 @@
 }
 
 .jmii-calendar__day--active {
-  background: var(--jmii-green);
-  color: #fff;
+  background: #fff;
+  color: var(--jmii-green);
   border-radius: 50%;
   width: 1.5rem;
   height: 1.5rem;
@@ -1782,98 +1962,207 @@
   font-weight: 600;
 }
 
-/* ─── Timeline ─── */
-.jmii-timeline__title {
-  font-family: var(--jmii-font-serif);
-  font-size: calc(18px * var(--jmii-scale));
-  margin-bottom: 1rem;
+.jmii-calendar__day--active .jmii-calendar__heart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border: 1.5px solid var(--jmii-green);
+  border-radius: 50%;
+  font-weight: 600;
+  color: var(--jmii-dark);
 }
 
-.jmii-timeline__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* ─── Timeline ─── */
+.jmii-timeline__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: 20rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.jmii-timeline__row::before {
+  content: "";
+  position: absolute;
+  top: 2.5rem;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: var(--jmii-border);
+  z-index: 0;
 }
 
 .jmii-timeline__item {
-  margin-bottom: 0.85rem;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0;
+}
+
+.jmii-timeline__icon {
+  position: relative;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin: 0 auto 0.5rem;
 }
 
 .jmii-timeline__time {
   font-family: var(--jmii-font-serif);
-  font-size: calc(16.5px * var(--jmii-scale));
-  font-weight: 600;
+  font-size: calc(18px * var(--jmii-scale));
+  font-weight: 500;
   display: block;
+  color: var(--jmii-green);
 }
 
 .jmii-timeline__label {
-  font-size: calc(12px * var(--jmii-scale));
-  text-transform: lowercase;
+  font-family: var(--jmii-font-sans);
+  font-size: calc(10px * var(--jmii-scale));
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--jmii-text-dim);
+}
+
+.jmii-timeline__connector {
+  display: none;
 }
 
 /* ─── Dresscode ─── */
-.jmii-dresscode__title {
-  font-family: var(--jmii-font-serif);
-  font-size: calc(18px * var(--jmii-scale));
-  margin-bottom: 0.75rem;
+.jmii-dresscode__swatches {
+  position: relative;
+  width: 7rem;
+  height: 3.5rem;
+  margin: 0 auto 1.25rem;
+}
+
+.jmii-dresscode__circle {
+  position: absolute;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  top: 0;
+  border: 1px solid rgb(30 61 47 / 0.1);
+}
+
+.jmii-dresscode__circle--left {
+  left: 0;
+  z-index: 1;
+}
+
+.jmii-dresscode__circle--right {
+  right: 0;
+  z-index: 2;
+}
+
+.jmii-dresscode__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 10rem;
+  margin: 0 -1.5rem;
+}
+
+.jmii-dresscode__monet {
+  position: relative;
+  min-height: 10rem;
+}
+
+.jmii-dresscode__quote-panel {
+  background: #4b5332;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .jmii-dresscode__subtitle {
   font-family: var(--jmii-font-script);
-  font-size: calc(19.5px * var(--jmii-scale));
-  line-height: 1.45;
-  max-width: 17rem;
-  margin: 0 auto;
+  color: var(--jmii-cream);
+  font-size: calc(16px * var(--jmii-scale));
+  line-height: 1.5;
+  max-width: none;
+  margin: 0;
+}
+
+.jmii-dresscode__title {
+  font-family: var(--jmii-font-serif);
+  font-size: calc(18px * var(--jmii-scale));
+  margin-bottom: 0.75rem;
+  color: var(--jmii-green);
 }
 
 /* ─── Countdown ─── */
+.jmii-countdown {
+  padding: 3.5rem 1.5rem;
+  border-top: 1px solid var(--jmii-border);
+}
+
 .jmii-countdown__title {
-  font-family: var(--jmii-font-serif);
-  font-size: calc(18px * var(--jmii-scale));
-  margin-bottom: 1rem;
+  font-family: var(--jmii-font-sans);
+  font-size: calc(10px * var(--jmii-scale));
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--jmii-text-dim);
 }
 
 .jmii-countdown__grid {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.2rem;
+  gap: 0.15rem;
 }
 
 .jmii-countdown__num {
-  font-family: var(--jmii-font-serif);
-  font-size: calc(28px * var(--jmii-scale));
+  font-family: var(--jmii-font-mono);
+  font-size: calc(36px * var(--jmii-scale));
   font-weight: 500;
-  min-width: 2.25rem;
+  min-width: 2.5rem;
   display: inline-block;
+  color: var(--jmii-green);
 }
 
 .jmii-countdown__sep {
-  font-family: var(--jmii-font-serif);
-  font-size: calc(22px * var(--jmii-scale));
-  opacity: 0.45;
-  font-weight: 300;
+  font-family: var(--jmii-font-mono);
+  font-size: calc(24px * var(--jmii-scale));
+  opacity: 0.25;
+  font-weight: 200;
+  color: var(--jmii-text-dim);
 }
 
 /* ─── RSVP ─── */
+.jmii-rsvp {
+  position: relative;
+  padding: 3rem 1.5rem 4rem;
+}
+
 .jmii-rsvp__intro {
+  font-family: var(--jmii-font-body);
   font-size: calc(12px * var(--jmii-scale));
-  line-height: 1.7;
-  max-width: 19rem;
-  margin: 0 auto 0.75rem;
+  line-height: 1.75;
+  max-width: 30rem;
+  margin: 0 auto 1rem;
+  color: var(--jmii-text-dim);
 }
 
 .jmii-rsvp__heading {
-  font-size: calc(11px * var(--jmii-scale));
-  letter-spacing: 0.14em;
+  font-family: var(--jmii-font-sans);
+  font-size: calc(10px * var(--jmii-scale));
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--jmii-text-dim);
 }
 
 .jmii-rsvp__form {
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+  gap: 0.65rem;
   max-width: 18rem;
   margin: 0 auto;
 }
@@ -1882,66 +2171,112 @@
 .jmii-select,
 .jmii-textarea {
   width: 100%;
-  padding: 0.6rem 0.75rem;
-  border: 1px solid rgb(var(--jmii-green-rgb) / 0.22);
-  background: rgb(255 255 255 / 0.65);
-  color: var(--jmii-green);
-  font-family: var(--jmii-font-body);
+  padding: 0.75rem 1.15rem;
+  border: 1px solid var(--jmii-border);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.7);
+  color: var(--jmii-text);
+  font-family: var(--jmii-font-sans);
   font-size: calc(12px * var(--jmii-scale));
-  border-radius: 0;
+  font-weight: 500;
   outline: none;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.jmii-input:focus,
+.jmii-select:focus,
+.jmii-textarea:focus {
+  border-color: var(--jmii-green);
+  background: #fff;
+}
+
+.jmii-input::placeholder,
+.jmii-textarea::placeholder {
+  color: var(--jmii-text-dim);
+}
+
+.jmii-textarea {
+  border-radius: 1rem;
+  min-height: 5rem;
 }
 
 .jmii-btn {
-  margin-top: 0.35rem;
-  padding: 0.65rem 1rem;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.85rem 1.25rem;
   background: var(--jmii-green);
   color: #fff;
   border: none;
-  font-family: var(--jmii-font-body);
+  border-radius: 999px;
+  font-family: var(--jmii-font-sans);
   font-size: calc(11px * var(--jmii-scale));
-  letter-spacing: 0.1em;
+  font-weight: 500;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.jmii-btn:hover {
+  background: #2d5a44;
+  transform: translateY(-1px);
+}
+
+.jmii-btn:active {
+  transform: scale(0.98);
 }
 
 .jmii-btn:disabled {
-  opacity: 0.65;
+  opacity: 0.5;
   cursor: not-allowed;
+  transform: none;
 }
 
 .jmii-rsvp__error {
   margin: 0;
   font-size: calc(11px * var(--jmii-scale));
-  color: #9b3b32;
+  color: #e57373;
   line-height: 1.5;
 }
 
 .jmii-rsvp__success-title {
   font-family: var(--jmii-font-script);
-  font-size: calc(32px * var(--jmii-scale));
+  font-size: calc(34px * var(--jmii-scale));
   margin-bottom: 0.75rem;
+  color: var(--jmii-green);
 }
 
 .jmii-rsvp__success-msg {
+  font-family: var(--jmii-font-body);
   font-size: calc(12px * var(--jmii-scale));
-  line-height: 1.7;
+  line-height: 1.75;
   max-width: 18rem;
   margin: 0 auto;
+  color: var(--jmii-text-dim);
 }
 
-/* ─── Wishes marquee (react-fast-marquee) ─── */
+.jmii-rsvp__floral {
+  position: absolute;
+  left: -10;
+  right: 0;
+  bottom: -25;
+  height: 5rem;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* ─── Wishes marquee ─── */
 .jmii-wishes {
-  --jmii-wishes-pattern: url("/images/wishes-pattern.png");
-  padding-block: 1.5rem 2rem;
+  padding-block: 2rem 2.5rem;
   overflow: hidden;
 }
 
 .jmii-wishes__title {
   text-align: center;
+  font-family: var(--jmii-font-script);
   font-size: calc(28px * var(--jmii-scale));
-  margin: 0 auto 1rem;
-  color: var(--jmii-green, #2d4a3e);
+  margin: 0 auto 1.25rem;
+  color: var(--jmii-green);
 }
 
 .jmii-wishes__marquee {
@@ -1959,20 +2294,13 @@
   flex-shrink: 0;
   width: min(18rem, 78vw);
   margin-inline: 0.65rem;
-  padding: 1.35rem 1.25rem 1.5rem;
-  padding-top: 1.5rem;
+  padding: 1.5rem 1.25rem;
   text-align: left;
   overflow: hidden;
-  border: none;
-  border-radius: 1.125rem;
-  background-color: #faf8f5;
-  background-image: var(--jmii-wishes-pattern);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  box-shadow:
-    0 2px 8px rgb(var(--jmii-green-rgb) / 0.06),
-    0 8px 24px rgb(var(--jmii-green-rgb) / 0.08);
+  border: 1px solid rgb(30 61 47 / 0.1);
+  border-radius: var(--jmii-radius);
+  background-color: #fff;
+  box-shadow: 0 4px 20px rgb(30 61 47 / 0.06), 0 1px 4px rgb(0 0 0 / 0.04);
 }
 
 .jmii-wishes__card::before {
@@ -1980,7 +2308,7 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: rgb(255 255 255 / 0.42);
+  background: linear-gradient(135deg, rgb(30 61 47 / 0.02), transparent);
   pointer-events: none;
 }
 
@@ -1996,7 +2324,7 @@
   width: 2.75rem;
   height: auto;
   object-fit: contain;
-  opacity: 0.9;
+  opacity: 0.8;
   pointer-events: none;
   user-select: none;
 }
@@ -2022,9 +2350,9 @@
   font-family: var(--jmii-font-body);
   font-size: calc(11.5px * var(--jmii-scale));
   font-style: italic;
-  font-weight: 400;
-  line-height: 1.65;
-  color: rgb(var(--jmii-green-rgb) / 0.72);
+  font-weight: 500;
+  line-height: 1.7;
+  color: var(--jmii-text-dim);
 }
 
 .jmii-wishes__static {
@@ -2040,64 +2368,10 @@
   width: min(20rem, 100%);
 }
 
-/* ─── Footer ─── */
-.jmii-footer__title {
-  font-size: calc(12px * var(--jmii-scale));
-  line-height: 1.7;
-  max-width: 19rem;
-  margin: 0 auto 1rem;
-  font-weight: 400;
-}
-
-.jmii-footer__message {
-  font-size: calc(12px * var(--jmii-scale));
-  line-height: 1.75;
-  max-width: 19rem;
-  margin: 0 auto 1.5rem;
-}
-
-.jmii-footer__brand .jmii-script {
-  font-size: calc(30px * var(--jmii-scale));
-}
-
-.jmii-footer__brand-line {
-  font-size: calc(10px * var(--jmii-scale));
-  letter-spacing: 0.12em;
-  opacity: 0.7;
-}
-
-/* ─── Gift ─── */
-.jmii-gift__date {
-  display: flex;
-  justify-content: center;
-  gap: 2.5rem;
-  font-family: var(--jmii-font-serif);
-  font-size: calc(36px * var(--jmii-scale));
-  line-height: 1;
-  margin-bottom: 1.25rem;
-  opacity: 0.2;
-}
-
-.jmii-gift__title {
-  font-size: calc(12px * var(--jmii-scale));
-  margin-bottom: 0.35rem;
-}
-
-.jmii-gift__name {
-  font-family: var(--jmii-font-serif);
-  font-size: calc(14px * var(--jmii-scale));
-  font-weight: 600;
-}
-
-.jmii-gift__bank {
-  font-size: calc(12px * var(--jmii-scale));
-  line-height: 1.55;
-}
-
 /* ─── Quote banner ─── */
 .jmii-quote-banner {
   padding: 0;
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
   padding-bottom: 3rem;
 }
 
@@ -2116,15 +2390,15 @@
 .jmii-quote-banner__text {
   margin: 0;
   font-family: var(--jmii-font-serif);
-  font-size: calc(26px * var(--jmii-scale));
-  letter-spacing: .03em;
+  font-size: calc(24px * var(--jmii-scale));
+  letter-spacing: .04em;
   text-align: left;
   color: var(--jmii-green);
   white-space: pre-line;
   text-wrap: balance;
   margin-inline: auto;
   padding: 0 1.5rem;
-  line-height: 1.3;
+  line-height: 1.35;
   position: absolute;
   top: 101%;
   left: 0;
@@ -2134,7 +2408,7 @@
   word-break: auto-phrase;
 }
 
-/* ─── Pre-wedding quotes (image + text side by side) ─── */
+/* ─── Pre-wedding quotes ─── */
 .jmii-pre-wedding-quotes {
   display: flex;
   flex-direction: column;
@@ -2148,7 +2422,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 13.5rem;
-  margin: 0 -1.25rem;
+  margin: 0 -1.5rem;
 }
 
 .jmii-pre-wedding-quote__photo {
@@ -2160,16 +2434,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.85rem 1rem;
+  padding: 1rem 1.25rem;
   background: var(--jmii-paper);
 }
 
 .jmii-pre-wedding-quote__quote {
   margin: 0;
-  font-size: calc(20px * var(--jmii-scale));
-  line-height: 1.35;
+  font-family: var(--jmii-font-body);
+  font-size: calc(18px * var(--jmii-scale));
+  line-height: 1.4;
   text-align: center;
-  color: var(--jmii-green);
+  color: var(--jmii-text);
   max-width: 12rem;
 }
 
@@ -2187,7 +2462,7 @@
 }
 
 .jmii-pre-wedding-quote--caption {
-  padding: 0 0 2.5rem;
+  padding: 0 0 3rem;
   background: var(--jmii-cream);
 }
 
@@ -2200,19 +2475,19 @@
 .jmii-pre-wedding-quote__caption-text {
   margin: 2rem auto 0;
   padding: 0 1.5rem;
-  max-width: 21rem;
-  font-family: var(--jmii-font-serif);
-  font-weight: 300;
+  max-width: 22rem;
+  font-family: var(--jmii-font-body);
+  font-weight: 500;
   font-size: calc(14px * var(--jmii-scale));
-  line-height: 1.75;
+  line-height: 1.8;
   letter-spacing: 0.03em;
   text-align: center;
-  color: var(--jmii-green);
+  color: var(--jmii-text-dim);
   white-space: pre-line;
 }
 
 .jmii-pre-wedding-quote--stack {
-  padding: 0 0 2.25rem;
+  padding: 0 0 2.5rem;
   background: var(--jmii-cream);
 }
 
@@ -2229,20 +2504,20 @@
 }
 
 .jmii-pre-wedding-quote__stack-text {
-  margin: 1.5rem 0 0;
-  padding: 0 1.25rem;
-  font-family: var(--jmii-font-serif);
-  font-weight: 300;
+  margin: 1.75rem 0 0;
+  padding: 0 1.5rem;
+  font-family: var(--jmii-font-body);
+  font-weight: 500;
   font-size: calc(14px * var(--jmii-scale));
-  line-height: 1.7;
+  line-height: 1.75;
   letter-spacing: 0.03em;
   text-align: left;
-  color: var(--jmii-green);
+  color: var(--jmii-text-dim);
   white-space: pre-line;
 }
 
 .jmii-pre-wedding-quote--duo {
-  padding: 1.75rem 1.25rem 2.25rem;
+  padding: 2rem 1.5rem 2.5rem;
   background: var(--jmii-cream);
 }
 
@@ -2250,7 +2525,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.35rem;
-  margin-bottom: 1.75rem;
+  margin-bottom: 2rem;
 }
 
 .jmii-pre-wedding-quote__duo-photo {
@@ -2260,26 +2535,26 @@
 
 .jmii-pre-wedding-quote__duo-text {
   margin: 0 auto;
-  max-width: 20rem;
-  font-family: var(--jmii-font-serif);
-  font-weight: 300;
+  max-width: 21rem;
+  font-family: var(--jmii-font-body);
+  font-weight: 500;
   font-size: calc(14px * var(--jmii-scale));
-  line-height: 1.7;
+  line-height: 1.75;
   letter-spacing: 0.03em;
   text-align: center;
-  color: var(--jmii-green);
+  color: var(--jmii-text-dim);
   white-space: pre-line;
 }
 
 .jmii-pre-wedding-quote--stagger {
-  padding: 1.75rem 1.25rem 2.5rem;
+  padding: 2rem 1.5rem 3rem;
   background: var(--jmii-cream);
 }
 
 .jmii-pre-wedding-quote__stagger {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: 2rem;
 }
 
 .jmii-pre-wedding-quote__stagger-photo {
@@ -2299,154 +2574,15 @@
 .jmii-pre-wedding-quote__stagger-text {
   align-self: flex-end;
   margin: 0;
-  max-width: 16.5rem;
-  font-family: var(--jmii-font-serif);
-  font-weight: 300;
+  max-width: 17rem;
+  font-family: var(--jmii-font-body);
+  font-weight: 500;
   font-size: calc(14px * var(--jmii-scale));
-  line-height: 1.65;
+  line-height: 1.7;
   letter-spacing: 0.03em;
   text-align: right;
-  color: var(--jmii-green);
+  color: var(--jmii-text-dim);
   white-space: pre-line;
-}
-
-/* ─── Calendar (dark green) ─── */
-.jmii-calendar {
-  padding: 0;
-  background-color: #4b5332;
-  background-size: cover;
-  background-position: center;
-}
-
-.jmii-calendar__inner {
-  padding: 2rem 1.25rem 2.25rem;
-  background: rgb(30 61 47 / 0.55);
-}
-
-.jmii-calendar__month {
-  color: #fff;
-  font-size: calc(32px * var(--jmii-scale));
-  margin-bottom: 1rem;
-}
-
-.jmii-calendar__cell {
-  color: #fff;
-}
-
-.jmii-calendar__cell--weekday {
-  color: rgb(255 255 255 / 0.75);
-  text-transform: lowercase;
-}
-
-.jmii-calendar__day--active .jmii-calendar__heart {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.65rem;
-  height: 1.65rem;
-  border: 1.5px solid #fff;
-  border-radius: 50%;
-  font-weight: 600;
-}
-
-/* ─── Timeline (horizontal) ─── */
-.jmii-timeline__row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 0.5rem;
-  max-width: 20rem;
-  margin: 0 auto;
-  position: relative;
-}
-
-.jmii-timeline__row::before {
-  content: "";
-  position: absolute;
-  top: 2.5rem;
-  left: 20%;
-  right: 20%;
-  height: 1px;
-  background: rgb(var(--jmii-green-rgb) / 0.35);
-  z-index: 0;
-}
-
-.jmii-timeline__item {
-  flex: 1;
-  position: relative;
-  z-index: 1;
-  margin-bottom: 0;
-}
-
-.jmii-timeline__icon {
-  position: relative;
-  width: 4.5rem;
-  height: 4.5rem;
-  margin: 0 auto 0.5rem;
-}
-
-.jmii-timeline__label {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: calc(10px * var(--jmii-scale));
-}
-
-.jmii-timeline__connector {
-  display: none;
-}
-
-/* ─── Dresscode ─── */
-.jmii-dresscode__swatches {
-  position: relative;
-  width: 7rem;
-  height: 3.5rem;
-  margin: 0 auto 1.25rem;
-}
-
-.jmii-dresscode__circle {
-  position: absolute;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
-  top: 0;
-}
-
-.jmii-dresscode__circle--left {
-  left: 0;
-  z-index: 1;
-}
-
-.jmii-dresscode__circle--right {
-  right: 0;
-  z-index: 2;
-}
-
-.jmii-dresscode__split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 10rem;
-  margin: 0 -1.25rem;
-}
-
-.jmii-dresscode__monet {
-  position: relative;
-  min-height: 10rem;
-}
-
-.jmii-dresscode__quote-panel {
-  background: #4b5332;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
-.jmii-dresscode__subtitle {
-  color: #fff;
-  font-size: calc(16px * var(--jmii-scale));
-  line-height: 1.45;
-  max-width: none;
-  margin: 0;
 }
 
 /* ─── Gallery ─── */
@@ -2455,21 +2591,15 @@
   padding-bottom: 1rem;
 }
 
-/* Mosaic layout (configurable tile sizes) */
 .jmii-gallery-mosaic {
   background: transparent;
-  /* border-radius: 1.25rem; */
   overflow: hidden;
   padding: 0.9rem;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-auto-flow: dense;
-  /* Each row unit controls tile height. Too small => “squished” tiles. */
   grid-auto-rows: 18px;
   gap: 0.55rem;
-  /* box-shadow:
-    0 22px 70px rgba(0, 0, 0, 0.18),
-    0 6px 18px rgba(0, 0, 0, 0.1); */
 }
 
 .jmii-gallery-mosaic__tile {
@@ -2483,15 +2613,13 @@
 
 .jmii-gallery-mosaic__mat {
   position: relative;
-  background: linear-gradient(180deg, #ffffff 0%, #faf7f2 100%);
+  background: linear-gradient(180deg, #fff 0%, #faf7f2 100%);
   padding: 0.65rem;
-  /* “Picture frame” look: double border + slight bevel */
-  border: 1px solid rgba(70, 60, 40, 0.22);
+  border: 1px solid rgb(70 60 40 / 0.12);
   box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.85),
-    inset 0 0 0 4px rgba(255, 255, 255, 0.35),
-    0 10px 22px rgba(0, 0, 0, 0.12),
-    0 3px 8px rgba(0, 0, 0, 0.06);
+    inset 0 0 0 1px rgb(255 255 255 / 0.85),
+    0 8px 22px rgb(0 0 0 / 0.08),
+    0 2px 6px rgb(0 0 0 / 0.04);
   flex: 1 1 auto;
   min-height: 0;
 }
@@ -2501,37 +2629,33 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: rgb(0 0 0 / 0.04);
+  background: rgb(255 255 255 / 0.02);
 }
 
 .jmii-gallery-mosaic__caption {
   font-family: var(--jmii-font-script);
   font-size: calc(16px * var(--jmii-scale));
   line-height: 1.15;
-  color: rgb(0 0 0 / 0.6);
+  color: var(--jmii-text-dim);
   text-align: center;
   padding: 0 0.25rem;
 }
 
-/* Print-like mat color variety */
+/* Subtle mat color variety */
 .jmii-gallery-mosaic__tile:nth-child(7n + 2) .jmii-gallery-mosaic__mat {
-  background: linear-gradient(180deg, #ffffff 0%, #fbf1f1 100%);
+  background: linear-gradient(180deg, #fff 0%, #fbf1f1 100%);
 }
 
 .jmii-gallery-mosaic__tile:nth-child(7n + 3) .jmii-gallery-mosaic__mat {
-  background: linear-gradient(180deg, #ffffff 0%, #f2f5f8 100%);
+  background: linear-gradient(180deg, #fff 0%, #f2f5f8 100%);
 }
 
 .jmii-gallery-mosaic__tile:nth-child(7n + 4) .jmii-gallery-mosaic__mat {
-  background: linear-gradient(180deg, #ffffff 0%, #f6f3ee 100%);
+  background: linear-gradient(180deg, #fff 0%, #f6f3ee 100%);
 }
 
 .jmii-gallery-mosaic__tile:nth-child(7n + 5) .jmii-gallery-mosaic__mat {
-  background: linear-gradient(180deg, #ffffff 0%, #f3f6f2 100%);
-}
-
-.jmii-gallery-mosaic__tile:nth-child(7n + 6) .jmii-gallery-mosaic__mat {
-  background: linear-gradient(180deg, #ffffff 0%, #f7f4f8 100%);
+  background: linear-gradient(180deg, #fff 0%, #f3f6f2 100%);
 }
 
 @media (max-width: 480px) {
@@ -2552,7 +2676,6 @@
 
 .jmii-gallery__grid {
   display: grid;
-  /* Collage wall layout (mobile-first) */
   grid-template-columns: repeat(8, minmax(0, 1fr));
   grid-auto-flow: dense;
   grid-auto-rows: 10px;
@@ -2567,9 +2690,6 @@
   flex-direction: column;
   gap: 0.5rem;
   transform: rotate(calc((var(--jmii-tilt, 0)) * 1deg));
-}
-
-.jmii-gallery__frame {
   grid-column: span 3;
   grid-row: span 26;
 }
@@ -2624,7 +2744,6 @@
   grid-row: span 30;
 }
 
-/* Vary photo aspect ratios inside the mat */
 .jmii-gallery__frame {
   --jmii-ar: 3 / 4;
 }
@@ -2633,103 +2752,81 @@
   --jmii-ar: 4 / 3;
 }
 
-/* landscape */
 .jmii-gallery__frame:nth-child(10n + 7) {
   --jmii-ar: 1 / 1;
 }
 
-/* square */
 .jmii-gallery__frame:nth-child(10n + 8) {
   --jmii-ar: 2 / 3;
 }
 
-/* taller */
 .jmii-gallery__photo {
   aspect-ratio: var(--jmii-ar);
 }
 
-/* A few special frame shapes like the reference */
-.jmii-gallery__frame:nth-child(9n + 4) .jmii-gallery__mat {
-  border-radius: 999px;
-}
-
+.jmii-gallery__frame:nth-child(9n + 4) .jmii-gallery__mat,
 .jmii-gallery__frame:nth-child(9n + 4) .jmii-gallery__photo {
   border-radius: 999px;
 }
 
 .jmii-gallery__frame:nth-child(6n + 1) {
-  --jmii-tilt: -1.2;
+  --jmii-tilt: -1;
 }
 
 .jmii-gallery__frame:nth-child(6n + 2) {
-  --jmii-tilt: 0.9;
+  --jmii-tilt: 0.7;
 }
 
 .jmii-gallery__frame:nth-child(6n + 3) {
-  --jmii-tilt: -0.6;
+  --jmii-tilt: -0.5;
 }
 
 .jmii-gallery__frame:nth-child(6n + 4) {
-  --jmii-tilt: 1.1;
+  --jmii-tilt: 0.9;
 }
 
 .jmii-gallery__frame:nth-child(6n + 5) {
-  --jmii-tilt: -0.8;
+  --jmii-tilt: -0.6;
 }
 
 .jmii-gallery__frame:nth-child(6n + 6) {
-  --jmii-tilt: 0.5;
+  --jmii-tilt: 0.4;
 }
 
 .jmii-gallery__mat {
   background: var(--jmii-frame-bg, linear-gradient(180deg, #f7f1e6 0%, #efe5d3 100%));
   padding: 0.5rem;
-  border-radius: 1.1rem;
-  box-shadow:
-    0 18px 40px rgba(0, 0, 0, 0.22),
-    0 6px 12px rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--jmii-radius);
+  box-shadow: 0 12px 28px rgb(0 0 0 / 0.12), 0 4px 8px rgb(0 0 0 / 0.06);
+  border: 1px solid rgb(255 255 255 / 0.65);
 }
 
-.jmii-gallery__frame {
-  /* default frame palette */
-  --jmii-frame-bg: linear-gradient(180deg, #f7f1e6 0%, #efe5d3 100%);
-}
-
-/* More frame color variety */
 .jmii-gallery__frame:nth-child(7n + 1) {
   --jmii-frame-bg: linear-gradient(180deg, #fbf7ef 0%, #f0e4cf 100%);
-  /* warm cream */
 }
 
 .jmii-gallery__frame:nth-child(7n + 2) {
   --jmii-frame-bg: linear-gradient(180deg, #f3f6f2 0%, #dfe7dc 100%);
-  /* sage */
 }
 
 .jmii-gallery__frame:nth-child(7n + 3) {
   --jmii-frame-bg: linear-gradient(180deg, #f7f4f8 0%, #e6ddeb 100%);
-  /* lilac */
 }
 
 .jmii-gallery__frame:nth-child(7n + 4) {
   --jmii-frame-bg: linear-gradient(180deg, #f6f3ee 0%, #e3d9ca 100%);
-  /* linen */
 }
 
 .jmii-gallery__frame:nth-child(7n + 5) {
   --jmii-frame-bg: linear-gradient(180deg, #f2f5f8 0%, #d9e3ee 100%);
-  /* mist blue */
 }
 
 .jmii-gallery__frame:nth-child(7n + 6) {
   --jmii-frame-bg: linear-gradient(180deg, #f8f1f1 0%, #edd8d8 100%);
-  /* blush */
 }
 
 .jmii-gallery__frame:nth-child(7n + 7) {
   --jmii-frame-bg: linear-gradient(180deg, #f5f2ea 0%, #d8cfbf 100%);
-  /* champagne */
 }
 
 .jmii-gallery__photo {
@@ -2737,30 +2834,29 @@
   width: 100%;
   aspect-ratio: 3 / 4;
   overflow: hidden;
-  border-radius: 0.8rem;
-  background: rgb(0 0 0 / 0.06);
+  border-radius: calc(var(--jmii-radius) - 4px);
+  background: rgb(255 255 255 / 0.02);
 }
 
 .jmii-gallery__photo img {
-  transition: transform 350ms ease;
+  transition: transform 400ms var(--jmii-ease);
 }
 
 .jmii-gallery__frame:hover .jmii-gallery__photo img {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
 .jmii-gallery__caption {
   font-family: var(--jmii-font-script);
   font-size: calc(18px * var(--jmii-scale));
   line-height: 1.1;
-  color: rgb(var(--jmii-green-rgb) / 0.92);
+  color: var(--jmii-text-dim);
   text-align: center;
   padding: 0.35rem 0.65rem;
 }
 
 @media (min-width: 900px) {
   .jmii-gallery__grid {
-    /* Collage wall layout */
     grid-template-columns: repeat(12, minmax(0, 1fr));
     grid-auto-flow: dense;
     grid-auto-rows: 12px;
@@ -2768,7 +2864,6 @@
     margin: 0;
   }
 
-  /* Vary frame sizes like a gallery wall */
   .jmii-gallery__frame {
     grid-column: span 3;
     grid-row: span 24;
@@ -2823,162 +2918,55 @@
     grid-column: span 4;
     grid-row: span 28;
   }
-
-  /* Keep the same aspect ratio rules (defined above) */
 }
 
-/* ─── Couple photos stack ─── */
-.jmii-couple-photos__stack {
+/* ─── Gift ─── */
+.jmii-gift__date {
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.jmii-couple-photos__card {
-  text-align: left;
-  padding-left: 0.5rem;
-}
-
-.jmii-couple-photos__card--bride {
-  text-align: right;
-  padding-left: 0;
-  padding-right: 0.5rem;
-}
-
-.jmii-couple-photos__row {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin-bottom: 0.75rem;
-}
-
-.jmii-couple-photos__row--bride {
-  justify-content: flex-end;
-}
-
-.jmii-couple-photos__accent {
-  flex: 1 1 0;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  min-width: 0;
-  min-height: 5.5rem;
-  pointer-events: none;
-}
-
-.jmii-couple-photos__accent--groom {
-  justify-content: flex-center;
-  padding-left: 0.15rem;
-}
-
-.jmii-couple-photos__accent--bride {
-  justify-content: flex-end;
-  padding-right: 0.15rem;
-}
-
-.jmii-couple-photos__accent-img {
-  width: auto;
-  height: auto;
-  display: block;
-  object-fit: contain;
-}
-
-.jmii-couple-photos__accent-img--floral {
-  width: min(5.75rem, 32vw);
-  max-height: 7.5rem;
-  opacity: 0.92;
-  transform: rotate(14deg) scaleX(-1);
-  filter: drop-shadow(0 6px 14px rgb(30 61 47 / 0.12));
-}
-
-.jmii-couple-photos__accent-img--stamp {
-  width: min(3.75rem, 20vw);
-  opacity: 0.95;
-  transform: rotate(-10deg);
-  filter: drop-shadow(0 4px 10px rgb(30 61 47 / 0.2));
-}
-
-.jmii-polaroid__photo {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
-}
-
-.jmii-polaroid--tilt-left {
-  flex: 0 0 min(68%, 220px);
-  transform: rotate(-4deg);
-}
-
-.jmii-polaroid--tilt-right {
-  flex: 0 0 min(68%, 220px);
-  transform: rotate(4deg);
-}
-
-.jmii-couple-photos__role {
-  font-family: var(--jmii-font-script);
-  font-size: calc(18px * var(--jmii-scale));
-  margin-bottom: 0.15rem;
-}
-
-.jmii-couple-photos__name {
+  gap: 2.5rem;
   font-family: var(--jmii-font-serif);
-  font-size: calc(14px * var(--jmii-scale));
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.jmii-story__heading {
-  font-size: calc(32px * var(--jmii-scale));
-  margin-bottom: 1rem;
+  font-size: calc(36px * var(--jmii-scale));
+  line-height: 1;
+  margin-bottom: 1.25rem;
+  opacity: 0.1;
   color: var(--jmii-green);
 }
 
-/* ─── RSVP pill ─── */
-.jmii-rsvp {
-  position: relative;
-  padding-bottom: 3rem;
+.jmii-gift__title {
+  font-family: var(--jmii-font-sans);
+  font-size: calc(11px * var(--jmii-scale));
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+  color: var(--jmii-text-dim);
 }
 
-.jmii-input,
-.jmii-select,
-.jmii-textarea {
-  border-radius: 999px;
-  padding: 0.75rem 1rem;
-  background: #fff;
+.jmii-gift__name {
+  font-family: var(--jmii-font-serif);
+  font-size: calc(16px * var(--jmii-scale));
+  font-weight: 500;
+  color: var(--jmii-green);
 }
 
-.jmii-textarea {
-  border-radius: 1.25rem;
-  min-height: 5rem;
+.jmii-gift__bank {
+  font-family: var(--jmii-font-sans);
+  font-size: calc(12px * var(--jmii-scale));
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--jmii-text-dim);
 }
 
-.jmii-btn {
-  width: 100%;
-  border-radius: 999px;
-  padding: 0.85rem 1rem;
-  background: #4b5332;
-}
-
-.jmii-rsvp__floral {
-  position: absolute;
-  left: -10;
-  right: 0;
-  bottom: -25;
-  height: 5rem;
-  pointer-events: none;
-  opacity: 0.85;
-}
-
-/* ─── Footer thank you ─── */
+/* ─── Footer ─── */
 .jmii-footer {
   padding: 0;
 }
 
 .jmii-footer__hero {
   position: relative;
-  min-height: 16rem;
-  padding: 3rem 1.5rem;
+  min-height: 18rem;
+  padding: 3.5rem 1.5rem;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center 70%;
@@ -2992,24 +2980,26 @@
 .jmii-footer__hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgb(0 0 0 / 0.35);
+  background: rgb(0 0 0 / 0.4);
 }
 
 .jmii-footer__script {
   position: relative;
   z-index: 1;
-  font-size: calc(36px * var(--jmii-scale));
+  font-family: var(--jmii-font-script);
+  font-size: calc(40px * var(--jmii-scale));
   color: #fff;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .jmii-footer__message {
   position: relative;
   z-index: 1;
+  font-family: var(--jmii-font-body);
   color: #fff;
   font-size: calc(12px * var(--jmii-scale));
-  line-height: 1.75;
-  max-width: 19rem;
+  line-height: 1.8;
+  max-width: 20rem;
   margin: 0;
 }
 
@@ -3023,10 +3013,11 @@
 }
 
 .jmii-footer__brand {
-  font-family: var(--jmii-font-serif);
+  font-family: var(--jmii-font-sans);
   font-size: calc(10px * var(--jmii-scale));
-  letter-spacing: 0.14em;
-  color: #a68b5b;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--jmii-text-dim);
   margin: 0;
 }
 
@@ -3036,24 +3027,32 @@
   align-items: center;
 }
 
-.jmii-venue__time {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.jmii-footer__title {
+  font-size: calc(12px * var(--jmii-scale));
+  line-height: 1.7;
+  max-width: 19rem;
+  margin: 0 auto 1rem;
+  font-weight: 500;
 }
 
-.jmii-maps-link {
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 600;
+.jmii-footer__brand .jmii-script {
+  font-size: calc(30px * var(--jmii-scale));
 }
 
+.jmii-footer__brand-line {
+  font-size: calc(10px * var(--jmii-scale));
+  letter-spacing: 0.15em;
+  opacity: 0.5;
+}
+
+/* ─── Desktop responsive ─── */
 @media (min-width: 421px) {
   body {
-    background: #e0ddd6;
+    background: #0a0f0c;
   }
 
   .jmii-experience--open .jmii-page {
-    box-shadow: 0 0 32px rgb(30 61 47 / 0.12);
+    box-shadow: 0 0 48px rgb(0 0 0 / 0.45);
   }
 }
 
@@ -3068,12 +3067,29 @@
   .jmii-page .jmii-section:not(.jmii-calendar):not(.jmii-footer):not(.jmii-quote-banner):not(.jmii-pre-wedding-quote):not(.jmii-pre-wedding-quote--caption):not(.jmii-pre-wedding-quote--stack):not(.jmii-pre-wedding-quote--duo):not(.jmii-pre-wedding-quote--stagger) {
     background-color: transparent;
   }
-
 }
 
+/* ─── Reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
 
   .reveal-on-scroll,
+  .reveal-fade-up,
+  .reveal-slide-left,
+  .reveal-slide-right,
+  .reveal-scale-in,
+  .couple-card-left,
+  .couple-card-right,
+  .photo-reveal-1,
+  .photo-reveal-2,
+  .photo-reveal-left,
+  .photo-reveal-right,
+  .quote-text-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
   .jmii-cover,
   .jmii-cover__flower,
   .jmii-page__floral,
