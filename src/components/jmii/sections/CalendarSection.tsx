@@ -1,11 +1,11 @@
 import type { CalendarConfig } from "@/types/wedding.types";
 
+/** October 2026 — starts Thursday, 31 days; day 11 is Sunday */
 const DEFAULT_SCATTERED: (number | string)[][] = [
-  [1, 3, 6, 7, 8, 10, 13, 14, 15],
   ["mon", "tue", "wed", "thur", "fri", "sat", "sun"],
-  [24, 25, 26, 27, 28, 29, 30],
-  [17, 18, 19, 20, 21, 22, 23],
-  [16, 9, 11, 12, 4, 2, 5],
+  [5, 6, 7, 8, 9, 10, 11],
+  [12, 13, 14, 15, 16, 17, 18],
+  [19, 20, 21, 22, 23, 24, 25],
 ];
 
 interface CalendarSectionProps {
