@@ -7,7 +7,7 @@ import { JmiiInvitation } from "@/components/jmii/JmiiInvitation";
 import { getAuthorLabel } from "@/lib/author-label";
 import { baseFontSizeStyle } from "@/lib/typography";
 import type { WishItem } from "@/lib/wishes";
-import type { WeddingConfig } from "@/types/wedding.types";
+import type { InvitationVariant, WeddingConfig } from "@/types/wedding.types";
 
 const GUEST_NAME_KEY = "jmii:guestName";
 const GUEST_NAME_EVENT = "jmii:guestName:changed";
@@ -16,6 +16,7 @@ interface WeddingExperienceProps {
   config: WeddingConfig;
   guestName?: string;
   wishes?: WishItem[];
+  variant?: InvitationVariant;
 }
 
 function subscribeGuestNameStore(onStoreChange: () => void) {
@@ -39,7 +40,13 @@ function getGuestNameSnapshot() {
   }
 }
 
-export function WeddingExperience({ config, guestName, wishes = [] }: WeddingExperienceProps) {
+export function WeddingExperience({
+  config,
+  guestName,
+  wishes = [],
+  variant = "invitation",
+}: WeddingExperienceProps) {
+  const isAnnouncement = variant === "announcement";
   const [opened, setOpened] = useState(false);
   const [revealing, setRevealing] = useState(false);
   const revealingRef = useRef<NodeJS.Timeout | null>(null);
@@ -85,6 +92,7 @@ export function WeddingExperience({ config, guestName, wishes = [] }: WeddingExp
         waxSealSrc={config.theme.heroWaxSeal}
         authorLabel={authorLabel}
         visible={!opened}
+        showDate={!isAnnouncement}
         onOpenStart={handleOpenStart}
         onOpenComplete={handleOpenComplete}
       />
@@ -112,6 +120,7 @@ export function WeddingExperience({ config, guestName, wishes = [] }: WeddingExp
               guestName={effectiveGuestName}
               authorLabel={authorLabel}
               wishes={wishes}
+              variant={variant}
             />
           </>
         ) : null}

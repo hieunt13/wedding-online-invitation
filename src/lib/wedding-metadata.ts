@@ -13,8 +13,14 @@ function resolveOgImagePath(config: WeddingConfig): string {
   );
 }
 
-export function buildWeddingMetadata(config: WeddingConfig = weddingConfig as WeddingConfig): Metadata {
+export function buildWeddingMetadata(
+  config: WeddingConfig = weddingConfig as WeddingConfig,
+  options?: { path?: string },
+): Metadata {
   const siteUrl = getSiteUrl();
+  const pageUrl = options?.path
+    ? absoluteUrl(options.path.startsWith("/") ? options.path : `/${options.path}`, siteUrl)
+    : siteUrl.toString();
   const ogImagePath = resolveOgImagePath(config);
   const ogImageUrl = absoluteUrl(ogImagePath, siteUrl);
 
@@ -25,7 +31,7 @@ export function buildWeddingMetadata(config: WeddingConfig = weddingConfig as We
     openGraph: {
       type: "website",
       locale: "vi_VN",
-      url: siteUrl,
+      url: pageUrl,
       siteName: config.meta.title,
       title: config.meta.title,
       description: config.meta.description,

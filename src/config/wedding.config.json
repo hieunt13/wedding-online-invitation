@@ -226,5 +226,32 @@
     "thankYouScript": "Thank you",
     "thankYouMessage": "Cảm ơn bạn đã dành tình cảm cho chúng mình! Sự hiện diện của bạn chính là món quà ý nghĩa nhất, và chúng mình vô cùng trân quý khi được cùng bạn chia sẻ niềm hạnh phúc trong ngày trọng đại này.",
     "brandLabel": "Created by Trung Hiếu"
+  },
+  "announcement": {
+    "meta": {
+      "title": "Trung Hiếu & Khánh Linh - Báo Hỷ",
+      "description": "Trân trọng báo tin Trung Hiếu và Khánh Linh đã kết hôn"
+    },
+    "cover": {
+      "invitationLabel": "Báo Hỷ",
+      "openButtonText": "Mở thiệp",
+      "tapHint": "Chạm bất kỳ đâu để mở thiệp"
+    },
+    "hero": {
+      "bannerOverlayTitle": "Đã kết hôn",
+      "clearBannerOverlayDate": true
+    },
+    "event": {
+      "invitationLine": "Trân trọng báo tin hai chúng tôi đã kết hôn"
+    },
+    "loveStory": {
+      "sectionTitle": "Hành trình của chúng mình",
+      "paragraphs": [
+        "Sau hành trình yêu thương và những ngày cùng nhau vượt qua mọi thử thách, hôm nay chúng mình chính thức trở thành vợ chồng. Cảm ơn bạn đã luôn đồng hành và gửi lời chúc phúc đến gia đình chúng mình."
+      ]
+    },
+    "footer": {
+      "thankYouMessage": "Cảm ơn bạn đã dành tình cảm và lời chúc phúc cho chúng mình. Sự quan tâm của bạn là món quà ý nghĩa nhất trên hành trình mới này."
+    }
   }
 }

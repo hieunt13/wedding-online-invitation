@@ -26,6 +26,8 @@ interface JmiiCoverProps {
   onOpenComplete: () => void;
   visible: boolean;
   authorLabel?: string;
+  /** Ẩn ngày trên cover (trang báo hỷ) */
+  showDate?: boolean;
 }
 
 function formatCoverDate(dateString: string) {
@@ -44,6 +46,7 @@ export function JmiiCover({
   onOpenComplete,
   visible,
   authorLabel,
+  showDate = true,
 }: JmiiCoverProps) {
   const [phase, setPhase] = useState<OpenPhase>("idle");
   const completedRef = useRef(false);
@@ -164,7 +167,9 @@ export function JmiiCover({
                   <p className="jmii-cover__name">{couple.bride}</p>
                 </div>
 
-                <p className="jmii-cover__date">{formatCoverDate(couple.weddingDate)}</p>
+                {showDate ? (
+                  <p className="jmii-cover__date">{formatCoverDate(couple.weddingDate)}</p>
+                ) : null}
                 <p className="jmii-cover__label">{cover.invitationLabel}</p>
                 <p className="jmii-cover__guest">{guestName ?? "Khách mời"}</p>
               </div>

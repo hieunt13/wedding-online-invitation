@@ -6,7 +6,6 @@ import { PageFloralBackground } from "@/components/jmii/PageFloralBackground";
 import { CalendarSection } from "@/components/jmii/sections/CalendarSection";
 import { CountdownSection } from "@/components/jmii/sections/CountdownSection";
 import { CouplePhotosSection } from "@/components/jmii/sections/CouplePhotosSection";
-import { DresscodeSection } from "@/components/jmii/sections/DresscodeSection";
 import { FooterSection } from "@/components/jmii/sections/FooterSection";
 import { GallerySection } from "@/components/jmii/sections/GallerySection";
 import { GiftSection } from "@/components/jmii/sections/GiftSection";
@@ -23,13 +22,14 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import type { WishItem } from "@/lib/wishes";
 import { resolveMusicPlaybackSrc } from "@/lib/music-playback";
 import { baseFontSizeStyle } from "@/lib/typography";
-import type { WeddingConfig } from "@/types/wedding.types";
+import type { InvitationVariant, WeddingConfig } from "@/types/wedding.types";
 
 interface JmiiInvitationProps {
   config: WeddingConfig;
   guestName?: string;
   authorLabel?: string;
   wishes?: WishItem[];
+  variant?: InvitationVariant;
 }
 
 export function JmiiInvitation({
@@ -37,9 +37,11 @@ export function JmiiInvitation({
   guestName,
   authorLabel,
   wishes = [],
+  variant = "invitation",
 }: JmiiInvitationProps) {
   useScrollReveal(true);
 
+  const isAnnouncement = variant === "announcement";
   const { couple, theme, music, hero, families, event, loveStory, couplePhotos } = config;
   const typographyStyle = baseFontSizeStyle(config.typography);
 
@@ -68,12 +70,14 @@ export function JmiiInvitation({
         flowerImage={theme.parentsFloral}
       />
 
-      <VenueDateSection event={event} />
+      {!isAnnouncement ? <VenueDateSection event={event} /> : null}
 
-      <QuoteBannerSection
-        photo={config.quoteBannerPhoto ?? config.heroBannerPhoto ?? hero.heroPhoto}
-        quote={loveStory.quoteOnPhoto}
-      />
+      {!isAnnouncement ? (
+        <QuoteBannerSection
+          photo={config.quoteBannerPhoto ?? config.heroBannerPhoto ?? hero.heroPhoto}
+          quote={loveStory.quoteOnPhoto}
+        />
+      ) : null}
 
       <CouplePhotosSection
         couplePhotos={couplePhotos}
@@ -83,21 +87,32 @@ export function JmiiInvitation({
 
       <LoveStorySection loveStory={loveStory} />
 
-      {config.preWeddingQuotes ? (
+      {!isAnnouncement && config.preWeddingQuotes ? (
         <PreWeddingQuotesSection preWeddingQuotes={config.preWeddingQuotes} />
       ) : null}
 
-      <CalendarSection calendar={config.calendar} backgroundImage={theme.calendarBg} />
+      {!isAnnouncement ? (
+        <CalendarSection calendar={config.calendar} backgroundImage={theme.calendarBg} />
+      ) : null}
 
-      <TimelineSection items={config.timeline} />
+      {!isAnnouncement ? <TimelineSection items={config.timeline} /> : null}
 
-      <CountdownSection weddingDate={couple.weddingDate} label={config.countdown.label} />
+      {!isAnnouncement ? (
+        <CountdownSection weddingDate={couple.weddingDate} label={config.countdown.label} />
+      ) : null}
 
       {config.gallery ? <GallerySection gallery={config.gallery} /> : null}
 
-      <RsvpSection rsvp={config.rsvp} defaultName={guestName} floralImage={theme.rsvpFloral} />
+      {!isAnnouncement ? (
+        <RsvpSection rsvp={config.rsvp} defaultName={guestName} floralImage={theme.rsvpFloral} />
+      ) : null}
 
-      {config.gift ? <GiftSection gift={config.gift} weddingDate={couple.weddingDate} /> : null}
+      {/* {config.gift ? (
+        <GiftSection
+          gift={config.gift}
+          weddingDate={isAnnouncement ? undefined : couple.weddingDate}
+        />
+      ) : null} */}
 
       {config.wishes?.enabled ? (
         <WishesMarqueeSection config={config.wishes} wishes={wishes} />

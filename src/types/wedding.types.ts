@@ -178,13 +178,35 @@ export interface GiftConfig {
   accountNumber: string;
 }
 
-export interface WeddingConfig {
-  meta: {
-    title: string;
-    description: string;
-    /** Ảnh preview khi chia sẻ link (đường dẫn trong public/, vd. /images/pre-wedding1.jpg) */
-    ogImage?: string;
+export interface WeddingMeta {
+  title: string;
+  description: string;
+  /** Ảnh preview khi chia sẻ link (đường dẫn trong public/, vd. /images/pre-wedding1.jpg) */
+  ogImage?: string;
+}
+
+export interface WeddingFooter {
+  thankYouScript: string;
+  thankYouMessage: string;
+  brandLabel: string;
+  social?: SocialLink[];
+}
+
+/** Overrides cho trang thiệp báo hỷ (`/announcement`). */
+export interface AnnouncementConfig {
+  meta?: Partial<WeddingMeta>;
+  cover?: Partial<CoverCopy>;
+  hero?: Partial<HeroConfig> & {
+    /** Khi true, bỏ bannerOverlayDate kể cả khi config gốc có ngày */
+    clearBannerOverlayDate?: boolean;
   };
+  event?: Partial<EventConfig>;
+  loveStory?: Partial<LoveStoryConfig>;
+  footer?: Partial<WeddingFooter>;
+}
+
+export interface WeddingConfig {
+  meta: WeddingMeta;
   theme: ThemeAssets;
   cover: CoverCopy;
   typography?: TypographyConfig;
@@ -220,13 +242,12 @@ export interface WeddingConfig {
   author?: {
     label: string;
   };
-  footer: {
-    thankYouScript: string;
-    thankYouMessage: string;
-    brandLabel: string;
-    social?: SocialLink[];
-  };
+  footer: WeddingFooter;
+  /** Copy / meta riêng cho trang báo hỷ */
+  announcement?: AnnouncementConfig;
 }
+
+export type InvitationVariant = "invitation" | "announcement";
 
 export interface CountdownTime {
   days: number;
